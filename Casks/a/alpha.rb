@@ -8,6 +8,8 @@ cask "alpha" do
   desc "Text editor based on Apple's Cocoa framework"
   homepage "https://alphacocoa.sourceforge.io/"
 
+  no_autobump! because: :requires_manual_review
+
   app "Alpha.app"
 
   zap trash: [
@@ -17,4 +19,8 @@ cask "alpha" do
     "~/Library/Preferences/net.sourceforge.alphacocoa.plist",
     "~/Library/Saved Application State/net.sourceforge.alphacocoa.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

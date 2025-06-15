@@ -6,10 +6,9 @@ cask "serial-tools" do
   name "Serial Tools"
   homepage "https://www.w7ay.net/site/Applications/Serial%20Tools/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-06", because: "is 32-bit only"
 
   app "Serial Tools.app"
 end

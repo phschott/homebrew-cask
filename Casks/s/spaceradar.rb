@@ -12,6 +12,8 @@ cask "spaceradar" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "SpaceRadar.app"
 
   uninstall quit: "com.electron.spaceradar"
@@ -22,4 +24,8 @@ cask "spaceradar" do
     "~/Library/Preferences/com.electron.spaceradar.plist",
     "~/Library/Saved Application State/com.electron.spaceradar.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

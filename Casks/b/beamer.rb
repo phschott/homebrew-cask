@@ -12,6 +12,9 @@ cask "beamer" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
   depends_on macos: ">= :catalina"
 
   app "Beamer.app"
@@ -25,4 +28,8 @@ cask "beamer" do
         "~/Library/Saved Application State/com.softorino.beamer.savedState",
       ],
       rmdir: "/Users/Shared/Beamer"
+
+  caveats do
+    requires_rosetta
+  end
 end

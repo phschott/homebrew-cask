@@ -20,6 +20,8 @@ cask "codeexpander" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "CodeExpander.app"
 
   zap trash: [
@@ -29,4 +31,8 @@ cask "codeexpander" do
     "~/Library/Preferences/com.codeexpander.plist",
     "~/Library/Saved Application State/com.codeexpander.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

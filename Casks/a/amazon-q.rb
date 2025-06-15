@@ -1,17 +1,17 @@
 cask "amazon-q" do
-  version "1.1.0"
-  sha256 "68b2510a315014dc539256958ff9367740a1f1dec1a360699e773f971330be49"
+  version "1.12.0"
+  sha256 "ead5017a39484fbc78111ce9d4175469fe843d5995be9349b57a18439d475e5e"
 
-  url "https://desktop-release.codewhisperer.us-east-1.amazonaws.com/#{version}/Amazon%20Q.dmg",
-      verified: "desktop-release.codewhisperer.us-east-1.amazonaws.com/"
+  url "https://desktop-release.q.us-east-1.amazonaws.com/#{version}/Amazon%20Q.dmg",
+      verified: "desktop-release.q.us-east-1.amazonaws.com/"
   name "Amazon Q"
   desc "AI-powered productivity tool for the command-line"
   homepage "https://aws.amazon.com/q/developer/"
 
   livecheck do
-    url "https://desktop-release.codewhisperer.us-east-1.amazonaws.com/index.json"
+    url "https://desktop-release.q.us-east-1.amazonaws.com/index.json"
     strategy :json do |json|
-      json["versions"].map { |item| item["version"] }
+      json["versions"]&.map { |item| item["version"] }
     end
   end
 
@@ -21,6 +21,13 @@ cask "amazon-q" do
   app "Amazon Q.app"
 
   zap trash: [
+    "~/.local/bin/bash (qterm)",
+    "~/.local/bin/fish (qterm)",
+    "~/.local/bin/nu (qterm)",
+    "~/.local/bin/q",
+    "~/.local/bin/qterm",
+    "~/.local/bin/zsh (qterm)",
+    "~/Library/Application Support/amazon-q",
     "~/Library/Application Support/codewhisperer",
     "~/Library/Caches/com.amazon.codewhisperer",
     "~/Library/LaunchAgents/com.amazon.codewhisperer.launcher.plist",

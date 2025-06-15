@@ -16,6 +16,8 @@ cask "beersmith" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :mojave"
 
   app "BeerSmith#{version.major}.app"
@@ -26,4 +28,8 @@ cask "beersmith" do
     "~/Library/Preferences/BeerSmith-LLC.BeerSmith.*.plist",
     "~/Library/Saved Application State/BeerSmith-LLC.BeerSmith.*.savedStat",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

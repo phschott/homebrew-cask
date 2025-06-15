@@ -7,5 +7,13 @@ cask "kawa" do
   desc "Alternative input source switcher"
   homepage "https://github.com/utatti/kawa"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-17", because: :unmaintained
+
   app "Kawa.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

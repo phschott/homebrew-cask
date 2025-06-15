@@ -1,9 +1,9 @@
 cask "rubymine" do
   arch arm: "-aarch64"
 
-  version "2024.1.2,241.17011.76"
-  sha256 arm:   "72aa935524f59e081b20d3cbeb82c90dbf2313015069ceddebd43a2c3f8de539",
-         intel: "17080d127951d0ccf1e137bc65c72ab186d0fae2c0d95bc30763486a26ff12ef"
+  version "2025.1.2,251.26094.122"
+  sha256 arm:   "1da265fa947d5d1cf3075495414b9e65ec519a5bd9bee5ca2fa7df67bafdc352",
+         intel: "059d3d4c089b9277089bd7d64b8f6eedcf039fe791cddc694af434a1c5ad88c8"
 
   url "https://download.jetbrains.com/ruby/RubyMine-#{version.csv.first}#{arch}.dmg"
   name "RubyMine"
@@ -13,8 +13,12 @@ cask "rubymine" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=RM&latest=true&type=release"
     strategy :json do |json|
-      json["RM"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["RM"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
@@ -23,7 +27,16 @@ cask "rubymine" do
   depends_on macos: ">= :high_sierra"
 
   app "RubyMine.app"
-  binary "#{appdir}/RubyMine.app/Contents/MacOS/rubymine"
+  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
+  shimscript = "#{staged_path}/rubymine.wrapper.sh"
+  binary shimscript, target: "rubymine"
+
+  preflight do
+    File.write shimscript, <<~EOS
+      #!/bin/sh
+      exec '#{appdir}/RubyMine.app/Contents/MacOS/rubymine' "$@"
+    EOS
+  end
 
   zap trash: [
     "~/Library/Application Support/RubyMine#{version.major_minor}",

@@ -6,5 +6,13 @@ cask "macdependency" do
   name "MacDependency"
   homepage "https://github.com/kwin/macdependency"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-27", because: :unmaintained
+
   app "MacDependency.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

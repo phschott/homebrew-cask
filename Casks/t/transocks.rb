@@ -13,6 +13,10 @@ cask "transocks" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :sierra"
+
   app "穿梭Transocks.app"
 
   uninstall trash: [
@@ -29,4 +33,8 @@ cask "transocks" do
     "~/Library/Preferences/group.com.transocks.mac.plist",
     "~/Library/Saved Application State/com.transocks.mac.signed.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

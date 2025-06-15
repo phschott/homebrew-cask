@@ -13,6 +13,8 @@ cask "luminance-hdr" do
     regex(%r{url=.*?/Luminance[_-]?HDR[._-]v?(\d+(?:\.\d+)+)[^"' ]*?\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Luminance HDR #{version.major_minor_patch}.app"
@@ -21,4 +23,8 @@ cask "luminance-hdr" do
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.luminance-hdr.sfl*",
     "~/Library/Preferences/com.luminance-hdr.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "mindjet-mindmanager" do
-  version "23.0.169"
-  sha256 "591dd7f4fe58fc2953ccbc2f08ea3aacb1330005d090775eee6eaaf86b128e5f"
+  version "24.1.155"
+  sha256 "984641a6620551efdf85066165ac6413d274c5b1a97378e08582c8c13a97fccb"
 
   url "https://download.mindjet.com/MindManager_Mac_#{version}.dmg"
   name "Mindmanager"
@@ -13,7 +13,17 @@ cask "mindjet-mindmanager" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :ventura"
 
   app "MindManager.app"
+
+  zap trash: [
+    "~/Library/Application Support/Mindjet",
+    "~/Library/Application Support/MindManager",
+    "~/Library/Caches/com.mindjet.mindmanager.*",
+    "~/Library/HTTPStorages/com.mindjet.mindmanager.*.binarycookies",
+    "~/Library/Preferences/ByHost/com.mindjet.mindmanager.*.6B4DD3EE-2BFA-5A1C-A64F-50799C342D41.plist",
+    "~/Library/Preferences/com.mindjet.mindmanager.*.plist",
+    "~/Library/WebKit/com.mindjet.mindmanager.*",
+  ]
 end

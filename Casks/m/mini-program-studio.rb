@@ -1,9 +1,9 @@
 cask "mini-program-studio" do
   arch arm: "-arm64", intel: "-x64"
 
-  version "3.8.31"
-  sha256 arm:   "85a363c64e83491ff7e095f374387df602c6b3254ccf1a880b1acc41c1eff37e",
-         intel: "c81881ecec572c6f787ca0deabe5bfe1977c9962931f5d62d67a286663c8edb6"
+  version "3.9.61"
+  sha256 arm:   "8b7d1ab6d568d9b2ed3bce1088f0defb08f532b79ac956dd6162dfa27ec9f9ca",
+         intel: "a33e55b0d2e18db4851e6bef7d529f7fd05558088359544de345218f95e643b1"
 
   url "https://alipay-miniapp-public.oss-cn-hangzhou.aliyuncs.com/mfupload/MiniProgramStudio-#{version}#{arch}.dmg",
       verified: "alipay-miniapp-public.oss-cn-hangzhou.aliyuncs.com/mfupload/"
@@ -19,6 +19,8 @@ cask "mini-program-studio" do
     url "https://opendocs.alipay.com/api/content/006l6m"
     regex(/MiniProgramStudio[._-](\d+(?:\.\d+)*)/i)
   end
+
+  depends_on macos: ">= :catalina"
 
   app "小程序开发者工具.app"
 

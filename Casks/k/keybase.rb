@@ -2,12 +2,12 @@ cask "keybase" do
   arch arm: "arm64-"
 
   on_arm do
-    version "6.3.0,20240528152652,16b027d126"
-    sha256 "9a90649bd60260a27bd0de2834584547eb7cf90a93fd48d2eb24aad32cdf8cee"
+    version "6.5.1,20250422141116,19f9cfeddb"
+    sha256 "085fa763b6b6648218274c7a0080b0a810ec750578d0c432f0b682ad5cd0c370"
   end
   on_intel do
-    version "6.3.0,20240528151149,16b027d126"
-    sha256 "695d6d9a5588e125e74513f57537ceddad96481bb7116f490d8ba5e4d8b65667"
+    version "6.5.2,20250428134940,6652519c3d"
+    sha256 "e790bbebc4c83ccd26c84e58e9a2f8faca0518c9a81846a3149f08b3ae9ffa09"
   end
 
   url "https://prerelease.keybase.io/darwin-#{arch}updates/Keybase-#{version.csv.first}-#{version.csv.second}%2B#{version.csv.third}.zip"
@@ -17,15 +17,15 @@ cask "keybase" do
 
   livecheck do
     url "https://prerelease.keybase.io/update-darwin-#{arch}prod-v2.json"
-    strategy :page_match do |page|
-      match = page.match(/Keybase[._-]v?(\d+(?:\.\d+)+)[._-](\d+)%2B([0-9a-f]+)\.zip/i)
-      next if match.blank?
-
-      "#{match[1]},#{match[2]},#{match[3]}"
+    strategy :json do |json|
+      json["version"]&.tr("-+", ",")
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Keybase.app"
 
@@ -51,9 +51,11 @@ cask "keybase" do
             ]
 
   zap trash: [
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/keybase.*.sfl*",
         "~/Library/Application Support/Keybase",
         "~/Library/Caches/Keybase",
         "~/Library/Group Containers/keybase",
+        "~/Library/LaunchAgents/keybase.*.plist",
         "~/Library/Logs/Keybase*",
         "~/Library/Preferences/keybase*",
       ],

@@ -1,12 +1,13 @@
 cask "font-lxgw-fasmartgothic" do
-  version "1.123"
-  sha256 "22f182b16041b430c47ce7092787f823a2f8558a969e41433e2f2d44846b036f"
+  version "1.201"
+  sha256 "46c06f85c75aa55b4450fa02c37a35f0f8a4efe8058ffcb6e48b9e2eccd764eb"
 
-  url "https://github.com/lxgw/LxgwNeoXiHei/releases/download/v#{version}/LXGWFasmartGothic.ttf"
+  url "https://github.com/lxgw/LxgwFasmartGothic/releases/download/v#{version}/LXGWFasmartGothic.ttf"
   name "LXGW FasmartGothic"
   name "霞鹜尚智黑"
-  desc "Chinese sans-serif font derived from IPAex Gothic"
   homepage "https://github.com/lxgw/LxgwNeoXiHei"
+
+  deprecate! date: "2024-11-22", because: :discontinued
 
   font "LXGWFasmartGothic.ttf"
 

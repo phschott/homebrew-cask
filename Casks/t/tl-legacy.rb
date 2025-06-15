@@ -7,10 +7,9 @@ cask "tl-legacy" do
   desc "Launcher for Minecraft"
   homepage "https://tlaun.ch/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-04", because: :no_longer_available
 
   app "TL Legacy.app"
 

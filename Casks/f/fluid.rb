@@ -12,6 +12,8 @@ cask "fluid" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Fluid.app"
@@ -22,4 +24,8 @@ cask "fluid" do
     "~/Library/Preferences/com.fluidapp.Fluid*",
     "~/Library/Saved Application State/com.fluidapp.Fluid*",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

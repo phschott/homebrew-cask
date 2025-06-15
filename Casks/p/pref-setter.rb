@@ -7,10 +7,9 @@ cask "pref-setter" do
   desc "Edit plist files"
   homepage "http://www.nightproductions.net/prefsetter.html"
 
-  livecheck do
-    url "http://www.nightproductions.net/feeds/prefsetter.xml"
-    strategy :sparkle, &:short_version
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-16", because: "is 32-bit only"
 
   depends_on macos: "<= :mojave"
 

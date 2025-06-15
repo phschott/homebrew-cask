@@ -1,28 +1,35 @@
 cask "osp-tracker" do
-  version "6.1.6"
-  sha256 "a78e48ddbd3e253c57aeefd7e2ccf5d5394ddf0948579b5992ad6370a92baa74"
+  version "6.3.1"
+  sha256 "f6454c04191a77df9e517f521f693a634c7e7f4e93b1f7aa173d09bffbc9d486"
 
-  url "https://physlets.org/tracker/installers/download.php?file=Tracker-#{version}-osx-installer.dmg"
+  url "https://physlets.org/tracker/installers/Tracker-#{version}-osx-installer.dmg",
+      verified: "physlets.org/tracker/installers/"
   name "Tracker"
   desc "Video analysis and modelling tool for physics education"
-  homepage "https://physlets.org/tracker/"
+  homepage "https://opensourcephysics.github.io/tracker-website/"
 
   livecheck do
     url :homepage
-    regex(/href=.*?file=Tracker[._-]v?(\d+(?:\.\d+)+)-osx-installer\.dmg/i)
+    regex(/href=.*?Tracker[._-]v?(\d+(?:\.\d+)+)[._-]osx[._-]installer\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   installer script: {
-    executable: "Tracker-#{version}-osx-installer.app/Contents/MacOS/installbuilder.sh",
+    executable: "Tracker-#{version}-osx-installer.app/Contents/MacOS/osx-x86_64",
     args:       ["--mode", "unattended"],
     sudo:       true,
   }
 
   uninstall script: {
-    executable: "/usr/local/tracker/uninstall_Tracker.app/Contents/MacOS/installbuilder.sh",
+    executable: "/usr/local/tracker/uninstall_Tracker.app/Contents/MacOS/osx-x86_64",
     args:       ["--mode", "unattended"],
     sudo:       true,
   }
 
   zap trash: "~/Library/Saved Application State/org.opensourcephysics.cabrillo.tracker.savedState"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,9 +1,9 @@
 cask "bitcoin-core" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "27.0"
-  sha256 arm:   "7f060f2cd07746ff9d09b000b4195fee88dfca8444ab7a73f0c76aff4225227c",
-         intel: "8c94d3a7e34b59effdcf283263d5e84f2b009e601076282e9697ab4244bef3e8"
+  version "29.0"
+  sha256 arm:   "f660d4a968f5dabcee4d72cd31b4a50ab0d646386a9fc78c6208a9a101f8878d",
+         intel: "3bbee3e1f006365542d5c84beb632c90a6d206fa610c1fe415f52e69febe9b0c"
 
   url "https://bitcoincore.org/bin/bitcoin-core-#{version}/bitcoin-#{version}-#{arch}-apple-darwin.zip"
   name "Bitcoin Core"
@@ -11,9 +11,11 @@ cask "bitcoin-core" do
   homepage "https://bitcoincore.org/"
 
   livecheck do
-    url "https://bitcoincore.org/en/download/"
-    regex(/href=.*?bitcoin[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}[^"' >]*?\.zip/i)
+    url "https://bitcoincore.org/bin/"
+    regex(/href=.*?bitcoin[._-]core[._-]v?(\d+(?:\.\d+)+)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :big_sur"
 

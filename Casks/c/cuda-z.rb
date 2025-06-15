@@ -7,10 +7,11 @@ cask "cuda-z" do
   desc "Show basic information about CUDA-enabled GPUs and GPGPUs"
   homepage "https://cuda-z.sourceforge.net/"
 
-  livecheck do
-    url :homepage
-    regex(/CUDA-Z-(\d+(?:\.\d+)+)\.dmg/i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-09-01", because: :unmaintained
+
+  depends_on arch: :x86_64
 
   app "CUDA-Z.app"
 end

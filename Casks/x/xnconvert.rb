@@ -1,16 +1,18 @@
 cask "xnconvert" do
-  version "1.100.1"
-  sha256 :no_check
+  version "1.105.0"
+  sha256 "637c88af55ff489a693701c761828c2d1c7191e85bb427121b5d5131934585e1"
 
-  url "https://download.xnview.com/XnConvert-mac.dmg"
+  url "https://download.xnview.com/old_versions/XnConvert/XnConvert-#{version}-mac.dmg"
   name "XnSoft XnConvert"
   desc "Image-converter and resiser tool"
   homepage "https://www.xnview.com/en/xnconvert/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://download.xnview.com/old_versions/XnConvert/"
+    regex(/href=.*XnConvert[._-]v?(\d+(?:\.\d+)+)[._-]mac\.dmg/i)
   end
+
+  depends_on macos: ">= :sierra"
 
   app "XnConvert.app"
 

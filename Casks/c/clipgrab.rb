@@ -12,9 +12,15 @@ cask "clipgrab" do
     regex(/href=.*?ClipGrab[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "ClipGrab.app"
 
   zap trash: "~/Library/Preferences/de.clipgrab.ClipGrab.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

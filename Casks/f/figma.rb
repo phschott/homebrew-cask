@@ -1,9 +1,9 @@
 cask "figma" do
   arch arm: "mac-arm", intel: "mac"
 
-  version "124.0.2"
-  sha256 arm:   "55253bb0021c82f6e5033b6198c625a62b220c1d038f3f125f8f458f7461d663",
-         intel: "ceaa7bf5664f6c17f3044878de52af087789bd27e6e97eeba35af69ef5d56b32"
+  version "125.4.9"
+  sha256 arm:   "601ad546cb73eaee77960bee9b41837df229a39aee045d4d8e3b2c70df4d7402",
+         intel: "7231e2c69d333cec77718a4687948816284e89dc85afa655a59b8e1c30346702"
 
   url "https://desktop.figma.com/#{arch}/Figma-#{version}.zip"
   name "Figma"
@@ -11,13 +11,14 @@ cask "figma" do
   homepage "https://www.figma.com/"
 
   livecheck do
-    url "https://desktop.figma.com/#{arch}/RELEASE.json"
+    url "https://desktop.figma.com/#{arch}/RELEASE.json?localVersion=#{version}"
     strategy :json do |json|
       json["version"]
     end
   end
 
   auto_updates true
+  depends_on macos: ">= :sierra"
 
   app "Figma.app"
 

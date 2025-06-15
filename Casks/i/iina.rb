@@ -1,6 +1,6 @@
 cask "iina" do
-  version "1.3.4,140"
-  sha256 "7de50f5ad4a2fd5b27bf59a31b2060074c05331c7aafa533ad4adab65028d78c"
+  version "1.3.5,141"
+  sha256 "3b8b9199f41a18c2aa8b30e5824d0c9daccc1d59176832ea650f533fcbdc6a38"
 
   url "https://dl-portal.iina.io/IINA.v#{version.csv.first}.dmg"
   name "IINA"
@@ -11,6 +11,8 @@ cask "iina" do
     url "https://www.iina.io/appcast.xml"
     strategy :sparkle # IINA sometimes rebuilds with the same short version.
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :high_sierra"

@@ -8,9 +8,17 @@ cask "landrop" do
   desc "Drop any files to any devices on your LAN"
   homepage "https://landrop.app/"
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   app "LANDrop.app"
 
   uninstall quit: "app.landrop.landrop"
 
   zap trash: "~/Library/Preferences/app.landrop.landrop.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -12,10 +12,16 @@ cask "advancedrestclient" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "AdvancedRestClient.app"
 
   zap trash: [
     "~/Library/Application Support/advanced-rest-client",
     "~/Library/Logs/AdvancedRestClient",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

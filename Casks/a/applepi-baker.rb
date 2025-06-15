@@ -12,6 +12,8 @@ cask "applepi-baker" do
     regex(/href=.*?ApplePi-Baker[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "ApplePiBaker.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "applepi-baker" do
     "~/Library/Saved Application State/com.tweaking4all.ApplePiBaker.savedState",
     "~/Library/WebKit/com.Tweaking4All.PiBaker",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

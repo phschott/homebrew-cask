@@ -1,6 +1,6 @@
 cask "lunar-client" do
-  version "3.2.9"
-  sha256 "8f53fe69818ec026e32233279aaa1208c67ed1aac7ef2344d9efc9d83f5381ad"
+  version "3.3.11"
+  sha256 "e9cefebf5cc9c60ad3de6271e537aa6a067070094e54f211e49dfb32dd85809f"
 
   url "https://launcherupdates.lunarclientcdn.com/Lunar%20Client%20v#{version}.dmg",
       verified: "launcherupdates.lunarclientcdn.com/"
@@ -14,7 +14,7 @@ cask "lunar-client" do
   end
 
   auto_updates true
-  depends_on macos: ">= :el_capitan"
+  depends_on macos: ">= :catalina"
 
   app "Lunar Client.app"
 

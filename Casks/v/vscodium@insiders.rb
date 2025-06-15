@@ -1,23 +1,29 @@
 cask "vscodium@insiders" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.88.0.24095-insider"
-  sha256 arm:   "fddfedb021922d3639eab004ef6d4097feecc02046ca3d3c6cdc4329c70bd860",
-         intel: "40c43c1c403bc29627f252bf5a7143192644a374d3d4fd09e2621a005b343fc0"
+  version "1.101.03919-insider"
+  sha256 arm:   "36a538d76040d3f500c56fb50f2eabff9b0b318b32410a7aaca07e6fe8852bcd",
+         intel: "ab75fc803888a0553976fda79891796268177c461e87affe5096b410230e3cc0"
 
-  url "https://github.com/VSCodium/vscodium-insiders/releases/download/#{version}/VSCodium.#{arch}.#{version}.dmg",
+  url "https://github.com/VSCodium/vscodium-insiders/releases/download/#{version}/VSCodium-darwin-#{arch}-#{version}.zip",
       verified: "github.com/VSCodium/vscodium-insiders/"
   name "VSCodium"
   name "VSCodium Insiders"
   desc "Code editor"
   homepage "https://vscodium.com/"
 
-  deprecate! date: "2025-05-01", because: :unsigned
+  livecheck do
+    url "https://raw.githubusercontent.com/VSCodium/versions/refs/heads/master/insider/darwin/#{arch}/latest.json"
+    strategy :json do |json|
+      json["name"]
+    end
+  end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "VSCodium - Insiders.app"
-  binary "#{appdir}/VSCodium - Insiders.app/Contents/Resources/app/bin/codium-insiders", target: "codium-insiders"
+  binary "#{appdir}/VSCodium - Insiders.app/Contents/Resources/app/bin/codium-insiders"
 
   zap trash: [
     "~/.vscodium-insiders",

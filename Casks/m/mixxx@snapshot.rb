@@ -1,16 +1,9 @@
 cask "mixxx@snapshot" do
   arch arm: "arm", intel: "intel"
 
-  version "2.5-alpha-346-g64f48e834a"
-  sha256 arm:   "f3cef71c3d7bc832167250b19dd70207732b454f828d856745586bb6adc735bd",
-         intel: "5b6e8c728bbdbe6cceb6934edc8e7e8b00ee4a80a6ebc2461851146aa104ab71"
-
-  on_arm do
-    depends_on macos: ">= :big_sur"
-  end
-  on_intel do
-    depends_on macos: ">= :catalina"
-  end
+  version "2.7-alpha-15-g837f0ab699"
+  sha256 arm:   "5a781d618f10ca00c5099bfb38ef04f37a4c4d22be694c41db77ef407e4966e4",
+         intel: "c27d40044d42fd9bd4da68dcc3a57458b89fd9ae6fe7a3b03433c87bc3aba4f4"
 
   url "https://downloads.mixxx.org/snapshots/main/mixxx-#{version}-macos#{arch}.dmg"
   name "Mixxx"
@@ -18,11 +11,14 @@ cask "mixxx@snapshot" do
   homepage "https://www.mixxx.org/"
 
   livecheck do
-    url "https://mixxx.org/download/"
-    regex(%r{href=.*?/snapshots/main/mixxx[._-]v?(.+)[._-]macos#{arch}\.dmg}i)
+    url "https://downloads.mixxx.org/snapshots/main/manifest.json"
+    strategy :json do |json|
+      json.dig("macos-macos#{arch}", "git_describe")
+    end
   end
 
   conflicts_with cask: "mixxx"
+  depends_on macos: ">= :catalina"
 
   app "Mixxx.app"
 

@@ -7,7 +7,15 @@ cask "macmorpheus" do
   desc "3D 180/360 video player using PSVR"
   homepage "https://github.com/emoRaivis/MacMorpheus"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-27", because: :unmaintained
+
   app "MacMorpheus.app"
 
   zap trash: "~/Library/Preferences/emoRaivis.MacMorpheus.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

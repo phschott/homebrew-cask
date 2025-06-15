@@ -1,20 +1,22 @@
 cask "picoscope@beta" do
-  version "7.0.117.13870"
-  sha256 "9922f78a9ceb9c49239ac006cea023952b9baa9557908103e808f1821b876d32"
+  version "7.1.54.5821"
+  sha256 "38dc8722ece18a483232808c3bbf704612115030f71a5553ff84bb50202d4599"
 
-  url "https://oem.picotech.com/software/p#{version.major}beta/PicoScope_#{version.major}_TnM_Early_Access_#{version}.pkg"
+  url "https://www.picotech.com/download/software/beta/PicoScope_#{version.major}_TandM_Early_Access_#{version}.pkg"
   name "PicoScope beta"
-  desc "Test and measurement oscilloscope software for PicoScope oscilloscops"
+  desc "Test and measurement oscilloscope software for PicoScope oscilloscopes"
   homepage "https://www.picotech.com/"
 
   livecheck do
-    url "https://oem.picotech.com/p#{version.major}beta/download/"
-    regex(%r{href=.*?/picoscope[._-]#{version.major}.*?access[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
+    url "https://www.picotech.com/downloads/picoscope#{version.major}-early-access"
+    regex(/href=.*?PicoScope[._-]#{version.major}.*?Access[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   conflicts_with cask: "picoscope"
 
-  pkg "PicoScope_#{version.major}_TnM_Early_Access_#{version}.pkg"
+  pkg "PicoScope_#{version.major}_TandM_Early_Access_#{version}.pkg"
 
   uninstall pkgutil: "com.picotech.picoscope#{version.major}tnmbeta"
 

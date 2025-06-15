@@ -13,6 +13,8 @@ cask "mycrypto" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MyCrypto.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "mycrypto" do
     "~/Library/Preferences/com.github.mycrypto.mycryptohq.plist",
     "~/Library/Saved Application State/com.github.mycrypto.mycryptohq.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

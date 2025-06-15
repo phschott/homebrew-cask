@@ -8,10 +8,9 @@ cask "posterazor" do
   desc "Raster image splitter"
   homepage "https://posterazor.sourceforge.io/"
 
-  livecheck do
-    url "https://posterazor.sourceforge.io/index.php?page=download&lang=english"
-    regex(/PosteRazor[._-]?(\d+(?:\.\d+)*)[._-]?OSX\.dmg/i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-16", because: "is 32-bit only"
 
   app "PosteRazor.app"
 end

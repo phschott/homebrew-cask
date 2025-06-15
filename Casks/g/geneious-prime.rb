@@ -1,6 +1,6 @@
 cask "geneious-prime" do
-  version "2024.0.5"
-  sha256 "462c7b1f2b33f4de202eb7611af3a9c46225052b8a48f64ab50fd228e74f612c"
+  version "2025.1.3"
+  sha256 "5fab116ea03d51ea78f560205afbb34788994715ae1df2cbcf37fc57a92e8064"
 
   url "https://assets.geneious.com/installers/geneious/release/Geneious_Prime_mac64_#{version.dots_to_underscores}_with_jre.dmg"
   name "Geneious Prime"
@@ -8,8 +8,11 @@ cask "geneious-prime" do
   homepage "https://www.geneious.com/"
 
   livecheck do
-    url "https://assets.geneious.com/documentation/geneious/release_notes.html"
-    regex(/href="#v?(\d+(?:\.\d+)+)">/i)
+    url "https://www.geneious.com/updates"
+    regex(/href=.*?Geneious[._-]Prime[._-]mac64[._-]v?(\d+(?:[._]\d+)+).*?\.dmg/i)
+    strategy :page_match do |page, regex|
+      page.scan(regex)&.map { |match| match[0].tr("_", ".") }
+    end
   end
 
   app "Geneious Prime.app"

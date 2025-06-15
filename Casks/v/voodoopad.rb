@@ -13,6 +13,8 @@ cask "voodoopad" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "VoodooPad.app"
@@ -23,4 +25,8 @@ cask "voodoopad" do
     "~/Library/Caches/com.flyingmeat.VoodooPad5",
     "~/Library/Preferences/com.flyingmeat.VoodooPad5.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -13,6 +13,8 @@ cask "ugg" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :catalina"
 
@@ -25,4 +27,8 @@ cask "ugg" do
     "~/Library/Preferences/com.electron.u.gg.plist",
     "~/Library/Saved Application State/com.electron.u.gg.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

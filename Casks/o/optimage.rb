@@ -12,6 +12,8 @@ cask "optimage" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :el_capitan"
 
@@ -22,4 +24,8 @@ cask "optimage" do
     "~/Library/Application Support/com.vmdanilov.optimage.cfg",
     "~/Library/Preferences/com.vmdanilov.optimage.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

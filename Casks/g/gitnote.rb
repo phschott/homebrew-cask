@@ -7,5 +7,13 @@ cask "gitnote" do
   name "gitnote"
   homepage "https://gitnoteapp.com/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-11", because: :unmaintained
+
   app "GitNote.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

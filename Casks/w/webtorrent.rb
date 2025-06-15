@@ -8,6 +8,8 @@ cask "webtorrent" do
   desc "Torrent streaming application"
   homepage "https://webtorrent.io/desktop/"
 
+  no_autobump! because: :requires_manual_review
+
   app "WebTorrent.app"
 
   zap trash: [
@@ -25,4 +27,8 @@ cask "webtorrent" do
     "~/Library/Saved Application State/io.webtorrent.webtorrent.savedState",
     "~/Library/WebKit/io.webtorrent.webtorrent",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

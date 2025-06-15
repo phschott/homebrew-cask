@@ -1,15 +1,14 @@
 cask "macupdater" do
   on_monterey :or_older do
-    version "2.3.15"
-    sha256 "9d6775c99b2a76d3f3be0e3d23c27305666341be16d38a0661c8d9cfa50e5256"
-
-    depends_on macos: ">= :mojave"
+    version "2.3.18"
+    sha256 "81e7a1f64499128c131d169408829962ca913996830a7e19d372099e657d5894"
   end
   on_ventura :or_newer do
-    version "3.3.1"
-    sha256 "3052da96d7f09416dfebac43f5579c5fdb8789df2e35c85f0870c12634c83d8c"
+    version "3.4.2"
+    # required as upstream package is regularly updated in-place https://github.com/Homebrew/homebrew-cask/pull/182188#issuecomment-2284199515
+    sha256 :no_check
 
-    depends_on macos: ">= :ventura"
+    binary "#{appdir}/MacUpdater.app/Contents/Resources/macupdater_install"
   end
 
   url "https://www.corecode.io/downloads/macupdater_#{version}.dmg"
@@ -23,6 +22,7 @@ cask "macupdater" do
   end
 
   auto_updates true
+  depends_on macos: ">= :mojave"
 
   app "MacUpdater.app"
   binary "#{appdir}/MacUpdater.app/Contents/Resources/macupdater_client"

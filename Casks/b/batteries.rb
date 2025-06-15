@@ -1,6 +1,6 @@
 cask "batteries" do
-  version "2.2.9"
-  sha256 "9f67e1451bb406e9a14d514cd8a032252ef671d359cbffd3a47d4b80f015a9f6"
+  version "2.3.4"
+  sha256 "8702e399198f30784b12b8805e7755fe96fac7cb88ed981c3e2266f913cbe4c9"
 
   url "https://github.com/ronyfadel/BatteriesReleases/releases/download/v#{version}/Batteries.dmg",
       verified: "github.com/ronyfadel/BatteriesReleases/"
@@ -8,7 +8,12 @@ cask "batteries" do
   desc "Track all your devices' batteries"
   homepage "https://www.fadel.io/batteries/"
 
-  depends_on macos: ">= :catalina"
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on macos: ">= :big_sur"
 
   app "Batteries.app"
 

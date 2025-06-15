@@ -13,6 +13,8 @@ cask "meshlab" do
     regex(/^Meshlab[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MeshLab#{version}.app"
 
   postflight do
@@ -27,4 +29,8 @@ cask "meshlab" do
     "~/Library/Preferences/com.vcg.MeshLab_64bit_fp.plist",
     "~/Library/Saved Application State/com.vcg.meshlab.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

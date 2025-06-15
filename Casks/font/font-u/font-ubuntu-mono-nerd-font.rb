@@ -1,10 +1,9 @@
 cask "font-ubuntu-mono-nerd-font" do
-  version "3.2.1"
-  sha256 "3631caf3392d1547d4405571c501a8a6f005ba59c02a61f9a715c043444c15b3"
+  version "3.4.0"
+  sha256 "5d040e67a5649e6c189cf62b3f1ab9c50adbfecbd341288d3a0558979319209e"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/UbuntuMono.zip"
   name "UbuntuMono Nerd Font (Ubuntu Mono)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

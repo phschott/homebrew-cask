@@ -11,9 +11,11 @@ cask "boop" do
   livecheck do
     url "https://boop.okat.best/version.json"
     strategy :json do |json|
-      json["standalone"]["version"]
+      json.dig("standalone", "version")
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :mojave"
 

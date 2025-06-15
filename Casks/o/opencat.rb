@@ -1,6 +1,6 @@
 cask "opencat" do
-  version "2.17.1,484"
-  sha256 "594c973b999dbbe90c864f341bcebbd8aa2d45959087fee7894269b080a27878"
+  version "2.54.0,1407"
+  sha256 "ac79766e48d0c5596357b0f70ecf86af4d45d3e416835881164796ed3a8037f1"
 
   url "https://opencat.app/releases/OpenCat-#{version.csv.first}.#{version.csv.second}.dmg"
   name "OpenCat"
@@ -10,7 +10,7 @@ cask "opencat" do
   livecheck do
     url "https://opencat.app/releases/versions.xml"
     strategy :sparkle do |item|
-      short_version = (item.short_version.split(".").length < 3) ? "#{item.short_version}.0" : item.short_version.to_s
+      short_version = (item.short_version.count(".") >= 2) ? item.short_version : "#{item.short_version}.0"
       "#{short_version},#{item.version}"
     end
   end

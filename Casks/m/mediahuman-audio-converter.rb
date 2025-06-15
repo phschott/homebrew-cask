@@ -1,7 +1,7 @@
 cask "mediahuman-audio-converter" do
   arch arm: "-arm"
 
-  version "2.2.3"
+  version "2.2.4"
   sha256 :no_check
 
   url "https://www.mediahuman.com/files/MHAudioConverter#{arch}.dmg"
@@ -13,6 +13,8 @@ cask "mediahuman-audio-converter" do
     url :homepage
     regex(/"softwareVersion">\s*(\d+(?:\.\d+)+)[\s<]/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   app "MediaHuman Audio Converter.app"
 

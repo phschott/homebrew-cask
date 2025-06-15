@@ -12,6 +12,8 @@ cask "tales-of-majeyal" do
     regex(/href=.*?t-engine4[._-]osx[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   # Renamed for clarity: app name is inconsistent with its branding.
   app "T-Engine.app", target: "Tales-of-Maj'Eyal.app"
 
@@ -19,4 +21,8 @@ cask "tales-of-majeyal" do
     "~/Library/Application Support/T-Engine",
     "~/Library/Saved Application State/org.te4.T-Engine.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

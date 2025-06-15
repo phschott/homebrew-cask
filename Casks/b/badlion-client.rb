@@ -1,9 +1,9 @@
 cask "badlion-client" do
   arch arm: "-arm64"
 
-  version "4.3.0"
-  sha256 arm:   "c7e1447b4cd98210f06d40bc6697903b1b3e497c88fc43fa5f189f1060392334",
-         intel: "66a7ac7c83e6ffe3040a3ca0be9d2d1ba13ca7abbd2700c66e2fbcff719a04b0"
+  version "4.5.4"
+  sha256 arm:   "12afdfe3a8bd5ed6143cd5d251cf051bed7a119cf2fd6ea3984185a0e36d3539",
+         intel: "26da1a57da2dd64a8b96371a317c0a30d849281da3b42c8a54950f22c132f87d"
 
   url "https://client-updates.badlion.net/Badlion%20Client-#{version}#{arch}.dmg"
   name "Badlion Client"

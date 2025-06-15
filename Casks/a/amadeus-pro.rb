@@ -13,6 +13,8 @@ cask "amadeus-pro" do
     regex(/Download\s*Amadeus\s*Pro\s*v?(\d+(?:\.\d+)+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Amadeus Pro.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "amadeus-pro" do
     "~/Library/Preferences/com.HairerSoft.AmadeusPro.plist",
     "~/Library/Saved Application State/com.HairerSoft.AmadeusPro.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

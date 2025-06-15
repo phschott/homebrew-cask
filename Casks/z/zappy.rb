@@ -1,8 +1,8 @@
 cask "zappy" do
-  version "4.7.1"
-  sha256 "7050e999441c94225b63940a37dd3671c2605424a82d10123e0a41b3ce2e106e"
+  version "4.8.7"
+  sha256 "316ce44183fab70474d286fac9919f2beb993f3b02813788475101a9804fdc79"
 
-  url "https://zappy.zapier.com/releases/zappy_#{version}.dmg"
+  url "https://zappy.zapier.com/releases/zappy-#{version}.dmg"
   name "Zappy"
   desc "Screen capture tool for remote teams"
   homepage "https://zapier.com/zappy"
@@ -13,7 +13,7 @@ cask "zappy" do
   end
 
   auto_updates true
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Zappy.app"
 

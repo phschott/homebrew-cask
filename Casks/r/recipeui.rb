@@ -11,10 +11,9 @@ cask "recipeui" do
   desc "API discovery, testing and sharing tool"
   homepage "https://recipeui.com/"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-06-23", because: :discontinued
 
   auto_updates true
 

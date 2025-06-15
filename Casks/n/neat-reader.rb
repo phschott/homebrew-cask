@@ -13,6 +13,8 @@ cask "neat-reader" do
     regex(/name=["']?deviceVersion["']?\s*value=["']?(\d+(?:\.\d+)+)["' >]/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "NeatReader.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "neat-reader" do
     "~/Library/Preferences/com.reader.neat.plist",
     "~/Library/Saved Application State/com.reader.neat.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

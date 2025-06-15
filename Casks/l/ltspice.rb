@@ -5,12 +5,14 @@ cask "ltspice" do
   url "https://ltspice.analog.com/software/LTspice.pkg"
   name "LTspice"
   desc "SPICE simulation software, schematic capture and waveform viewer"
-  homepage "https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html"
+  homepage "https://www.analog.com/en/resources/design-tools-and-calculators/ltspice-simulator.html"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url :homepage
+    regex(/for\s+MacOS[\s\S]*Version\s+v?(\d+(?:\.\d+)+)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   pkg "LTspice.pkg"
 
@@ -21,8 +23,10 @@ cask "ltspice" do
 
   zap trash: [
         "~/Documents/LTspice/examples",
+        "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.analog.ltspice.app.sfl*",
         "~/Library/Application Support/LTspice",
         "~/Library/Preferences/com.analog.LTspice.App.plist",
+        "~/Library/Saved Application State/com.analog.LTspice.App.savedState",
       ],
       rmdir: "~/Documents/LTspice"
 end

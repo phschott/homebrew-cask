@@ -1,6 +1,6 @@
 cask "010-editor" do
-  version "14.0.1"
-  sha256 "a82255a458541feb2ece91b7dbc9ce4d404c95bc0794cc32c9eecc8d17d7cf59"
+  version "15.0.2"
+  sha256 "459b4557701b13929fcd6d7cbac5b4152fc09d7f147adb3f46455ac8100e0d0e"
 
   url "https://download.sweetscape.com/010EditorMac64Installer#{version}.dmg"
   name "010 Editor"
@@ -12,6 +12,8 @@ cask "010-editor" do
     regex(/Version:?\s*(\d+(?:\.\d+)+),\s*macOS/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "010 Editor.app"
 
   zap trash: [
@@ -20,4 +22,8 @@ cask "010-editor" do
         "~/Library/Saved Application State/com.SweetScape.010Editor.savedState",
       ],
       rmdir: "~/Documents/SweetScape"
+
+  caveats do
+    requires_rosetta
+  end
 end

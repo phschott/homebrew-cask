@@ -10,10 +10,12 @@ cask "creality-slicer" do
   livecheck do
     url "https://file-cdn.creality.com/ota-sz/crealityslicer/last.json"
     strategy :json do |json|
-      v = json["cura"]["Darwin"]
+      v = json.dig("cura", "Darwin")
       "#{v["major"]}.#{v["minor"]}.#{v["revision"]}"
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   app "Creality Slicer.app"
 
@@ -23,4 +25,8 @@ cask "creality-slicer" do
     "~/Library/Preferences/com.creality.crealityslicer.plist",
     "~/Library/Saved Application State/com.creality.crealityslicer.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

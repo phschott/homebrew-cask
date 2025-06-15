@@ -1,6 +1,6 @@
 cask "tev" do
-  version "1.27"
-  sha256 "0ca0ffbd83a88c479ac3c3b70a833bb774e3f0b1ea76e771824f9002e7a055e4"
+  version "1.29"
+  sha256 "f93cd2906dd7ad191f32326115fd5a854206c0db3b14934c6d646c64b31dfe4e"
 
   url "https://github.com/Tom94/tev/releases/download/v#{version}/tev.dmg"
   name "tev"
@@ -11,6 +11,8 @@ cask "tev" do
     url :url
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :catalina"
 

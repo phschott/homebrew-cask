@@ -1,6 +1,6 @@
 cask "geogebra" do
-  version "6.0.843.0"
-  sha256 "b3ac1b1e3729b8e1139a8d807bb58c8c4660ce008d3046a126e1898a15801e25"
+  version "6.0.889.0"
+  sha256 "1a0cb02977d1e0d6c981d45487efb26cd44a87be9702c0e77232d8f65f392c59"
 
   url "https://download.geogebra.org/installers/#{version.major_minor}/GeoGebra-Classic-#{version.major}-MacOS-Portable-#{version.dots_to_hyphens}.zip"
   name "GeoGebra"
@@ -9,21 +9,22 @@ cask "geogebra" do
 
   livecheck do
     url "https://download.geogebra.org/package/mac-port"
-    strategy :header_match do |headers|
-      v = headers["location"][%r{/GeoGebra-Classic-\d+-MacOS-Portable-(\d+(?:-\d+)+)\.zip}i, 1]
-      next if v.blank?
+    regex(%r{[^/]+?v?(\d+(?:[.-]\d+)+)[^/]+?$}i)
+    strategy :header_match do |headers, regex|
+      match = headers["location"]&.match(regex)
+      next if match.blank?
 
-      v.tr("-", ".")
+      match[1].tr("-", ".")
     end
   end
 
-  auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "GeoGebra Classic #{version.major}.app"
 
   uninstall quit:       "org.geogebra.mathapps",
             login_item: "GeoGebra",
-            pkgutil:    "org.geogebra6.mac"
+            pkgutil:    "org.geogebra#{version.major}.mac"
 
   zap trash: [
     "~/Library/GeoGebra",

@@ -1,8 +1,9 @@
 cask "youku" do
-  version "9.2.52.1001"
-  sha256 "b4bfc553704863aa75da5cc1773c81db719c3439ba1eb53e194e6dfb55d8eaa3"
+  version "9.2.64.1001"
+  sha256 "6364cfe17560e0ee2bc07e38d712b2ae4650805f70a0264aafd2cc81209a7cc5"
 
-  url "https://pcclient.download.youku.com/iku_electron_client/youkuclient_setup_#{version}.dmg"
+  url "https://pcclient.download.youku.com/iku_electron_client/youkuclient_setup_#{version}.dmg",
+      user_agent: :fake
   name "Youku"
   name "优酷"
   desc "Chinese video streaming and sharing platform"

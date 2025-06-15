@@ -6,10 +6,13 @@ cask "rember" do
   name "Rember"
   homepage "https://www.kelleycomputing.net/rember/"
 
-  livecheck do
-    url :homepage
-    regex(/Rember\s*(?:<[^>]+>\s*<[^>]+>)?\s*v[._-](\d+(?:\.\d+)+b?)/i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-08-25", because: :unmaintained
 
   app "Rember.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

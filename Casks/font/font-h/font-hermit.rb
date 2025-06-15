@@ -4,8 +4,7 @@ cask "font-hermit" do
 
   url "https://pcaro.es/d/otf-hermit-#{version}.tar.gz"
   name "Hermit"
-  desc "Monospace font designed to be clear, pragmatic and very readable"
-  homepage "https://pcaro.es/p/hermit/"
+  homepage "https://pcaro.es/hermit/"
 
   livecheck do
     url :homepage

@@ -8,10 +8,13 @@ cask "invisiblix" do
   desc "Allows viewing and manipulation of hidden files in Finder"
   homepage "https://invisiblix.read-write.fr/"
 
-  livecheck do
-    url "https://invisiblix.read-write.fr/appcast.xml"
-    strategy :sparkle
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-17", because: :unmaintained
 
   app "invisibliX.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

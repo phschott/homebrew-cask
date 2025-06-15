@@ -13,6 +13,10 @@ cask "dixa" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   app "Dixa.app"
 
   zap trash: [
@@ -21,4 +25,8 @@ cask "dixa" do
     "~/Library/Preferences/dixa.plist",
     "~/Library/Saved Application State/dixa.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -12,6 +12,8 @@ cask "audiocupcake" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "AudioCupcake.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "audiocupcake" do
     "~/Library/Preferences/com.sottovoce.AudioCupcake.plist",
     "~/Library/Saved Application State/com.sottovoce.AudioCupcake.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

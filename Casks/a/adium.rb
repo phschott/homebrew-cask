@@ -13,6 +13,8 @@ cask "adium" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Adium.app"
@@ -25,4 +27,8 @@ cask "adium" do
     "~/Library/Preferences/com.adiumX.adiumX.plist",
     "~/Library/Saved Application State/com.adiumX.adiumX.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

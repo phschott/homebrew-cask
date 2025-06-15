@@ -1,20 +1,20 @@
 cask "snipaste" do
-  version "2.9-Beta"
-  sha256 "c96e71a2f4f313d1ed4976366c7530804a0d2ac7f3a1a34ba3e66dbf301d5866"
+  version "2.10.8"
+  sha256 "7038e75db8df481a34f77630244247306d9e603009dc5a02b88ae1d8ea9c5ac9"
 
-  url "https://bitbucket.org/liule/snipaste/downloads/Snipaste-#{version}.dmg",
-      verified: "bitbucket.org/liule/snipaste/"
+  url "https://download.snipaste.com/archives/Snipaste-#{version}.dmg"
   name "Snipaste"
   desc "Snip or pin screenshots"
   homepage "https://www.snipaste.com/"
 
   livecheck do
-    url "https://dl.snipaste.com/mac-beta"
-    regex(/(\d+(?:\.\d+)+[._-]v?.*?)\.dmg/i)
+    url "https://dl.snipaste.com/mac"
+    regex(/Snipaste[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
     strategy :header_match
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Snipaste.app"
 

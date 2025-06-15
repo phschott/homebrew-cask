@@ -13,6 +13,10 @@ cask "empoche" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   app "Empoche.app"
 
   zap trash: [
@@ -20,4 +24,8 @@ cask "empoche" do
     "~/Library/Preferences/com.empoche.app.plist",
     "~/Library/Saved Application State/com.empoche.app.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

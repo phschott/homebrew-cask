@@ -12,6 +12,8 @@ cask "warsow" do
     regex(%r{href=.*?/warsow-(\d+(?:\.\d+)*)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Warsow.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "warsow" do
     "~/Library/Caches/Warsow-#{version.major_minor}",
     "~/Library/Saved Application State/org.picmip.Warsow.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

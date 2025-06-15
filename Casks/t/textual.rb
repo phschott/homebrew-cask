@@ -1,20 +1,22 @@
 cask "textual" do
-  version "7.2.2,240514.22,e4204b8ab"
-  sha256 "b8e71ff3f4df6205b54d5631465e7f0377f2d945799be7d2ab65ddc9f334c290"
+  version "7.2.5,fb98cbbfd"
+  sha256 "76f52934b6db4847cc9976f3ed2d0f4d026c53487fb09cb8b73bdbc26d8ef374"
 
-  url "https://cached.codeux.com/textual/downloads/resources/builds/Textual-#{version.csv.third}/universal/Textual.zip"
+  url "https://cached.codeux.com/textual/downloads/builds/stable/Textual-#{version.csv.second}/universal/Textual.zip"
   name "Textual"
   desc "Application for interacting with Internet Relay Chat (IRC) chatrooms"
   homepage "https://www.codeux.com/textual/"
 
   livecheck do
-    url "https://textual-updates-backend.codeux.com/sparkle/feeds/v7/feed-one.xml"
-    strategy :sparkle do |item|
-      "#{item.short_version},#{item.version},#{item.url[%r{/Textual[._-]v?([\dA-z]+)/universal/Textual.zip}i, 1]}"
+    url "https://help.codeux.com/textual/Direct-Download-Links.kb"
+    regex(%r{href=.*?Textual[._-]v?(\h+)/universal/Textual\.dmg.*?Version\s+v?(\d+(?:\.\d+)+)}i)
+    strategy :page_match do |page, regex|
+      page.scan(regex).map { |match| "#{match[1]},#{match[0]}" }
     end
   end
 
   auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "Textual.app"
 

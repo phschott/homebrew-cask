@@ -8,6 +8,10 @@ cask "cumulus" do
   desc "SoundCloud player that lives in the menu bar"
   homepage "https://gillesdemey.github.io/Cumulus/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2025-04-21", because: :unmaintained
+
   app "Cumulus.app"
 
   zap trash: [
@@ -16,4 +20,8 @@ cask "cumulus" do
     "~/Library/Preferences/com.gillesdemey.cumulus.plist",
     "~/Library/Saved Application State/com.gillesdemey.cumulus.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

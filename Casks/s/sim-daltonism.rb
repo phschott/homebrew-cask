@@ -12,10 +12,16 @@ cask "sim-daltonism" do
     regex(/href=.*?sim-daltonism-(\d+(?:\.\d+)*)\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Sim Daltonism.app"
 
   zap trash: [
     "~/Library/Application Scripts/com.michelf.sim-daltonism",
     "~/Library/Containers/com.michelf.sim-daltonism",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

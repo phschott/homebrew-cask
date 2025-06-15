@@ -17,6 +17,8 @@ cask "3dgenceslicer" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "3DGence Slicer #{version.csv.second}.app"
 
   zap trash: [
@@ -25,4 +27,8 @@ cask "3dgenceslicer" do
         "~/Library/Saved Application State/com.3dgence.slicer.savedState",
       ],
       rmdir: "~/Documents/3DGence Slicer"
+
+  caveats do
+    requires_rosetta
+  end
 end

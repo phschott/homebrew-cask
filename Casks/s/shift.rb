@@ -1,9 +1,9 @@
 cask "shift" do
   arch arm: "arm64", intel: "x64"
 
-  version "9.3.0.1087"
-  sha256 arm:   "8459a3ff66b60a7056850ce44adb78a4c64032bf8410fec5634b923ea0a2e76c",
-         intel: "ecd1b010d32f14af71d0488f172d94211032b94463d26ebe27b4f2adbd5eeff1"
+  version "9.5.10.1205"
+  sha256 arm:   "8033f7018669a1051afb58fb20abb0f66514dfe8c6af7fa420426645822c9f2f",
+         intel: "2a0e1afdbd6b6274b4afa40d0e81e3b1bd68e7e04e2935a8c9a786b33db863bc"
 
   url "https://updates.tryshift.com/v#{version.major_minor_patch}/stable/shift-v#{version}-stable-#{arch}.dmg",
       verified: "updates.tryshift.com/"
@@ -15,6 +15,8 @@ cask "shift" do
     url "https://shift.com/download/?platform=mac"
     regex(/href=.*?(\d+(?:[._-]\d+)+)[._-]stable.*?\.dmg/i)
   end
+
+  depends_on macos: ">= :catalina"
 
   app "Shift.app"
 

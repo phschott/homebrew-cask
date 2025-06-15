@@ -13,6 +13,8 @@ cask "pandora" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Pandora.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "pandora" do
     "~/Library/Preferences/com.pandora.desktop.plist",
     "~/Library/Saved Application State/com.pandora.desktop.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

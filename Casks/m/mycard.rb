@@ -1,6 +1,6 @@
 cask "mycard" do
-  version "3.0.69"
-  sha256 "fd2f167c5d4a22092d551c75b774693e1092e684db4c19006143947fb83f177b"
+  version "3.0.71"
+  sha256 "3a2dc5dada0faf91c07d9d7ef7452a9a6603294edb6f3e5e00caa1123364f4c5"
 
   url "https://cdn02.moecube.com:444/downloads/MyCard-#{version}.dmg",
       verified: "cdn02.moecube.com:444/downloads/"
@@ -13,6 +13,8 @@ cask "mycard" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MyCard.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "mycard" do
     "~/Library/Preferences/com.mycard.mycard.plist",
     "~/Library/Saved Application State/com.mycard.mycard.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

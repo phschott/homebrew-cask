@@ -12,6 +12,8 @@ cask "cisdem-document-reader" do
     regex(/(\d+(?:\.\d+)*)\s+\(\d+(?:-\d+)+\)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Cisdem Document Reader.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "cisdem-document-reader" do
     "~/Library/Preferences/com.cisdem.documentreader.plist",
     "~/Library/Saved Application State/com.cisdem.documentreader.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

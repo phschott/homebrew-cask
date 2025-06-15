@@ -7,13 +7,9 @@ cask "parallels@15" do
   desc "Desktop virtualization software"
   homepage "https://www.parallels.com/products/desktop/"
 
-  livecheck do
-    url "https://kb.parallels.com/124724"
-    regex(/(\d+(?:\.\d+)+)(?:\s*|&nbsp;)\((\d+)\)/i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]}-#{match[1]}" }
-    end
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-09-11", because: :discontinued
 
   auto_updates true
   conflicts_with cask: [
@@ -24,6 +20,7 @@ cask "parallels@15" do
     "parallels@16",
     "parallels@17",
     "parallels@18",
+    "parallels@19",
   ]
   depends_on macos: ">= :sierra"
 
@@ -72,4 +69,8 @@ cask "parallels@15" do
     "~/Library/Preferences/com.parallels.Parallels.plist",
     "~/Library/Preferences/com.parallels.PDInfo.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

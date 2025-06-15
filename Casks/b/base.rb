@@ -12,6 +12,8 @@ cask "base" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :mojave"
 
   app "Base.app"
@@ -24,4 +26,8 @@ cask "base" do
     "~/Library/Caches/uk.co.menial.Base",
     "~/Library/Preferences/uk.co.menial.Base.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

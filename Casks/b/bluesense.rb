@@ -7,10 +7,9 @@ cask "bluesense" do
   desc "Detect the presence of your Bluetooth device"
   homepage "https://apps.inspira.io/bluesense/"
 
-  livecheck do
-    url "https://apps.inspira.io/updates/bluesense-appcast.xml"
-    strategy :sparkle, &:short_version
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2025-03-30", because: :unmaintained
 
   app "BlueSense.app"
 
@@ -20,4 +19,8 @@ cask "bluesense" do
         "~/Library/Preferences/com.inspira.bluesense.plist",
       ],
       rmdir: "~/Library/Application Scripts/com.inspira.bluesense"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -9,9 +9,11 @@ cask "vip-access" do
   homepage "https://vip.symantec.com/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://techdocs.broadcom.com/us/en/symantec-security-software/identity-security/vip/cloud/Related-Documents.html"
+    regex(/VIP\s+Access\s+for\s+Mac\s+v?(\d+(?:\.\d+)+)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :sierra"
 
@@ -23,4 +25,8 @@ cask "vip-access" do
     "~/Library/Caches/com.symantec.VIP-Access",
     "~/Library/Preferences/com.symantec.VIP-Access.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -7,5 +7,13 @@ cask "shadowsocksx" do
   desc "Removed according to regulations"
   homepage "https://github.com/shadowsocks/shadowsocks-iOS/wiki/Shadowsocks-for-OSX-Help"
 
+  no_autobump! because: :requires_manual_review
+
+  conflicts_with cask: "shadowsocksx-ng-r"
+
   app "ShadowsocksX.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

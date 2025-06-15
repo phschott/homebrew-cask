@@ -1,14 +1,14 @@
 cask "proxyman" do
-  version "5.4.0,50400"
-  sha256 "e8256e4716ebb752a3a60fd9e22fa84322c2728defa4b87fbc86dabb3286a7c2"
+  version "5.21.0,52100"
+  sha256 "e92c80e1123f171fa629ca413cf705bd66f93d6ab12871ddd619457cc897718f"
 
-  url "https://download.proxyman.io/#{version.csv.second}/Proxyman_#{version.csv.first}.dmg"
+  url "https://download.proxyman.com/#{version.csv.second}/Proxyman_#{version.csv.first}.dmg"
   name "Proxyman"
   desc "HTTP debugging proxy"
-  homepage "https://proxyman.io/"
+  homepage "https://proxyman.com/"
 
   livecheck do
-    url "https://proxyman.io/osx/version.xml"
+    url "https://proxyman.com/osx/version.xml"
     strategy :sparkle
   end
 

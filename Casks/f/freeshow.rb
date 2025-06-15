@@ -1,18 +1,23 @@
 cask "freeshow" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.1.6"
-  sha256 arm:   "3217266524a386c647e989f341345777fcaa2d89c41505f98cb642e56894e68e",
-         intel: "0c5ae12c3f853528ad11c8018d094864b9b4d3470f7e068c594926f2464cb1f1"
+  version "1.4.5"
+  sha256 arm:   "dbb099331e22f19950a832f7a620dc6cc39d0ab126cc3a02d7ad899ce8644ab0",
+         intel: "4dd3a5c03a0a8cc032285bde9609a81bbfc4d8ab595a3681d4391a31b3c6aeaa"
 
-  url "https://github.com/ChurchApps/FreeShow/releases/download/v#{version}/FreeShow-#{version}-#{arch}-mac.zip",
+  url "https://github.com/ChurchApps/FreeShow/releases/download/v#{version}/FreeShow-#{version}-#{arch}.zip",
       verified: "github.com/ChurchApps/"
   name "FreeShow"
   desc "Presentation software"
   homepage "https://freeshow.app/"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "FreeShow.app"
 

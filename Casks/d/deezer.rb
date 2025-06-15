@@ -1,24 +1,25 @@
 cask "deezer" do
-  version "6.0.140"
-  sha256 "f1e415a99d327ffb90a1ea7d7c4d0f6a7c4ff2f27163ce298e242cf1eb44eafb"
+  version "7.0.90"
+  sha256 "b1f9d747ce07e86df1558573338eeaa8cdab39f27ba4aadfc7994ca6e777988b"
 
-  url "https://www.deezer.com/desktop/download/artifact/darwin/x64/#{version}"
+  url "https://www.deezer.com/desktop/download/artifact-darwin-x64-#{version}"
   name "Deezer"
   desc "Music player"
   homepage "https://www.deezer.com/download"
 
   livecheck do
-    url "https://www.deezer.com/desktop/download?platform=darwin&architecture=x64"
-    strategy :header_match
+    url "https://www.deezer.com/desktop/update/latest.yml?architecture=x64&platform=darwin&platformVersion=99"
+    strategy :electron_builder
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :big_sur"
 
   app "Deezer.app"
 
   zap trash: [
     "~/Library/Application Support/Caches/deezer-desktop-updater",
+    "~/Library/Application Support/Deezer",
     "~/Library/Application Support/deezer-desktop",
     "~/Library/Caches/com.deezer.deezer*",
     "~/Library/Logs/Deezer",

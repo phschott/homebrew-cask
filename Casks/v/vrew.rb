@@ -1,6 +1,6 @@
 cask "vrew" do
-  version "2.0.3"
-  sha256 "6658d4f8ae80664a17cf6e25921c68e44f134b49d9849ce497c64d6ff8d02093"
+  version "3.0.5"
+  sha256 "5ca615505e95c42c2bfbc64e6a1af9e536446f1e924072099eb4318658f18bbe"
 
   url "https://vrew-files.voyagerx.com/Vrew-#{version}.dmg"
   name "Vrew"
@@ -13,6 +13,7 @@ cask "vrew" do
   end
 
   auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "Vrew.app"
 

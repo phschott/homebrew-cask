@@ -1,6 +1,6 @@
 cask "metaimage" do
-  version "2.6.3"
-  sha256 "e841ab98b173a4b95206df275c74de19c13eadab2d5a1b4cc5fa80902fe6ecff"
+  version "2.6.7"
+  sha256 "851f9585b4137ce173dcce915d8252f8610ee001e9f8c88c3fa05bb39c5d24a8"
 
   url "https://neededapps.com/appcasts/metaimage/versions/#{version}"
   name "MetaImage"
@@ -12,6 +12,9 @@ cask "metaimage" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
   depends_on macos: ">= :big_sur"
 
   app "MetaImage.app"

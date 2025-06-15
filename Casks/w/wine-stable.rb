@@ -1,6 +1,6 @@
 cask "wine-stable" do
-  version "9.0_1"
-  sha256 "a45f3a04f48d564c84a3f023de196f76b28ace9ed7b4bceab72d328885f09aad"
+  version "10.0_2"
+  sha256 "465330eaced42d033fc24bfb9bc684c179442f8f7359f24c7dc114c375453e55"
 
   # Current winehq packages are deprecated and these are packages from
   # the new maintainers that will eventually be pushed to Winehq.
@@ -23,13 +23,15 @@ cask "wine-stable" do
         next if release["draft"] || release["prerelease"]
         next unless release["assets"]&.any? { |asset| asset["name"]&.match?(file_regex) }
 
-        match = release["tag_name"].match(regex)
+        match = release["tag_name"]&.match(regex)
         next if match.blank?
 
         match[1]
       end
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   conflicts_with cask: [
     "wine@devel",
@@ -41,12 +43,12 @@ cask "wine-stable" do
   app "Wine Stable.app"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/start/bin/appdb"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/start/bin/winehelp"
+  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/msidb"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/msiexec"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/notepad"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/regedit"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/regsvr32"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wine"
-  binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wine64"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wineboot"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/winecfg"
   binary "#{appdir}/Wine Stable.app/Contents/Resources/wine/bin/wineconsole"
@@ -71,15 +73,7 @@ cask "wine-stable" do
         "~/.local/share/mime",
       ]
 
-  caveats <<~EOS
-    #{token} supports both 32-bit and 64-bit. It is compatible with an existing
-    32-bit wine prefix, but it will now default to 64-bit when you create a new
-    wine prefix. The architecture can be selected using the WINEARCH environment
-    variable which can be set to either win32 or win64.
-
-    To create a new pure 32-bit prefix, you can run:
-      $ WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
-
-    See the Wine FAQ for details: https://wiki.winehq.org/FAQ#Wineprefixes
-  EOS
+  caveats do
+    requires_rosetta
+  end
 end

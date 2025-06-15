@@ -1,9 +1,9 @@
 cask "blisk" do
   arch arm: "-m1"
 
-  version "23.0.185.91"
-  sha256 arm:   "d238117d497ee71926aa8523e56ed319b5ab679ea5b2e2652420a927e30ed0fa",
-         intel: "48baae4ebce60c85b87dcbd16832d8578ec6b48db6d46059704249c770ccdefa"
+  version "24.0.411.33"
+  sha256 arm:   "fca7dee8b53fb006ece0e3e3e34e74158d0be2e29b5048b9802de7fb3cefafc3",
+         intel: "7838f241eea11cc33be92d064ab52f9fdda57dec5b0572993cb6e50f63d8647e"
 
   url "https://bliskcloudstorage.blob.core.windows.net/mac#{arch}-installers/BliskInstaller_#{version}.dmg",
       verified: "bliskcloudstorage.blob.core.windows.net/"
@@ -16,7 +16,9 @@ cask "blisk" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :high_sierra"
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :catalina"
 
   app "Blisk.app"
 

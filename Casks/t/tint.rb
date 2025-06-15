@@ -12,6 +12,8 @@ cask "tint" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Tint.app"
@@ -22,4 +24,8 @@ cask "tint" do
     "~/Library/Preferences/de.beyondco.tint.plist",
     "~/Library/Saved Application State/de.beyondco.tint.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "olympus" do
-  version "4084"
-  sha256 "5fd196a9056275e9a195728a99b0ed6aa6b2d82211a22a734a61e1515486dd8b"
+  version "4884"
+  sha256 "2aca58b65d6d6a3b8218293f62a4d7a15c5391dcb46567f1f1633389f7bbe280"
 
   url "https://dev.azure.com/EverestAPI/Olympus/_apis/build/builds/#{version}/artifacts?artifactName=macos.main&$format=zip",
       verified: "dev.azure.com/EverestAPI/Olympus/_apis/build/builds/"
@@ -12,7 +12,7 @@ cask "olympus" do
     url "https://dev.azure.com/EverestAPI/Olympus/_apis/build/builds"
     strategy :json do |json|
       json["value"]&.map do |build|
-        build["id"].to_s if build["sourceBranch"] == "refs/heads/stable"
+        build["id"]&.to_s if build["sourceBranch"] == "refs/heads/stable"
       end
     end
   end

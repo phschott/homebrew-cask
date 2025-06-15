@@ -12,9 +12,15 @@ cask "crescendo" do
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :catalina"
 
   app "Crescendo.app"
 
   zap trash: "~/Library/Saved Application State/com.suprhackersteve.crescendo.savedState"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,12 +1,18 @@
 cask "ppsspp" do
-  version "1.17.1"
-  sha256 "b0b2e1ea7c2e00690e41cd0fafef2ebed39d072c933443b571389f2620763ff1"
+  version "1.19.1"
+  sha256 "19747f0420f573e124cc64e0f91f23118d8751e22b4d079294fe540281cbc91c"
 
-  url "https://github.com/hrydgard/ppsspp/releases/download/v#{version}/PPSSPPSDL-macOS-v#{version}.zip",
-      verified: "github.com/hrydgard/ppsspp/"
+  url "https://www.ppsspp.org/files/#{version.dots_to_underscores}/PPSSPP_macOS.dmg"
   name "PPSSPP"
   desc "PSP emulator"
   homepage "https://www.ppsspp.org/"
+
+  livecheck do
+    url "https://builds.ppsspp.org/meta/status.json"
+    strategy :json do |json|
+      json.dig("latest", "tag")&.tr("v", "")
+    end
+  end
 
   app "PPSSPPSDL.app"
 

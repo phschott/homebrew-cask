@@ -1,9 +1,21 @@
 cask "widelands" do
-  arch arm: "14-arm64", intel: "12-x86"
+  version "1.2.1"
 
-  version "1.2"
-  sha256 arm:   "7b19ba62c561daa7880a4fa5683591d916f43a4b846f1fc527e1c47e6e84d4e4",
-         intel: "ca3a4db1c6ccf07d2ff246d6bd979f5e7e116a8529d3ae41fdfc8d66bf4d5f93"
+  on_ventura :or_older do
+    arch arm: "12-x86", intel: "12-x86"
+
+    sha256 "de55c686a82c904c4e585cf93802af3b475ed330e5420b3ef9b4a23d649e6b9e"
+
+    caveats do
+      requires_rosetta
+    end
+  end
+  on_sonoma :or_newer do
+    arch arm: "14-arm64", intel: "12-x86"
+
+    sha256 arm:   "7067e26809ba92395644b58ced3d99b2ecd5f83844c913c1cae7290351cc6f38",
+           intel: "de55c686a82c904c4e585cf93802af3b475ed330e5420b3ef9b4a23d649e6b9e"
+  end
 
   url "https://github.com/widelands/widelands/releases/download/v#{version}/Widelands-#{version}-MacOS#{arch}.dmg",
       verified: "github.com/widelands/widelands/"
@@ -16,7 +28,7 @@ cask "widelands" do
     regex(/href=.*?Widelands[._-]v?(\d+(?:\.\d+)+)[._-]MacOS#{arch}\.dmg/i)
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "Widelands.app"
 

@@ -1,6 +1,6 @@
 cask "xscreensaver" do
-  version "6.08.1"
-  sha256 "3450ee464c70269a9f6be2d38aa66859dad519fdac4c552a2a7b3a106788cfd3"
+  version "6.10"
+  sha256 "bf48376a572640d7b79405a07eab76e630ddcb9580cea5273db57050092e84e1"
 
   url "https://www.jwz.org/xscreensaver/xscreensaver-#{version}.dmg"
   name "XScreenSaver"
@@ -11,6 +11,8 @@ cask "xscreensaver" do
     url "https://www.jwz.org/xscreensaver/download.html"
     regex(/href=.*?xscreensaver[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   pkg "Install Everything.pkg"
 

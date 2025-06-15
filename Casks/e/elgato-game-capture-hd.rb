@@ -1,7 +1,7 @@
 cask "elgato-game-capture-hd" do
   on_el_capitan :or_older do
-    version "2.9.2,1327"
-    sha256 "9bcf01399719755034c964549a6a3af38932e7eaf03febc8b3742306505ca8a9"
+    version "2.5.2,1130"
+    sha256 "8497802cf07b4cd0e7d8b58610c15cad24fb1f18e230e2138303998f4d8397a6"
 
     url "https://gc-updates.elgato.com/mac/download.php?build=#{version.csv.second}"
 
@@ -19,13 +19,25 @@ cask "elgato-game-capture-hd" do
       url "https://gc-updates.elgato.com/mac/egcm-update#{version.major}-rss/?dbg=0&lang=English"
       strategy :sparkle, &:short_version
     end
-
-    depends_on macos: ">= :sierra"
   end
 
   name "Elgato Game Capture HD"
   desc "Elgato video capture and streaming app"
   homepage "https://www.elgato.com/ww/en/s/downloads"
 
+  no_autobump! because: :requires_manual_review
+
   app "Game Capture HD.app"
+
+  zap trash: [
+    "~/Library/Application Support/Game Capture HD",
+    "~/Library/Caches/com.elgato.GameCaptureHD",
+    "~/Library/Caches/Game Capture HD",
+    "~/Library/Logs/elgato.log",
+    "~/Library/Preferences/com.elgato.GameCaptureHD.plist*",
+  ]
+
+  caveats do
+    requires_rosetta
+  end
 end

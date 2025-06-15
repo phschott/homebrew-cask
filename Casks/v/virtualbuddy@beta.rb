@@ -1,21 +1,24 @@
 cask "virtualbuddy@beta" do
-  version "1.3,100"
-  sha256 "599b848a8d2dd13e1bde0785f2fd68e60ab795d98e5f1fa3d8ea70f28b3a42d9"
+  version "2.0.1,278"
+  sha256 "5dffea4a73e4e5a8f51c1b66d6edee78fc96c579c9f0dd827310747701227a43"
 
-  url "https://github.com/insidegui/VirtualBuddy/releases/download/#{version.csv.first}-beta/VirtualBuddy_v#{version.csv.first}-#{version.csv.second}.dmg"
+  url "https://su.virtualbuddy.app/beta/VirtualBuddy_v#{version.csv.first}-#{version.csv.second}.dmg",
+      verified: "su.virtualbuddy.app/"
   name "VirtualBuddy"
   desc "Virtualization tool"
   homepage "https://github.com/insidegui/VirtualBuddy"
 
   livecheck do
-    skip "No reliable way to get version info"
+    url "https://su.virtualbuddy.app/appcast.xml?channel=beta"
+    strategy :sparkle
   end
 
   conflicts_with cask: "virtualbuddy"
   depends_on arch: :arm64
-  depends_on macos: ">= :monterey"
+  depends_on macos: ">= :ventura"
 
   app "VirtualBuddy.app"
+  binary "#{appdir}/VirtualBuddy.app/Contents/MacOS/vctool", target: "vctool"
 
   zap trash: [
     "~/Library/Application Support/VirtualBuddy",

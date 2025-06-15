@@ -1,12 +1,14 @@
 cask "surge-xt" do
-  version "1.3.2"
-  sha256 "74748922bbcefb51b1ee55b6aebd5d2a8b54bdf88213e03eea2fad2cd81806ee"
+  version "1.3.4"
+  sha256 "b56e8d51a8dc2382ae668c9ff4e96bae38dbd452af4e584d5a5ef50ab2d09b07"
 
   url "https://github.com/surge-synthesizer/releases-xt/releases/download/#{version}/surge-xt-macOS-#{version}.dmg",
       verified: "github.com/surge-synthesizer/releases-xt/"
   name "Surge XT"
   desc "Hybrid synthesiser"
   homepage "https://surge-synthesizer.github.io/"
+
+  no_autobump! because: :requires_manual_review
 
   pkg "surge-xt-macOS-#{version}.pkg"
 

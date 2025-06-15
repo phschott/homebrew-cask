@@ -1,6 +1,6 @@
 cask "arturia-software-center" do
-  version "2.7.1.2466"
-  sha256 "a83e87823a4098c6c60de14733f2ce236042c0f12bd25118cad88167551a5ceb"
+  version "2.10.0.2970"
+  sha256 "ebf561dee23eb580ca5784388d284c58a3c5d5c149048aac4505a488b6a590ca"
 
   url "https://dl.arturia.net/products/asc/soft/Arturia_Software_Center__#{version.dots_to_underscores}.pkg",
       verified: "dl.arturia.net/"
@@ -19,6 +19,8 @@ cask "arturia-software-center" do
     end
   end
 
+  auto_updates true
+
   pkg "Arturia_Software_Center__#{version.dots_to_underscores}.pkg"
 
   uninstall launchctl: "com.Arturia.ArturiaSoftwareCenterAgent",
@@ -29,7 +31,7 @@ cask "arturia-software-center" do
 
   zap delete: [
         "/Library/Arturia/Arturia Software Center",
-        "/Library/ArturiaSC/",
+        "/Library/ArturiaSC",
       ],
       trash:  [
         "~/Library/Caches/com.Arturia.ArturiaSoftwareCenter",

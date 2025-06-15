@@ -7,6 +7,8 @@ cask "spotmenu" do
   desc "Spotify and iTunes in the menu bar"
   homepage "https://github.com/kmikiy/SpotMenu"
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "SpotMenu.app"
@@ -21,4 +23,8 @@ cask "spotmenu" do
     "~/Library/Group Containers/group.KMikiy.SpotMenu",
     "~/Library/Preferences/com.KMikiy.SpotMenu.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

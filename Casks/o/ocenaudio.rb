@@ -1,20 +1,17 @@
 cask "ocenaudio" do
-  version "3.13.8"
+  version "3.15.0"
   sha256 :no_check
 
-  on_arm do
-    url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal.dmg"
-  end
-  on_intel do
+  on_big_sur :or_older do
     on_high_sierra :or_older do
       url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_sierra.dmg"
     end
-    on_mojave do
-      url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_mojave.dmg"
+    on_mojave :or_newer do
+      url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal_legacy.dmg"
     end
-    on_catalina :or_newer do
-      url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal.dmg"
-    end
+  end
+  on_monterey :or_newer do
+    url "https://www.ocenaudio.com/downloads/index.php/ocenaudio_universal.dmg"
   end
 
   name "ocenaudio"
@@ -22,8 +19,8 @@ cask "ocenaudio" do
   homepage "https://www.ocenaudio.com/en"
 
   livecheck do
-    url "https://www.ocenaudio.com/changelog"
-    regex(/download\?version=v?(\d+(?:\.\d+)+)/i)
+    url :url
+    strategy :header_match
   end
 
   depends_on macos: ">= :sierra"

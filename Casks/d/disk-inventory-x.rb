@@ -13,9 +13,15 @@ cask "disk-inventory-x" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "Disk Inventory X.app"
 
   zap trash: "~/Library/Preferences/com.derlien.DiskInventoryX.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

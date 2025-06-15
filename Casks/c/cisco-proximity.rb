@@ -12,6 +12,8 @@ cask "cisco-proximity" do
     regex(/^desktop[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Cisco Proximity.app"
 
   uninstall launchctl: "com.cisco.proximity",
@@ -22,4 +24,8 @@ cask "cisco-proximity" do
     "~/Library/Preferences/com.cisco.Proximity.plist",
     "~/Library/Saved Application State/com.cisco.experimental.Proximity.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

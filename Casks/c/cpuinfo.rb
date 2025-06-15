@@ -7,5 +7,12 @@ cask "cpuinfo" do
   desc "CPU meter menu bar app"
   homepage "https://github.com/yusukeshibata/cpuinfo/"
 
+  no_autobump! because: :requires_manual_review
+
   app "cpuinfo.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/io.fata.shibata.cpuinfo",
+    "~/Library/Containers/io.fata.shibata.cpuinfo",
+  ]
 end

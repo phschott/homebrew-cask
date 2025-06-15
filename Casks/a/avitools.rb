@@ -12,10 +12,16 @@ cask "avitools" do
     regex(%r{href=.*?/avitools(\d+(?:\.\d+)+)\.zip}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "avitools#{version}/AVItools.app"
 
   zap trash: [
     "~/Library/Application Support/EmmGunn",
     "~/Library/Preferences/com.emmgunn.AVItools#{version.major}.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

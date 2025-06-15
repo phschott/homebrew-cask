@@ -1,6 +1,6 @@
 cask "second-life-viewer" do
-  version "7.1.7.8974243247"
-  sha256 "8e7f63630f8e4bfaeaf6e66becd22039c855ab74a3097e13af9e98e75322b836"
+  version "7.1.15.15596336374"
+  sha256 "8918c08c196121f487e1137cad1dcc6bd5245c0707743c007f2f6146a0af603a"
 
   url "http://download.cloud.secondlife.com/Viewer_#{version.major}/Second_Life_#{version.dots_to_underscores}_x86_64.dmg"
   name "Linden Lab Second Life Viewer"
@@ -8,16 +8,17 @@ cask "second-life-viewer" do
   homepage "https://secondlife.com/"
 
   livecheck do
-    url "https://secondlife.com/support/downloads/"
-    strategy :page_match do |page|
-      v = page[%r{href=.*?/Second_Life_(\d+(?:_\d+)+)_x86_64\.dmg}i, 1]
-      next if v.blank?
+    url "https://secondlife.com/downloads"
+    regex(/href=.*?Second[._-]Life[._-]v?(\d+(?:[._]\d+)+)(?:[._-]x86_64)?\.dmg/i)
+    strategy :page_match do |page, regex|
+      match = page.match(regex)
+      next if match.blank?
 
-      v.tr("_", ".")
+      match[1].tr("_", ".")
     end
   end
 
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :big_sur"
 
   app "Second Life Viewer.app"
 
@@ -25,4 +26,8 @@ cask "second-life-viewer" do
     "~/Library/Application Support/SecondLife",
     "~/Library/Caches/SecondLife",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

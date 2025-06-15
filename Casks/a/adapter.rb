@@ -12,6 +12,8 @@ cask "adapter" do
     regex(%r{href=.*?/Adapter[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Adapter.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "adapter" do
     "~/Library/Caches/com.macroplant.adapter",
     "~/Library/com.macroplant.adapter.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

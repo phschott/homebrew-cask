@@ -1,10 +1,9 @@
 cask "font-iosevka-ss17" do
-  version "30.1.1"
-  sha256 "e2aaf3c920fa6c5a5723c1cbbddf310ed29a1fd6f16aa2833b5bc804d4412c03"
+  version "33.2.5"
+  sha256 "77e0fec6efe793da34d5418a6b19bbbb5958527d167109e67aed93fc047c594e"
 
-  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/PkgTTC-IosevkaSS17-#{version}.zip"
+  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/SuperTTC-IosevkaSS17-#{version}.zip"
   name "Iosevka SS17"
-  desc "Sans-serif, slab-serif, monospace and quasi‑proportional typeface family"
   homepage "https://github.com/be5invis/Iosevka/"
 
   livecheck do
@@ -12,15 +11,7 @@ cask "font-iosevka-ss17" do
     strategy :github_latest
   end
 
-  font "IosevkaSS17-Bold.ttc"
-  font "IosevkaSS17-ExtraBold.ttc"
-  font "IosevkaSS17-ExtraLight.ttc"
-  font "IosevkaSS17-Heavy.ttc"
-  font "IosevkaSS17-Light.ttc"
-  font "IosevkaSS17-Medium.ttc"
-  font "IosevkaSS17-Regular.ttc"
-  font "IosevkaSS17-SemiBold.ttc"
-  font "IosevkaSS17-Thin.ttc"
+  font "IosevkaSS17.ttc"
 
   # No zap stanza required
 end

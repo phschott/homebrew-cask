@@ -8,5 +8,11 @@ cask "splayer" do
   desc "Media player"
   homepage "https://splayer.org/"
 
+  no_autobump! because: :requires_manual_review
+
   app "SPlayer.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "timing" do
-  version "2024.2"
-  sha256 "b06838fd149fa631ec2d8c43e250df26e529e23f3348be70ba79eed2b1a3f21f"
+  version "2025.3.3"
+  sha256 "3eaedef759d16ea0b7287916354c7ee9d9b37fef30d28b715bcfe0f8368e9f55"
 
   url "https://updates.timingapp.com/download/Timing-#{version}.dmg"
   name "Timing"
@@ -12,13 +12,14 @@ cask "timing" do
   # work with all of the items in the feed (not just the newest one).
   livecheck do
     url "https://updates.timingapp.com/updates/timing2.xml"
-    strategy :sparkle do |items|
-      items.map(&:short_version)
+    regex(/Timing[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    strategy :sparkle do |items, regex|
+      items.map { |item| item.url[regex, 1] }
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :catalina"
 
   app "Timing.app"
 

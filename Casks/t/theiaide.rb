@@ -1,16 +1,19 @@
 cask "theiaide" do
-  version "1.49.101"
-  sha256 "54af7ec2d6a7210f681d40e5d94d47b398d6bcc59532f7347b74155f1a8ecaa9"
+  arch arm: "-arm"
 
-  url "https://download.eclipse.org/theia/ide/#{version}/macos/TheiaIDE.dmg",
+  version "1.61.0"
+  sha256 arm:   "fba5077754aafc6f508156d2e02084806a48be180a0130514cf3626393fe0de8",
+         intel: "d47e2df969a958832f7154db987c8503a782be92ddadbd73f070ba9375b986b8"
+
+  url "https://download.eclipse.org/theia/ide/#{version}/macos#{arch}/TheiaIDE.dmg",
       verified: "download.eclipse.org/theia/ide/"
   name "TheiaIDE"
   desc "IDE framework"
   homepage "https://theia-ide.org/"
 
   livecheck do
-    url "https://download.eclipse.org/theia/ide/latest/macos/"
-    regex(/href=.*?TheiaIDE[._-]v?(\d+(?:\.\d+)+)(?:-mac)?\.zip/i)
+    url "https://download.eclipse.org/theia/ide/latest/macos#{arch}/latest-mac.yml"
+    strategy :electron_builder
   end
 
   auto_updates true

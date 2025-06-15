@@ -7,6 +7,8 @@ cask "bilimini" do
   desc "Small window bilibili client"
   homepage "https://github.com/chitosai/bilimini"
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "bilimini.app"
@@ -16,4 +18,8 @@ cask "bilimini" do
     "~/Library/Preferences/com.electron.bilimini.plist",
     "~/Library/Saved Application State/com.electron.bilimini.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

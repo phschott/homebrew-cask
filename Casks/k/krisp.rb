@@ -2,17 +2,17 @@ cask "krisp" do
   arch arm: "arm64", intel: "x64"
   livecheck_arch = on_arch_conditional arm: "arm", intel: "64"
 
-  version "2.37.4"
-  sha256 arm:   "12ff5f214d4bacbfba9574e355625d92e35512badef0de2970dad11866d9b881",
-         intel: "2eac045bd43b0f9ffa8f34817ccafceb8fe4cf325e9858310fcf58a181f61ec6"
+  version "3.3.4"
+  sha256 arm:   "0fcb98cb91de06af753f922309f4634982095ee98993896df92bd5a2774e5f7e",
+         intel: "d9bb3e63c1bcdc7608c4a4a2f2743f0a3fcebd3e28a7b436e40c7bd3985f6b15"
 
-  url "https://cdn.krisp.ai/mp/#{version}/mac/Krisp_#{version}_#{arch}.pkg"
+  url "https://cdn.krisp.ai/mp/mn/#{version.major_minor}/mac/Krisp_#{version}_#{arch}.pkg"
   name "Krisp"
   desc "Noise cancelling application"
   homepage "https://krisp.ai/"
 
   livecheck do
-    url "https://download.krisp.ai/mac?package=package_#{livecheck_arch}"
+    url "https://api.krisp.ai/v2/download/mac?package=package_#{livecheck_arch}"
     regex(%r{/Krisp[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.pkg}i)
     strategy :header_match
   end

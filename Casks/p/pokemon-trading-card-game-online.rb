@@ -8,10 +8,9 @@ cask "pokemon-trading-card-game-online" do
   desc "Play the Pokemon TCG online"
   homepage "https://www.pokemon.com/us/pokemon-tcg/play-online/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-07", because: :no_longer_available
 
   app "Pokemon Trading Card Game Online.app"
 
@@ -20,4 +19,8 @@ cask "pokemon-trading-card-game-online" do
     "~/Library/Caches/com.plausiblelabs.crashreporter.data/unity.The Pokémon Company International.Pokemon Trading Card Game Online",
     "~/Library/Preferences/unity.The Pokémon Company International.Pokemon Trading Card Game Online.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

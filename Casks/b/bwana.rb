@@ -11,10 +11,16 @@ cask "bwana" do
     regex(/Version\s+(\d+(?:\.\d+)+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Bwana.app"
 
   zap trash: [
     "~/Library/Caches/Bwana",
     "~/Library/Preferences/com.bruji.bwana.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

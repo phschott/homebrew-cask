@@ -7,10 +7,9 @@ cask "icefloor" do
   desc "Firewall tool"
   homepage "https://www.hanynet.com/icefloor/"
 
-  livecheck do
-    url :homepage
-    regex(%r{href=.*?/icefloor[._-]v?(\d+(?:\.\d+)+)\.zip}i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-14", because: "is 32-bit only"
 
   app "IceFloor.app"
 end

@@ -1,6 +1,6 @@
 cask "scidvsmac" do
-  version "4.24"
-  sha256 "9ef2941b782208af05cdb286c08324013936991387da6e8673e74edfefac25aa"
+  version "4.26"
+  sha256 "f9f52ac36ecba8495e0fbd8cade2aec9bc5c1d991857469f53061ac828ec6965"
 
   url "https://downloads.sourceforge.net/scidvspc/ScidvsMac-#{version}.x64.dmg"
   name "Scid vs. Mac"
@@ -12,6 +12,8 @@ cask "scidvsmac" do
     regex(/ScidvsMac-(\d+(?:\.\d+)*)\.x64\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "ScidvsMac.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "scidvsmac" do
     "~/Library/Preferences/net.sf.scid.plist",
     "~/Library/Saved Application State/net.sf.scid.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

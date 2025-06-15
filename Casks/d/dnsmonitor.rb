@@ -1,20 +1,31 @@
 cask "dnsmonitor" do
-  version "1.2.0"
-  sha256 "4dd80e03d967a959040ddff8ad73be4e624da421dffc39bf26b6d40ae6ac70a9"
+  version "1.3.0"
+  sha256 "2d70c45f55e67d4e71823acd7232e7ad1aa41ca7a2223f8d0263a1474c647e8d"
 
-  url "https://github.com/objective-see/DNSMonitor/releases/download/v#{version}/DNSMonitor_v#{version}.zip"
-  name "dnsmonitor"
+  url "https://github.com/objective-see/DNSMonitor/releases/download/v#{version}/DNSMonitor_#{version}.zip",
+      verified: "github.com/objective-see/DNSMonitor/"
+  name "DNSMonitor"
   desc "Monitor DNS activity"
-  homepage "https://github.com/objective-see/DNSMonitor/"
+  homepage "https://objective-see.org/products/utilities.html#DNSMonitor"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :catalina"
 
   app "DNSMonitor.app"
+
+  postflight do
+    File.write "#{staged_path}/unload.sh", <<~SH
+      #!/bin/sh
+      systemextensionsctl list | grep -q "com.objective-see.dnsmonitor.extension.*activated" && \
+        /Applications/DNSMonitor.app/Contents/MacOS/DNSMonitor -unload
+    SH
+  end
+
+  uninstall script: {
+    executable:   "#{staged_path}/unload.sh",
+    must_succeed: false,
+  }
 
   # No zap stanza required
 end

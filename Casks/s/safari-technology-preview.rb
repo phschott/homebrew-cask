@@ -1,34 +1,34 @@
 cask "safari-technology-preview" do
   # when adjusting the on_{os} scoping, also update the livecheck regex
-  on_ventura :or_older do
-    version "195,062-06801-20240521-F382ADE3-708E-466D-B068-FB7E70D7EA56"
-    sha256 "84da36b23063aad3f6867d9e6f266804d40390f3e771b8ea4486a6c2c933beb3"
+  on_sequoia :or_older do
+    version "221,082-55173-20250611-f7ac187a-3730-4fc1-b55d-a7bad97afecb"
+    sha256 "3c0ab9a873bf4812df1236e2160763ddf5abcbe622bb9fdbd4b561653581780e"
 
     livecheck do
       url :homepage
       regex(%r{
-        href=.*?/([^/]+)/Safari(?:%20)?Technology(?:%20)?Preview\.dmg
-        .*?macOS(?:\s|&nbsp;)*13[\s.<]
+        href=.*?/([^/]+)/Safari(?:%20|\+)?Technology(?:%20|\+)?Preview\.dmg
+        .*?macOS(?:\s|&nbsp;)*15[\s.<]
       }ix)
       strategy :page_match do |page, regex|
-        release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)\s*<}i, 1]
+        release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)[^<]*<}i, 1]
         id = page[regex, 1]
         "#{release},#{id}"
       end
     end
   end
-  on_sonoma :or_newer do
-    version "195,062-06742-20240521-5EC06D5A-F80D-4490-9A0B-C3C775AFEA57"
-    sha256 "930264a344172abf841a0503226dc559710a4ea18487ccd11d44a6eaaae0a407"
+  on_tahoe :or_newer do
+    version "221,082-56687-20250611-a060da5e-e093-4f59-b823-cb80c269000c"
+    sha256 "56ded30774906440523644873f89f89bfc7bae270bbdf9065832cdd97bdde67d"
 
     livecheck do
       url :homepage
       regex(%r{
-        href=.*?/([^/]+)/Safari(?:%20)?Technology(?:%20)?Preview\.dmg
-        .*?macOS(?:\s|&nbsp;)*14[\s.<]
+        href=.*?/([^/]+)/Safari(?:%20|\+)?Technology(?:%20|\+)?Preview\.dmg
+        .*?macOS(?:\s|&nbsp;)*26[\s.<]
       }ix)
       strategy :page_match do |page, regex|
-        release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)\s*<}i, 1]
+        release = page[%r{>\s*Release\s*</p>\s*<p[^>]*>\s*(\d+)[^<]*<}i, 1]
         id = page[regex, 1]
         "#{release},#{id}"
       end
@@ -40,8 +40,10 @@ cask "safari-technology-preview" do
   desc "Web browser"
   homepage "https://developer.apple.com/safari/resources/"
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
-  depends_on macos: ">= :ventura"
+  depends_on macos: ">= :sequoia"
 
   pkg "Safari Technology Preview.pkg"
 

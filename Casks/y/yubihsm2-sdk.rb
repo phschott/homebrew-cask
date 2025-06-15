@@ -1,9 +1,9 @@
 cask "yubihsm2-sdk" do
   arch arm: "arm64", intel: "amd64"
 
-  version "2023-11"
-  sha256 arm:   "0eb0a878ce3c35644b7a7a264f4ba5f3309af04e499ab258744b3a5f11bfe5ed",
-         intel: "b27a5dfa6e3a6c3deb282668220eda93a09c05ba80b25276d35ee95b35326ad2"
+  version "2025-06"
+  sha256 arm:   "33b552a675b226a22412732ebbc2c1adbcef6589f5fe8e6661fb8a9c7db09c39",
+         intel: "58e5cf8438d6e111402f9af6aaf5b2ec7470df04cc51db98c5879c24cfe2472b"
 
   url "https://developers.yubico.com/YubiHSM2/Releases/yubihsm2-sdk-#{version}-darwin-#{arch}.pkg"
   name "YubiHSM 2 SDK"
@@ -14,6 +14,8 @@ cask "yubihsm2-sdk" do
     url "https://developers.yubico.com/YubiHSM2/Releases/"
     regex(%r{href=.*?/yubihsm2-sdk[._-]v?(\d+(?:[.-]\d+)+)-darwin-#{arch}\.pkg}i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   pkg "yubihsm2-sdk-#{version}-darwin-#{arch}.pkg"
 

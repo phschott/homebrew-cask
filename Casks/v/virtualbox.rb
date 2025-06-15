@@ -1,16 +1,20 @@
 cask "virtualbox" do
-  version "7.0.18,162988"
-  sha256 "496002f5d9b4280ffaec9269eeae97b301c3cb30ec569a904d430808cd72c7e2"
+  arch arm: "macOSArm64", intel: "OSX"
 
-  url "https://download.virtualbox.org/virtualbox/#{version.csv.first}/VirtualBox-#{version.csv.first}-#{version.csv.second}-OSX.dmg"
+  version "7.1.10,169112"
+  sha256 arm:   "15ff0ae76005a2a77e8f40ea2a87095a645899fadaf798aabbe8dafd130de5d6",
+         intel: "cd63aa9d056b15589152b0304368dfae6930b47ebb465873d0c33fd648cd64c5"
+
+  url "https://download.virtualbox.org/virtualbox/#{version.csv.first}/VirtualBox-#{version.csv.first}-#{version.csv.second}-#{arch}.dmg"
   name "Oracle VirtualBox"
   desc "Virtualiser for x86 hardware"
   homepage "https://www.virtualbox.org/"
 
   livecheck do
     url "https://www.virtualbox.org/wiki/Downloads"
-    strategy :page_match do |page|
-      match = page.match(/href=.*?VirtualBox[._-]v?(\d+(?:\.\d+)+)[._-](\d+)[._-]OSX.dmg/)
+    regex(/href=.*?VirtualBox[._-]v?(\d+(?:\.\d+)+)[._-](\d+)[._-]OSX\.dmg/i)
+    strategy :page_match do |page, regex|
+      match = page.match(regex)
       next if match.blank?
 
       "#{match[1]},#{match[2]}"
@@ -22,7 +26,6 @@ cask "virtualbox" do
     "virtualbox@beta",
   ]
   depends_on macos: ">= :catalina"
-  depends_on arch: :x86_64
 
   pkg "VirtualBox.pkg",
       choices: [

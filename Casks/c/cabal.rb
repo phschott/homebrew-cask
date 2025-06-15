@@ -8,6 +8,8 @@ cask "cabal" do
   desc "Desktop client for the chat platform Cabal"
   homepage "https://cabal.chat/"
 
+  no_autobump! because: :requires_manual_review
+
   app "Cabal.app"
 
   zap trash: [
@@ -16,4 +18,8 @@ cask "cabal" do
     "~/Library/Preferences/club.cabal.desktop.plist",
     "~/Library/Saved Application State/club.cabal.desktop.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

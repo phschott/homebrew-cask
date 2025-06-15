@@ -12,6 +12,8 @@ cask "soduto" do
     regex(%r{href=.*?/Soduto_v?(\d+(?:\.\d+)*)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Soduto.app"
@@ -22,4 +24,8 @@ cask "soduto" do
     "~/Library/Containers/com.soduto.SodutoLauncher",
     "~/Library/Saved Application State/com.soduto.SodutoBrowser.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

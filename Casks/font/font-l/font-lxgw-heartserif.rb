@@ -1,12 +1,13 @@
 cask "font-lxgw-heartserif" do
-  version "0.923"
-  sha256 "926b9d8465f276fffb6590dd38674bc60ff7560842536743972605a2884e2bde"
+  version "1.011"
+  sha256 "c31ad15b1b3eee633ff74ac3d7b6440a73be7286a508ad190ffbb54b3cd61c31"
 
-  url "https://github.com/lxgw/LxgwNeoZhiSong/releases/download/v#{version}/LXGWHeartSerif.ttf"
+  url "https://github.com/lxgw/LxgwHeartSerif/releases/download/v#{version}/LXGWHeartSerif.ttf"
   name "LXGW Heart Serif"
   name "霞鹜铭心宋"
-  desc "Chinese serif font derived from IPAmj Mincho"
-  homepage "https://github.com/lxgw/LxgwNeoZhiSong"
+  homepage "https://github.com/lxgw/LxgwHeartSerif"
+
+  deprecate! date: "2024-11-22", because: :discontinued
 
   font "LXGWHeartSerif.ttf"
 

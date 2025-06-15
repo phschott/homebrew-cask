@@ -8,6 +8,8 @@ cask "prisma-studio" do
   desc "Visual database editor for Prisma projects"
   homepage "https://www.prisma.io/studio"
 
+  no_autobump! because: :requires_manual_review
+
   app "Prisma Studio.app"
 
   zap trash: [
@@ -16,4 +18,8 @@ cask "prisma-studio" do
     "~/Library/Preferences/io.prisma.studio.plist",
     "~/Library/Saved Application State/io.prisma.studio.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

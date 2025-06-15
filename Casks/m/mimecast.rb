@@ -12,6 +12,8 @@ cask "mimecast" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :sierra"
 
@@ -26,4 +28,8 @@ cask "mimecast" do
     "~/Library/Logs/Mimecast",
     "~/Library/Preferences/com.mimecast.Mimecast-Mail.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -7,10 +7,9 @@ cask "lynxlet" do
   desc "Launch Lynx in a Terminal window"
   homepage "https://habilis.net/lynxlet/"
 
-  livecheck do
-    url :homepage
-    regex(/href=.*?Lynxlet_(\d+(?:\.\d+)*)\.dmg/i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-14", because: "is 32-bit only"
 
   app "Lynxlet.app"
 end

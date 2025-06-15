@@ -5,12 +5,14 @@ cask "manila" do
   url "https://github.com/neilsardesai/Manila/releases/download/v#{version}/Manila.zip"
   name "Manila"
   desc "Finder extension for changing folder colours"
-  homepage "https://github.com/neilsardesai/Manila#readme"
+  homepage "https://github.com/neilsardesai/Manila"
 
   livecheck do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :monterey"
 

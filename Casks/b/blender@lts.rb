@@ -1,9 +1,9 @@
 cask "blender@lts" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.6.12"
-  sha256 arm:   "89672c0537d5479903f4f715676193cf56bcc0dbf0073dc5f77119d59fe99fe2",
-         intel: "ddaddfdd880ee42f1ac00215f3b8e68b31affd826e412de318fcac91867827a3"
+  version "4.2.10"
+  sha256 arm:   "c1210c14e9d659a58f2519b17c8e55fdac01eb263e059567de0e51e8893afc98",
+         intel: "cb2be65622f073b4ef848e795345e8c7dbde8bc4b6a248cef4149d699a0e2b56"
 
   url "https://download.blender.org/release/Blender#{version.major_minor}/blender-#{version}-macos-#{arch}.dmg"
   name "Blender"
@@ -29,7 +29,7 @@ cask "blender@lts" do
       next if lts_versions.blank?
 
       version_page = Homebrew::Livecheck::Strategy.page_content("https://www.blender.org/download/lts/#{lts_versions.max}/")
-      next [] if version_page[:content].blank?
+      next if version_page[:content].blank?
 
       # If the version page has a download link, return it as the livecheck version
       matched_versions = version_page[:content].scan(regex).flatten

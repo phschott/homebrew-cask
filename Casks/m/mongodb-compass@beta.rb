@@ -1,9 +1,9 @@
 cask "mongodb-compass@beta" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.43.1-beta.2"
-  sha256 arm:   "d771941f6ab4c5ffd253797fa610e660f38f4c43d67098316e97db877bdcb4aa",
-         intel: "b31e68d8484e4ae63da28873ad5860de58f277267aa0507546fb06532b1c577d"
+  version "1.46.3-beta.6"
+  sha256 arm:   "a0a4bccf4a94a011dc8b6415d6d11c89072bfb573abb5724cdae32df0aa3410f",
+         intel: "444259a627c2918dc1754aaf4229004381322e0c6a237034458e632d8837937d"
 
   url "https://downloads.mongodb.com/compass/beta/mongodb-compass-#{version}-darwin-#{arch}.dmg"
   name "MongoDB Compass"
@@ -11,9 +11,16 @@ cask "mongodb-compass@beta" do
   homepage "https://www.mongodb.com/try/download/compass"
 
   livecheck do
-    url "https://github.com/mongodb-js/compass/releases?q=prerelease%3Atrue&expanded=true"
-    regex(%r{href=["']?[^"' >]*?/tag/\D*?(\d+(?:\.\d+)+-beta\.\d)[^"' >]*?["' >]}i)
-    strategy :page_match
+    url "https://info-mongodb-com.s3.amazonaws.com/com-download-center/compass.json"
+    regex(/^v?(\d+(?:\.\d+)+[._-]beta[._-]\d+)$/i)
+    strategy :json do |json, regex|
+      json["versions"]&.map do |item|
+        match = item["_id"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   depends_on macos: ">= :catalina"

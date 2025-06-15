@@ -1,21 +1,18 @@
 cask "fabfilter-one" do
-  version "3.39"
-  sha256 "76bd8db1eb20f5ea70db34b0aed76336301a893608884145fce86510959d875e"
+  version "3.50"
+  sha256 "83dd4ab5061957a0d0dae9c92a8dc0ca310c547b89c1f21fff0c3d837c6a69f7"
 
-  url "https://www.fabfilter.com/downloads/ffone#{version.no_dots}.dmg"
+  url "https://cdn-b.fabfilter.com/downloads/ffone#{version.no_dots}.dmg"
   name "FabFilter One"
   desc "Synthesiser plug-in"
-  homepage "https://www.fabfilter.com/products/volcano-2-powerful-filter-plug-in"
+  homepage "https://www.fabfilter.com/products/one-basic-synthesizer-plug-in"
 
   livecheck do
     url "https://www.fabfilter.com/download"
-    strategy :page_match do |page|
-      match = page.match(/ffone(\d)(\d+)\.dmg/i)
-      next if match.blank?
-
-      "#{match[1]}.#{match[2]}"
-    end
+    regex(/FabFilter\s+One.*?v?(\d+(?:\.\d+)+)/im)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :sierra"
 

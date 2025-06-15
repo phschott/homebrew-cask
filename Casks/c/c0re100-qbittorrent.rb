@@ -1,6 +1,6 @@
 cask "c0re100-qbittorrent" do
-  version "4.6.4.10"
-  sha256 "6ed62cf059cdcf9f885fbf50129f572b4b5053b0a11c0212be54681a235da481"
+  version "5.1.0.11"
+  sha256 "e0bc679be0b59d7318936ec4cc76073e0cbef8ae87d06829512154633f4a3fa5"
 
   url "https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases/download/release-#{version}/qBittorrent-Enhanced-Edition-release-#{version}-macOS-universal.dmg"
   name "qBittorrent Enhanced Edition"
@@ -13,7 +13,7 @@ cask "c0re100-qbittorrent" do
   end
 
   conflicts_with cask: "qbittorrent"
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :monterey"
 
   app "qbittorrent.app"
 

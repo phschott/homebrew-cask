@@ -1,6 +1,6 @@
 cask "guilded" do
-  version "1.0.9256462"
-  sha256 "5d5312ab5eac9106d329689dfbdea81593ee0e999c689929629efa8d415fc546"
+  version "1.0.9313619"
+  sha256 "bdeb8be2f054939918075a15b59d172ba9ca56023aac0d3bb46e84d7502913b5"
 
   url "https://www.guilded.gg/AppBuilds/mac/Guilded-#{version}-release.dmg"
   name "Guilded"
@@ -13,6 +13,11 @@ cask "guilded" do
       yaml["version"]&.sub(/[._-]release.*$/i, "")
     end
   end
+
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Guilded.app"
 

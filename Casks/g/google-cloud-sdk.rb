@@ -1,9 +1,9 @@
 cask "google-cloud-sdk" do
   arch arm: "arm", intel: "x86_64"
 
-  version "478.0.0"
-  sha256 arm:   "bf8d0a8b1d2ef495f4aa71528d33e1d3a5ab648210143750d5b6a31426413647",
-         intel: "01f647011e6f25db92c4f549b1ca02143c6e79b11a4717ff0e9f12fdb1034129"
+  version "526.0.1"
+  sha256 arm:   "de53c1b473f88fb12fca5a1598a7df17fa4c3ae8e21ad7e979bae745f4bb4f70",
+         intel: "e473021e5a63270722274b6411711a2594a295719c821d2ece0b45ca7ef2164a"
 
   url "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-#{version}-darwin-#{arch}.tar.gz"
   name "Google Cloud SDK"
@@ -12,7 +12,7 @@ cask "google-cloud-sdk" do
 
   livecheck do
     url "https://cloud.google.com/sdk/docs/install-sdk"
-    regex(/google[._-]cloud[._-]cli[._-]v?(\d+(?:\.\d+)+)/i)
+    regex(/latest\s*gcloud\s*CLI\s*version\s*\(v?(\d+(?:\.\d+)+)\)/i)
   end
 
   auto_updates true
@@ -36,14 +36,12 @@ cask "google-cloud-sdk" do
   binary "google-cloud-sdk/bin/gcloud"
   binary "google-cloud-sdk/bin/git-credential-gcloud.sh", target: "git-credential-gcloud"
   binary "google-cloud-sdk/bin/gsutil"
-  binary "google-cloud-sdk/completion.bash.inc",
-         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk"
-  binary "google-cloud-sdk/completion.zsh.inc",
-         target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_google_cloud_sdk"
+  bash_completion "google-cloud-sdk/completion.bash.inc", target: "google-cloud-sdk"
+  zsh_completion "google-cloud-sdk/completion.zsh.inc", target: "_google_cloud_sdk"
 
   preflight do
     FileUtils.cp_r staged_path/"google-cloud-sdk/.", google_cloud_sdk_root, remove_destination: true
-    (staged_path/"google-cloud-sdk").rmtree
+    FileUtils.rm_r(staged_path/"google-cloud-sdk")
     FileUtils.ln_s google_cloud_sdk_root, (staged_path/"google-cloud-sdk")
   end
 
@@ -54,25 +52,10 @@ cask "google-cloud-sdk" do
     end
   end
 
-  uninstall delete: staged_path.dirname/"latest"
+  uninstall trash: staged_path.dirname/"latest"
 
   zap trash: [
     "#{google_cloud_sdk_root}.staging",
     google_cloud_sdk_root,
   ]
-
-  caveats <<~EOS
-    To add gcloud components to your PATH, add this to your profile:
-
-      for bash users
-        source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
-
-      for zsh users
-        source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-        source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
-
-      for fish users
-        source "$(brew --prefix)/share/google-cloud-sdk/path.fish.inc"
-
-  EOS
 end

@@ -12,10 +12,16 @@ cask "subtools" do
     regex(/href=.*?subtools[._-]?v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "subtools#{version}/SUBtools.app"
 
   zap trash: [
     "~/Library/Application Support/EmmGunn",
     "~/Library/Preferences/com.emmgunn.SUBtools.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

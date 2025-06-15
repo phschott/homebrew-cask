@@ -12,6 +12,8 @@ cask "oss-browser" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "oss-browser-darwin-x64/oss-browser.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "oss-browser" do
     "~/Library/Preferences/com.electron.oss-browser.plist",
     "~/Library/Saved Application State/com.electron.oss-browser.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

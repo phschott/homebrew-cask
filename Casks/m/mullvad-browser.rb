@@ -1,19 +1,21 @@
 cask "mullvad-browser" do
-  version "13.0.15"
-  sha256 "8bb0e76cac62fcb99f15f27633929e3821465ebcfda7c4c728fc1a86886f47ce"
+  version "14.5.3"
+  sha256 "ca36ad3a06dccea148c2f6bd6df7e497971c2197f654ba780246eaad25cf3ea1"
 
   url "https://cdn.mullvad.net/browser/#{version}/mullvad-browser-macos-#{version}.dmg"
   name "Mullvad Browser"
   desc "Web browser focused on privacy and on minimizing tracking and fingerprinting"
-  homepage "https://mullvad.net/en/browser"
+  homepage "https://mullvad.net/browser"
 
   livecheck do
-    url "https://mullvad.net/en/download/browser/macos/latest"
-    strategy :header_match
+    url "https://cdn.mullvad.net/browser/update_responses/update_1/release/download-macos.json"
+    strategy :json do |json|
+      json["version"]
+    end
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :catalina"
 
   app "Mullvad Browser.app"
 

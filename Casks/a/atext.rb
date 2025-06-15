@@ -1,5 +1,5 @@
 cask "atext" do
-  version "3.19"
+  version "3.21"
   sha256 :no_check
 
   url "https://www.trankynam.com/atext/downloads/aText.dmg"
@@ -8,11 +8,14 @@ cask "atext" do
   homepage "https://www.trankynam.com/atext/"
 
   livecheck do
-    url "https://www.trankynam.com/atext/changelog.mac"
-    regex(/aText\s*v?(\d+(?:\.\d+)+)["< ]/i)
+    url "https://www.trankynam.com/atext/appcast.mac.xml"
+    strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
+  depends_on macos: ">= :sierra"
 
   app "aText.app"
 

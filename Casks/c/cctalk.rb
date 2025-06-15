@@ -13,7 +13,9 @@ cask "cctalk" do
     strategy :header_match
   end
 
-  depends_on macos: ">= :el_capitan"
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
 
   app "CCtalk.app"
 
@@ -24,4 +26,8 @@ cask "cctalk" do
     "~/Library/HTTPStorages/com.hujiang.mac.cctalk",
     "~/Library/Preferences/com.hujiang.mac.cctalk.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -13,6 +13,8 @@ cask "raven-reader" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Raven Reader.app"
@@ -25,4 +27,8 @@ cask "raven-reader" do
     "~/Library/Preferences/org.helloefficiency.ravenreader.plist",
     "~/Library/Saved Application State/org.helloefficiency.ravenreader.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

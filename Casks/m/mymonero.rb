@@ -13,6 +13,8 @@ cask "mymonero" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MyMonero.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "mymonero" do
     "~/Library/Preferences/com.mymonero.mymonero-desktop.plist",
     "~/Library/Saved Application State/com.mymonero.mymonero-desktop.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

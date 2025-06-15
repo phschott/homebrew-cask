@@ -1,5 +1,5 @@
 cask "chronoagent" do
-  version "11.0.2"
+  version "11.1.0"
   sha256 :no_check
 
   url "https://downloads.econtechnologies.com/CA_Mac_Download.dmg"
@@ -11,6 +11,8 @@ cask "chronoagent" do
     url "https://www.econtechnologies.com/downloads/downloads.html"
     regex(/>\s*ChronoAgent.*?Version\s+(\d+(?:\.\d+)+)[\s<]+/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :mojave"
 

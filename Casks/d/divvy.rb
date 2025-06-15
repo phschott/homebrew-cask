@@ -12,10 +12,16 @@ cask "divvy" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Divvy.app"
 
   zap trash: [
     "~/Library/Preferences/com.mizage.direct.Divvy.plist",
     "~/Library/Preferences/com.mizage.Divvy.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

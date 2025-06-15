@@ -30,7 +30,13 @@ cask "synfigstudio" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "SynfigStudio.app"
 
   zap trash: "~/Library/Synfig"
+
+  caveats do
+    requires_rosetta
+  end
 end

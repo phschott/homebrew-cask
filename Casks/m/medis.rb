@@ -8,11 +8,14 @@ cask "medis" do
   homepage "https://getmedis.com/"
 
   livecheck do
-    url "https://api.appcenter.ms/v0.1/public/sparkle/apps/d33d1248-5582-4304-b45c-cb40d51da2ab"
+    url "https://api.getmedis.com/medis/sparkle"
     strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :big_sur"
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+  depends_on macos: ">= :monterey"
 
   app "Medis.app"
 

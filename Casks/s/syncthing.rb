@@ -1,6 +1,6 @@
 cask "syncthing" do
-  version "1.27.7-2"
-  sha256 "1b9c5275d4d0b02760bd2c34cdeaa1c8847c5ad2b932095613fe5575578c924c"
+  version "1.29.6-1"
+  sha256 "87a6bdc5ce91e95a61e75970385b2d4a17c2373175efe0b955fdf0b7028c8c4d"
 
   url "https://github.com/syncthing/syncthing-macos/releases/download/v#{version}/Syncthing-#{version}.dmg",
       verified: "github.com/syncthing/syncthing-macos/"
@@ -9,9 +9,10 @@ cask "syncthing" do
   homepage "https://syncthing.net/"
 
   livecheck do
-    url :url
-    regex(/v?(\d+(?:[\.\-]\d+)+)/i)
-    strategy :github_latest
+    url "https://upgrades.syncthing.net/syncthing-macos/appcast.xml"
+    strategy :sparkle do |item|
+      item.short_version.delete_prefix("v")
+    end
   end
 
   auto_updates true

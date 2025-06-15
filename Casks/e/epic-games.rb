@@ -1,6 +1,6 @@
 cask "epic-games" do
-  version "15.17.1"
-  sha256 "35cd6de6f2726794c6bf680de975cce463d03790ae14c4b522a2db1cf1ad7d23"
+  version "18.5.0"
+  sha256 "0562d716c498a48d96a750d4869269559a375d0f4472e9d3f4d646f796c1162e"
 
   url "https://epicgames-download1.akamaized.net/Builds/UnrealEngineLauncher/Installers/Mac/EpicInstaller-#{version}.dmg",
       verified: "epicgames-download1.akamaized.net/"
@@ -27,4 +27,8 @@ cask "epic-games" do
     "~/Library/Logs/Unreal Engine/EpicGamesLauncher",
     "~/Library/Preferences/Unreal Engine/EpicGamesLauncher",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

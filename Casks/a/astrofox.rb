@@ -12,6 +12,8 @@ cask "astrofox" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Astrofox.app"
@@ -21,4 +23,8 @@ cask "astrofox" do
     "~/Library/Preferences/io.astrofox.app.plist",
     "~/Library/Saved Application State/io.astrofox.app.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -5,12 +5,14 @@ cask "imagex" do
   url "https://visual-computing.com/files/imagex/ImageX-v#{version}-macos.zip"
   name "ImageX"
   desc "Visually explore and search an image collection"
-  homepage "https://visual-computing.com/project/imagex/"
+  homepage "https://visual-computing.com/projects/imagex"
 
   livecheck do
     url :homepage
     regex(/href=.*?ImageX[._-]v?(\d+(?:\.\d+)+)[._-]macos\.zip/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :high_sierra"
 
@@ -20,4 +22,8 @@ cask "imagex" do
     "~/Library/Preferences/de.htw.lcs.imagex.plist",
     "~/Library/Saved Application State/de.htw.lcs.imagex.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

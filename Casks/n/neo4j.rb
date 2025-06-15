@@ -1,10 +1,10 @@
 cask "neo4j" do
   # NOTE: "4" is not a version number, but an intrinsic part of the product name
-  version "1.5.9"
-  sha256 "d72d80255bedf4546a8c09b4db42d616c2586a394dd90cfa06b195b1f26d3840"
+  version "2.0.1"
+  sha256 "2c25729896d1e326d64e46ca3d52c656ec68b7b784358e1e5bd673233ea73add"
 
-  url "https://dist.neo4j.org/neo4j-desktop/mac/Neo4j%20Desktop-#{version}.dmg",
-      verified: "dist.neo4j.org/neo4j-desktop/mac/"
+  url "https://dist.neo4j.org/neo4j-desktop-#{version.major}/mac/neo4j-desktop-#{version}-universal.dmg",
+      verified: "dist.neo4j.org/"
   name "Neo4j Desktop"
   desc "Developer IDE or Management Environment for Neo4j instances"
   homepage "https://neo4j.com/download/"
@@ -14,7 +14,9 @@ cask "neo4j" do
     regex(%r{href=.*?/neo4j-desktop/.*?flavour=osx.*?release=(\d+(?:\.\d+)+)}i)
   end
 
-  app "Neo4j Desktop.app"
+  no_autobump! because: :requires_manual_review
+
+  app "Neo4j Desktop #{version.major}.app"
 
   zap trash: [
     "~/Library/Application Support/com.Neo4j.Relate",

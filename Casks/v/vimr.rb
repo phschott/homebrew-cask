@@ -1,21 +1,16 @@
 cask "vimr" do
-  version "0.47.1,20240528.171603"
-  sha256 "f3c50785301a583a7049a70b18fead7c6edfb70e89ed6e61c0bdb953a962140d"
+  version "0.54.0,20250531.222551"
+  sha256 "e726c0227e04a59b3b915d1b25c876984a4d67b5acfc2fb5b5292e8cb2e66405"
 
-  url "https://github.com/qvacua/vimr/releases/download/v#{version.csv.first}-#{version.csv.second}/VimR-v#{version.csv.first}.tar.bz2",
-      verified: "github.com/qvacua/vimr/"
+  url "https://github.com/qvacua/vimr/releases/download/v#{version.csv.first}-#{version.csv.second}/VimR-v#{version.csv.first}.tar.bz2"
   name "VimR"
   desc "GUI for the Neovim text editor"
-  homepage "http://vimr.org/"
+  homepage "https://github.com/qvacua/vimr"
 
   livecheck do
-    url :url
-    regex(/^v?(\d+(?:\.\d+)+)[._-](\d+(?:\.\d+)+)$/i)
-    strategy :github_latest do |json, regex|
-      match = json["tag_name"]&.match(regex)
-      next if match.blank?
-
-      "#{match[1]},#{match[2]}"
+    url "https://raw.githubusercontent.com/qvacua/vimr/refs/heads/master/appcast.xml"
+    strategy :sparkle do |item|
+      item.nice_version.delete_prefix("v")
     end
   end
 

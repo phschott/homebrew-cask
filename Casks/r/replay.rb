@@ -7,10 +7,9 @@ cask "replay" do
   desc "Time travel debugging"
   homepage "https://replay.io/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-24", because: :discontinued
 
   depends_on macos: ">= :sierra"
 
@@ -23,4 +22,8 @@ cask "replay" do
     "~/Library/Preferences/org.mozilla.replay.plist",
     "~/Library/Saved Application State/org.mozilla.replay.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

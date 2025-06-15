@@ -7,6 +7,8 @@ cask "mater" do
   desc "Menubar pomodoro app"
   homepage "https://github.com/jasonlong/mater"
 
+  no_autobump! because: :requires_manual_review
+
   app "Mater-darwin-x64/Mater.app"
 
   zap trash: [
@@ -14,4 +16,8 @@ cask "mater" do
     "~/Library/Preferences/com.electron.mater.plist",
     "~/Library/Saved Application State/com.electron.mater.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -13,6 +13,8 @@ cask "mailmate" do
     regex(/Revision\s(\d+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   conflicts_with cask: "mailmate@beta"
 
@@ -28,4 +30,8 @@ cask "mailmate" do
     "~/Library/Preferences/com.freron.MailMate.plist",
     "~/Library/Saved Application State/com.freron.MailMate.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,20 +1,24 @@
 cask "aqua" do
   arch arm: "-aarch64"
 
-  version "2024.1,241.15989.156"
-  sha256 arm:   "3a9e7421eb1953dba1963422e18b54cb74b5ba7b6b8ad51f7ce3825d8a8b9d65",
-         intel: "af0e91a48f63604443ad6d47220c0e705cbddae91a7b5c2bf563db774b2b5a2d"
+  version "2024.3.2,243.23654.154"
+  sha256 arm:   "43974cdbbb71aaf5bfcfaf2cfd0e69e9920dda3973e64671936c1d52b267494d",
+         intel: "423d492e9849beb7edbbd1771650a04e8df9f469bf1789b41bc5878c84cee393"
 
-  url "https://download.jetbrains.com/aqua/aqua-#{version.csv.second}#{arch}.dmg"
+  url "https://download.jetbrains.com/aqua/aqua-#{version.csv.first}#{arch}.dmg"
   name "Aqua"
   desc "Tests writing environment"
   homepage "https://www.jetbrains.com/aqua/"
 
   livecheck do
-    url "https://data.services.jetbrains.com/products/releases?code=QA&latest=true&type=preview"
+    url "https://data.services.jetbrains.com/products/releases?code=QA&latest=true&type=release"
     strategy :json do |json|
-      json["QA"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["QA"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
@@ -22,7 +26,7 @@ cask "aqua" do
   auto_updates true
   depends_on macos: ">= :high_sierra"
 
-  app "Aqua #{version.before_comma} EAP.app", target: "Aqua.app"
+  app "Aqua.app"
   binary "#{appdir}/Aqua.app/Contents/MacOS/aqua"
 
   zap trash: [

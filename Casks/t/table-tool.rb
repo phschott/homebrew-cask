@@ -7,6 +7,8 @@ cask "table-tool" do
   desc "CSV file editor"
   homepage "https://github.com/jakob/TableTool"
 
+  no_autobump! because: :requires_manual_review
+
   app "Table Tool.app"
 
   zap trash: [
@@ -14,4 +16,8 @@ cask "table-tool" do
     "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/at.eggerapps.tabletool.sfl*",
     "~/Library/Containers/at.eggerapps.tabletool",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

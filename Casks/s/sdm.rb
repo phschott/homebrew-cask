@@ -1,6 +1,6 @@
 cask "sdm" do
-  version "21.70.0,2B059AF8AC0167C982FF4B60E351AC70ABFA34F0"
-  sha256 "b2baf882da9303e75438d94a5664330f660cd6a98c14199ef4df30fcb53fbf4f"
+  version "22.32.0,6869D57B8A649ABD866357130A9372583731416F"
+  sha256 "f0099db47740dc970874066db5521720bf165f70d23856e5d3e21f15ea4940cb"
 
   url "https://downloads.strongdm.com/builds/desktop/#{version.csv.first}/darwin-universal/#{version.csv.second}/SDM-#{version.csv.first}.universal.zip"
   name "sdm"
@@ -15,9 +15,10 @@ cask "sdm" do
     end
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :big_sur"
 
   app "SDM.app"
+  binary "#{appdir}/SDM.app/Contents/Resources/sdm.darwin", target: "sdm"
 
   uninstall delete: "#{appdir}/SDM.app/Contents/Resources/sdm-socket"
 

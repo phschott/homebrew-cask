@@ -1,6 +1,6 @@
 cask "insomnia@alpha" do
-  version "9.3.0-beta.0"
-  sha256 "295e5f5ed2801c47ee1f61f0ed0f2b59ffa14f800396bc97014b0aec730e49ee"
+  version "11.2.0"
+  sha256 "4bf3435b3ec57fc40964f46dfa7572c80499929461a584b419f2b6b80332efb8"
 
   url "https://github.com/Kong/insomnia/releases/download/core%40#{version}/Insomnia.Core-#{version}.dmg",
       verified: "github.com/Kong/insomnia/"
@@ -9,23 +9,15 @@ cask "insomnia@alpha" do
   homepage "https://insomnia.rest/"
 
   livecheck do
-    url :url
-    regex(/^core@v?(\d+(?:\.\d+)+[._-](?:alpha|beta|rc)[._-]?\d*)$/i)
-    strategy :github_releases do |json, regex|
-      json.map do |release|
-        next if release["draft"]
-
-        match = release["tag_name"]&.match(regex)
-        next if match.blank?
-
-        match[1]
-      end
+    url "https://updates.insomnia.rest/builds/check/mac?v=#{version.major}.0.0#{"-beta.0" if version.split("-")&.second}&app=com.insomnia.app&channel=beta"
+    strategy :json do |json|
+      json["name"]
     end
   end
 
   auto_updates true
   conflicts_with cask: "insomnia"
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Insomnia.app"
 

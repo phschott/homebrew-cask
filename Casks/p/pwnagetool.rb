@@ -6,10 +6,9 @@ cask "pwnagetool" do
   name "PwnageTool"
   homepage "https://iphoneroot.com/utilities/#PwnageTool"
 
-  livecheck do
-    url :homepage
-    regex(%r{href=.*?/PwnageTool_(\d+(?:\.\d+)*)\.dmg}i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-16", because: "is 32-bit only"
 
   app "PwnageTool.app"
 end

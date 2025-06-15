@@ -16,7 +16,13 @@ cask "tag" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Tag.app"
 
   zap trash: "~/Library/Preferences/com.feisty-dog.Tag.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

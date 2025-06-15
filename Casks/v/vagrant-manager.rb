@@ -7,6 +7,8 @@ cask "vagrant-manager" do
   name "Vagrant Manager"
   homepage "https://www.vagrantmanager.com/"
 
+  no_autobump! because: :requires_manual_review
+
   app "Vagrant Manager.app"
 
   uninstall quit: "lanayo.Vagrant-Manager"
@@ -15,4 +17,8 @@ cask "vagrant-manager" do
     "~/Library/Caches/lanayo.Vagrant-Manager",
     "~/Library/Preferences/lanayo.Vagrant-Manager.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

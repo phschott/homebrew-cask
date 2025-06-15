@@ -1,8 +1,8 @@
 cask "doxygen" do
-  version "1.11.0"
-  sha256 "7ffb89909800242e29585e619582972c901ee0045cf4b7c4ef58a91c445f89eb"
+  version "1.14.0"
+  sha256 "ad2c71cb286100d4eaccd0b9d92751c88c4bd0501990f7eccc50aa946f827dc7"
 
-  url "https://doxygen.nl/files/Doxygen-#{version}.dmg"
+  url "https://www.doxygen.nl/files/Doxygen-#{version}.dmg"
   name "Doxygen"
   desc "Generate documentation from source code"
   homepage "https://www.doxygen.nl/"
@@ -19,4 +19,8 @@ cask "doxygen" do
     "~/Library/Preferences/org.doxygen.plist",
     "~/Library/Saved Application State/org.doxygen.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

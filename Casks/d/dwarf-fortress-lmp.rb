@@ -12,6 +12,8 @@ cask "dwarf-fortress-lmp" do
     regex(/Lazy\+Mac\+Pack\+v(.+)\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   # Renamed for clarity: suite name is inconsistent with branding
   suite "Lazy Mac Pack v#{version.sub("+", " ")}", target: "Dwarf Fortress LMP"
 
@@ -20,4 +22,8 @@ cask "dwarf-fortress-lmp" do
     "~/Library/Preferences/Lazy Mac Pack.plist",
     "~/Library/Saved Application State/Lazy Mac Pack.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

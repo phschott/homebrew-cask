@@ -1,6 +1,6 @@
 cask "sparkle" do
-  version "2.6.2"
-  sha256 "2300a7dc2545a4968e54621b7f351d388ddf1a5cb49e79f6c99e9a09d826f5e8"
+  version "2.7.0"
+  sha256 "09fed60cca507d2dc542c86c22e525598af5483954a5c66366ce039647ec88e9"
 
   url "https://github.com/sparkle-project/Sparkle/releases/download/#{version}/Sparkle-#{version}.tar.xz",
       verified: "github.com/sparkle-project/Sparkle/"
@@ -12,6 +12,8 @@ cask "sparkle" do
     url :url
     strategy :github_latest
   end
+
+  depends_on macos: ">= :high_sierra"
 
   app "Sparkle Test App.app"
   binary "sparkle.app/Contents/MacOS/sparkle"

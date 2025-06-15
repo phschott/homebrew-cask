@@ -7,6 +7,8 @@ cask "cool-retro-term" do
   desc "Terminal emulator mimicking the old cathode display"
   homepage "https://github.com/Swordfish90/cool-retro-term"
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "cool-retro-term.app"
@@ -18,4 +20,8 @@ cask "cool-retro-term" do
     "~/Library/Preferences/com.yourcompany.cool-retro-term.plist",
     "~/Library/Saved Application State/com.yourcompany.cool-retro-term.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

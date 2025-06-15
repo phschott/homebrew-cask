@@ -12,10 +12,18 @@ cask "snapndrag" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :mojave"
+
   app "SnapNDrag.app"
 
   zap trash: [
     "~/Library/Application Support/com.yellowmug.SnapNDrag",
     "~/Library/Preferences/com.yellowmug.SnapNDrag.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

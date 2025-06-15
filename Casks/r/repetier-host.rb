@@ -12,5 +12,12 @@ cask "repetier-host" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Repetier-Host Mac.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.repetier.Repetier-Host-Mac.plist",
+    "~/Library/Saved Application State/com.repetier.Repetier-Host-Mac.savedState",
+  ]
 end

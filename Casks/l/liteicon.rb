@@ -17,10 +17,10 @@ cask "liteicon" do
   desc "Tool to change system icons"
   homepage "https://freemacsoft.net/liteicon/"
 
-  livecheck do
-    url "https://freemacsoft.net/liteicon/updates.xml"
-    strategy :sparkle, &:short_version
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-06-11", because: :discontinued
+  disable! date: "2025-06-11", because: :discontinued
 
   auto_updates true
 
@@ -38,4 +38,8 @@ cask "liteicon" do
     "~/Library/Application Support/CrashReporter/LiteIcon_*.plist",
     "~/Library/Preferences/net.freemacsoft.LiteIcon.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

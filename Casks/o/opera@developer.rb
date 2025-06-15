@@ -1,6 +1,6 @@
 cask "opera@developer" do
-  version "112.0.5179.0"
-  sha256 "04d703ab577701b40b57690f166a35474e30604d994acf81154c8135a8fd7123"
+  version "121.0.5558.0"
+  sha256 "990bed1d5107c3f81f3bc8972b7c5fcd27a3f39bdcc6f1d577e8794dfb48b849"
 
   url "https://get.geo.opera.com/pub/opera-developer/#{version}/mac/Opera_Developer_#{version}_Setup.dmg"
   name "Opera Developer"
@@ -9,17 +9,20 @@ cask "opera@developer" do
 
   livecheck do
     url "https://get.geo.opera.com/pub/opera-developer/"
-    regex(/href="(\d+(?:\.\d+)+)/i)
+    regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
   auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "Opera Developer.app"
 
   zap trash: [
     "~/Library/Application Support/com.operasoftware.OperaDeveloper",
+    "~/Library/Caches/com.operasoftware.Installer.OperaDeveloper",
     "~/Library/Caches/com.operasoftware.OperaDeveloper",
     "~/Library/Cookies/com.operasoftware.OperaDeveloper.binarycookies",
+    "~/Library/HTTPStorages/com.operasoftware.Installer.OperaDeveloper",
     "~/Library/Preferences/com.operasoftware.OperaDeveloper.plist",
     "~/Library/Saved Application State/com.operasoftware.OperaDeveloper.savedState",
   ]

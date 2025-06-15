@@ -12,6 +12,8 @@ cask "coconutid" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "coconutID.app"
@@ -20,4 +22,8 @@ cask "coconutid" do
     "~/Library/Caches/com.coconut-flavour.coconutID",
     "~/Library/Preferences/com.coconut-flavour.coconutID.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

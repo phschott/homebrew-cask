@@ -1,6 +1,6 @@
 cask "blitz-gg" do
-  version "2.1.165"
-  sha256 "27200493c22532a90d60a4059d486fb8295b7eafe36221f5d9c69dcd82fb0b75"
+  version "2.1.326"
+  sha256 "1873f768277fc7a55b087d8070c5e9d3e9d2cb68eb728ec261710eb3d586c991"
 
   url "https://blitz-main.blitz.gg/Blitz-x64-#{version}.dmg"
   name "Blitz"
@@ -13,7 +13,7 @@ cask "blitz-gg" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "Blitz.app"
 

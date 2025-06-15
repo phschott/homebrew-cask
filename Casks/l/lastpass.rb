@@ -12,6 +12,8 @@ cask "lastpass" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :high_sierra"
 
@@ -27,4 +29,8 @@ cask "lastpass" do
     "~/Library/Preferences/com.lastpass.lastpassmacdesktop.plist",
     "~/Library/WebKit/com.lastpass.lastpassmacdesktop",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

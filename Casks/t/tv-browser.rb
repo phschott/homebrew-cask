@@ -15,5 +15,14 @@ cask "tv-browser" do
     regex(%r{url=.*?/tvbrowser[._-]v?(\d+(?:\.\d+)*)(?:[._-]mac(?:java)?)?\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "TV-Browser.app"
+
+  zap trash: [
+    "~/Library/Application Support/TV-Browser",
+    "~/Library/Preferences/TV-Browser",
+    "~/Library/Preferences/tvbrowser.TVBrowser.plist",
+    "~/Library/Saved Application State/tvbrowser.TVBrowser.savedState",
+  ]
 end

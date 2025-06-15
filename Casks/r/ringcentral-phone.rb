@@ -1,6 +1,6 @@
 cask "ringcentral-phone" do
-  version "24.1.3"
-  sha256 "1a0930a9a259377443c0f5c910c4dd84a2b3e54b6471b21377c746952bdd3b20"
+  version "24.3.0"
+  sha256 "e3f04da58464e60f74e7852a85f7ed3294e007515e6398718254a755680dd858"
 
   url "https://downloads.ringcentral.com/sp/RingCentral-Phone-#{version}.dmg"
   name "RingCentral Phone"
@@ -12,6 +12,8 @@ cask "ringcentral-phone" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "RingCentral for Mac.app", target: "RingCentral Phone.app"
 
@@ -19,4 +21,8 @@ cask "ringcentral-phone" do
     "~/Library/Preferences/com.ringcentral.RingCentral Phone.plist",
     "~/Library/Saved Application State/com.ringcentral.ringcentralformac.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

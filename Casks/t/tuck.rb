@@ -7,12 +7,15 @@ cask "tuck" do
   desc "Window manager"
   homepage "https://www.irradiatedsoftware.com/tuck/"
 
-  livecheck do
-    url "https://www.irradiatedsoftware.com/updates/profiles/tuck.php"
-    strategy :sparkle, &:short_version
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2025-03-31", because: :unmaintained
 
   app "Tuck.app"
 
   zap trash: "~/Library/Preferences/com.irradiatedsoftware.Tuck.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

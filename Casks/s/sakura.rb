@@ -1,9 +1,9 @@
 cask "sakura" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "3.1.0"
-  sha256 arm:   "0a7088d451ba773116974282fbce58fe52ce55c99a0af56261d5c0d6bfdae7c4",
-         intel: "957aee44b91b7633553660d768ded045f20329e43c7d3dc810e4042c72f626b7"
+  version "3.1.5"
+  sha256 arm:   "fdee4f83c80dd70cc375a0835dc14653a184d6b7c4b77d8d4443897802065013",
+         intel: "48b71b61a3c9d6a6f2a05f5dcb1e09558137278bfdeff79ded7256f100038e99"
 
   url "https://nya.globalslb.net/natfrp/client/launcher-macos/#{version}/SakuraLauncher_macOS_#{arch}.dmg",
       verified: "nya.globalslb.net/natfrp/client/launcher-macos/"
@@ -16,8 +16,10 @@ cask "sakura" do
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :ventura"
 
   app "SakuraLauncher.app"
 

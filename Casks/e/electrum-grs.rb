@@ -8,6 +8,15 @@ cask "electrum-grs" do
   desc "Groestlcoin thin client"
   homepage "https://www.groestlcoin.org/groestlcoin-electrum-wallet/"
 
+  livecheck do
+    url "https://groestlcoin.org/version"
+    strategy :json do |json|
+      json["version"]
+    end
+  end
+
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "Electrum-GRS.app"
@@ -18,4 +27,8 @@ cask "electrum-grs" do
     "~/Library/Preferences/org.org.pythonmac.unspecified.Electrum-GRS.plist",
     "~/Library/Saved Application State/Electrum-GRS.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

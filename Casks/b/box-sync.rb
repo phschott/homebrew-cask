@@ -8,12 +8,11 @@ cask "box-sync" do
   desc "Cloud based collaboration and management platform focusing on security"
   homepage "https://www.box.com/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist do |items|
-      items["com.box.sync"].version
-    end
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-26", because: :discontinued
+
+  conflicts_with cask: "box-drive"
 
   app "Box Sync.app"
 
@@ -28,4 +27,8 @@ cask "box-sync" do
         "~/Library/Logs/Box/Box Sync",
       ],
       rmdir: "~/Library/Application Support/Box"
+
+  caveats do
+    requires_rosetta
+  end
 end

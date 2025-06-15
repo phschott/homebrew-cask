@@ -10,6 +10,11 @@ cask "openemu@experimental" do
   on_mojave :or_newer do
     version "2.4.1"
     sha256 "57b6f2b6005119efecb566e8cf611e12f1d0171dcd1f96797a0e9b4c33d3cdb4"
+
+    livecheck do
+      url "https://raw.github.com/OpenEmu/OpenEmu-Update/master/appcast-experimental.xml"
+      strategy :sparkle
+    end
   end
 
   url "https://github.com/OpenEmu/OpenEmu/releases/download/v#{version}/OpenEmu_#{version}-experimental.zip",
@@ -18,11 +23,12 @@ cask "openemu@experimental" do
   desc "Retro video game emulation"
   homepage "https://openemu.org/"
 
+  no_autobump! because: :requires_manual_review
+
   deprecate! date: "2025-05-01", because: :unsigned
 
   auto_updates true
   conflicts_with cask: "openemu"
-  depends_on macos: ">= :mojave"
 
   app "OpenEmu.app"
 
@@ -37,4 +43,8 @@ cask "openemu@experimental" do
     "~/Library/Preferences/org.openemu.*.plist",
     "~/Library/Saved Application State/org.openemu.OpenEmu.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

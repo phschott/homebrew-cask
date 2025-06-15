@@ -1,6 +1,6 @@
 cask "downie" do
-  version "4.7.15,4737"
-  sha256 "111d41b96a7f05a094a679735f5fd202f6c356d40897481c02aad628504af58c"
+  version "4.9.17,4969"
+  sha256 "afc74b0ab0bff9ab51aa6737b94e9052c9734fbab5e3b64f9f4906c7bf91e20f"
 
   url "https://software.charliemonroe.net/trial/downie/v#{version.major}/Downie_#{version.major}_#{version.csv.second}.dmg"
   name "Downie"
@@ -13,7 +13,7 @@ cask "downie" do
   end
 
   auto_updates true
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :big_sur"
 
   app "Downie #{version.major}.app"
 

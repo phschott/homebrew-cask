@@ -8,7 +8,15 @@ cask "shuttle" do
   desc "Simple shortcut menu"
   homepage "https://fitztrev.github.io/shuttle/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-08-25", because: :unmaintained
+
   app "Shuttle.app"
 
   zap trash: "~/.shuttle.json"
+
+  caveats do
+    requires_rosetta
+  end
 end

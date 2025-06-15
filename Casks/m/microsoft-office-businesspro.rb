@@ -1,6 +1,6 @@
 cask "microsoft-office-businesspro" do
-  version "16.85.24051214"
-  sha256 "4678b6a657d1b3a5e1b00903a232aba8fa12ee766f1539cc3b52edf71df49a5f"
+  version "16.98.25060824"
+  sha256 "50083d8c31a95dae7bae1100977760633c938788872dd318ecb4f1e3442a6d15"
 
   url "https://officecdnmac.microsoft.com/pr/C1297A47-86C4-4C1F-97FA-950631F94777/MacAutoupdate/Microsoft_365_and_Office_#{version}_BusinessPro_Installer.pkg"
   name "Microsoft Office BusinessPro"
@@ -61,9 +61,12 @@ cask "microsoft-office-businesspro" do
               "com.microsoft.package.Proofing_Tools",
               "com.microsoft.pkg.licensing",
               "com.microsoft.teams",
+              "com.microsoft.teams2",
               "com.microsoft.wdav",
+              "com.microsoft.wdav.shim",
             ],
             delete:    [
+              "/Applications/Microsoft Defender Shim.app",
               "/Applications/Microsoft Defender.app",
               "/Applications/Microsoft Excel.app",
               "/Applications/Microsoft OneNote.app",

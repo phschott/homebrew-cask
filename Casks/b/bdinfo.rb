@@ -13,10 +13,16 @@ cask "bdinfo" do
     regex(/BDInfo\s+(\d+(?:\.\d+)+)\s+Mac/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "BDInfo OSX.app"
 
   zap trash: [
     "~/Library/Preferences/com.yourcompany.BDInfo-OSX.plist",
     "~/Library/Saved Application State/com.yourcompany.BDInfo-OSX.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

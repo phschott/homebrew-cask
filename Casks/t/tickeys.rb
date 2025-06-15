@@ -8,7 +8,15 @@ cask "tickeys" do
   desc "Utility for producing audio feedback when typing"
   homepage "https://www.yingdev.com/projects/tickeys"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2025-04-21", because: :unmaintained
+
   app "Tickeys.app"
 
   zap trash: "~/Library/Preferences/com.yingDev.Tickeys.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

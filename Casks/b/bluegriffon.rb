@@ -7,10 +7,13 @@ cask "bluegriffon" do
   desc "Web and EPUB editor"
   homepage "http://bluegriffon.org/"
 
-  livecheck do
-    url "http://bluegriffon.org/freshmeat/?C=M;O=D"
-    regex(%r{href=['"]?(\d+(?:\.\d+)+)/}i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-06-28", because: :discontinued
 
   app "BlueGriffon.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

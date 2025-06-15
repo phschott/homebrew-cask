@@ -8,7 +8,10 @@ cask "swifty" do
   desc "Offline password manager tool"
   homepage "https://getswifty.pro/"
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Swifty.app"
 
@@ -18,4 +21,8 @@ cask "swifty" do
     "~/Library/Preferences/com.electron.swifty.plist",
     "~/Library/Saved Application State/com.electron.swifty.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

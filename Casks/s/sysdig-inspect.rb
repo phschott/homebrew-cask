@@ -1,6 +1,6 @@
 cask "sysdig-inspect" do
-  version "0.11.0"
-  sha256 "a320c885076d17c9ab586272239666a2394e0c82e78f8a2ac455e492fe8cc766"
+  version "0.12.0"
+  sha256 "392ab84b409b3522addf1197917d196003dcb821f014e57f57daa74a0424ed92"
 
   url "https://github.com/draios/sysdig-inspect/releases/download/#{version}/sysdig-inspect-mac-x86_64.zip"
   name "Sysdig Inspect"
@@ -11,6 +11,8 @@ cask "sysdig-inspect" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :requires_manual_review
 
   app "Sysdig Inspect-darwin-x64/Sysdig Inspect.app"
 

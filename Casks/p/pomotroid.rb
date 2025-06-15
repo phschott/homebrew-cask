@@ -7,6 +7,8 @@ cask "pomotroid" do
   desc "Timer application"
   homepage "https://github.com/Splode/pomotroid"
 
+  no_autobump! because: :requires_manual_review
+
   app "Pomotroid.app"
 
   zap trash: [
@@ -14,4 +16,8 @@ cask "pomotroid" do
     "~/Library/Preferences/com.splode.pomotroid.plist",
     "~/Library/Saved Application State/com.splode.pomotroid.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "dashcam-viewer" do
-  version "3.9.8"
-  sha256 "b5961d0b15d8e55b868f71a6309edee8e0623058018155e9d897e949b1579073"
+  version "4.0.6"
+  sha256 "326b93c27a8af8c082d1b66ad39e7655ae436371719129ad51e4a495ea1d39d9"
 
   url "https://filedn.com/l2s8TAtm4VASBX72ds0zYD8/dcv/Dashcam_Viewer_v#{version}.dmg",
       verified: "filedn.com/l2s8TAtm4VASBX72ds0zYD8/dcv/"
@@ -14,7 +14,7 @@ cask "dashcam-viewer" do
     regex(%r{href=.*?/Dashcam[._-]Viewer[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :monterey"
 
   app "Dashcam Viewer.app"
 
@@ -23,4 +23,8 @@ cask "dashcam-viewer" do
     "~/Library/Caches/earthshinesw",
     "~/Library/Preferences/com.earthshinesw.DashcamViewer.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

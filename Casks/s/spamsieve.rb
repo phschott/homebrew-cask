@@ -1,6 +1,6 @@
 cask "spamsieve" do
-  version "3.0.4"
-  sha256 "dff9cba1d657f784d146123b8b47d0a3943c248d4ca9da321981bd23a9816a74"
+  version "3.1.3"
+  sha256 "114b5039944eb17cf742500dae3e6198d2cbcf5b1c836077f6e5498923d61942"
 
   url "https://c-command.com/downloads/SpamSieve-#{version}.dmg"
   name "SpamSieve"
@@ -8,11 +8,20 @@ cask "spamsieve" do
   homepage "https://c-command.com/spamsieve/"
 
   livecheck do
-    url :homepage
-    regex(%r{href=.*?/SpamSieve[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
+    url "https://c-command.com/versions.plist"
+    strategy :xml do |xml|
+      item = xml.elements["//key[text()='com.c-command.SpamSieve']"]&.next_element
+      next unless item
+
+      version = item.elements["key[text()='Version']"]&.next_element&.text
+      next if version.blank?
+
+      version.strip
+    end
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "SpamSieve.app"
 

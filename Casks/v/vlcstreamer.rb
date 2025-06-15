@@ -12,6 +12,8 @@ cask "vlcstreamer" do
     regex(%r{href=.*?/VLCStreamer_(\d+(?:\.\d+)+)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "VLCStreamer.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "vlcstreamer" do
     "~/Library/Application Support/VLCStreamer",
     "~/Library/Preferences/com.HobbyistSoftware.VLCStreamer.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

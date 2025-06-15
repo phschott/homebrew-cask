@@ -12,6 +12,8 @@ cask "valley" do
     regex(%r{href=.*?/Unigine_Valley-(\d+(?:\.\d+)*)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Valley.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "valley" do
     "~/Library/Application Support/Valley",
     "~/Library/Saved Application State/com.Unigine.Valley.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

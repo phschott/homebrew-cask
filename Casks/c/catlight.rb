@@ -1,9 +1,9 @@
 cask "catlight" do
-  version "3.5.1"
-  sha256 "8ad3c5782c60910e75effbc080efc45ad5c82588985e41be5e389d6b954ff793"
+  version "3.8.1"
+  sha256 "8d60ff54837c0157755868bb8bba11132979ee690c68418813ef035e9abfb8b3"
 
   url "https://download.catlight.io/rel/mac/release/CatLightSetup-#{version}.zip"
-  name "catlight"
+  name "CatLight"
   desc "Action center for developers"
   homepage "https://catlight.io/"
 
@@ -11,6 +11,8 @@ cask "catlight" do
     url "https://catlight.io/downloads/mac/release"
     strategy :header_match
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :sierra"
 
@@ -22,4 +24,8 @@ cask "catlight" do
     "~/Library/Preferences/Catlight.plist",
     "~/Library/Saved Application State/Catlight.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

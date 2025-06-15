@@ -8,9 +8,15 @@ cask "teeworlds" do
 
   livecheck do
     url "https://teeworlds.com/?page=downloads"
-    regex(%r{href=.*?/teeworlds-(\d+(?:\.\d+)*)-osx\.dmg}i)
+    regex(%r{href=.*?/teeworlds[._-](\d+(?:\.\d+)*)[._-]osx\.dmg}i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   app "Teeworlds.app"
   app "Teeworlds Server.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

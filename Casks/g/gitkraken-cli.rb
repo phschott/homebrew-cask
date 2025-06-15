@@ -1,22 +1,16 @@
 cask "gitkraken-cli" do
-  arch arm: "macOS_arm64", intel: "macOS_x86_64"
+  arch arm: "darwin_arm64", intel: "darwin_amd64"
 
-  version "2.0.0"
-  sha256 arm:   "36be7a2e111b7ac961527fceee0857c20bb7844f7b9f4f35e2a7518a82d53840",
-         intel: "719f87bca4448ae5dfdcd61723b6c1a5f6b0f1472a53032cc5e71f9248cdb502"
+  version "3.0.8"
+  sha256 arm:   "a2a1d4c52c1f9f142150a18b9791ca0bb754b09bfb74db1c5f9604b0c2051bf4",
+         intel: "fc68a497eb4512f2f80b071adbcaa41f45f9b0641f661da1d981303ac0f33b60"
 
   url "https://github.com/gitkraken/gk-cli/releases/download/v#{version}/gk_#{version}_#{arch}.zip"
   name "GitKraken CLI"
   desc "CLI for GitKraken"
   homepage "https://github.com/gitkraken/gk-cli"
 
-  binary "gk"
-  binary "gk.bash",
-         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/gk"
-  binary "_gk",
-         target: "#{HOMEBREW_PREFIX}/share/zsh/site-functions/_gk"
-  binary "gk.fish",
-         target: "#{HOMEBREW_PREFIX}/share/fish/vendor_completions.d/gk.fish"
+  binary "gk_#{version}_#{arch}/gk"
 
   zap trash: "~/.gitkraken"
 end

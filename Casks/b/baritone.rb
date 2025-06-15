@@ -8,5 +8,13 @@ cask "baritone" do
   desc "Spotify controls that live in the menu bar"
   homepage "https://tma02.github.io/baritone/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-10-12", because: :unmaintained
+
   app "Baritone-darwin-x64/Baritone.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

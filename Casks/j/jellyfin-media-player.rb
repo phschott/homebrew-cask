@@ -1,9 +1,22 @@
 cask "jellyfin-media-player" do
-  arch arm: "AppleSilicon", intel: "Intel"
+  version "1.12.0"
 
-  version "1.10.1"
-  sha256 arm:   "254c2c877ffd248366b200c15c92a97d768e002993dfe870c19f5c1db7389ab3",
-         intel: "5806bd43601a67f901e9c4a72d8a540d880c2dcef4792df6fd4d46b74082bf9d"
+  on_ventura :or_older do
+    # Monterey and Ventura require Rosetta on Apple Silicon
+    arch arm: "Intel", intel: "Intel"
+
+    sha256 "f6a75747c1234c929c968599cc927cfb27a0c00dfa9db9198d5b22b3090c4d34"
+
+    caveats do
+      requires_rosetta
+    end
+  end
+  on_sonoma :or_newer do
+    arch arm: "AppleSilicon", intel: "Intel"
+
+    sha256 arm:   "272412af869f5278b93c16cda2657de3cda50e595a68a1c062b8dff5e40980bc",
+           intel: "f6a75747c1234c929c968599cc927cfb27a0c00dfa9db9198d5b22b3090c4d34"
+  end
 
   url "https://github.com/jellyfin/jellyfin-media-player/releases/download/v#{version}/JellyfinMediaPlayer-#{version}-#{arch}.dmg",
       verified: "github.com/jellyfin/jellyfin-media-player/"
@@ -15,6 +28,10 @@ cask "jellyfin-media-player" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :monterey"
 
   app "Jellyfin Media Player.app"
 

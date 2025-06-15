@@ -9,8 +9,14 @@ cask "wordservice" do
 
   livecheck do
     url "https://www.devontechnologies.com/support/download"
-    regex(%r{<td>WordService</td><td>(\d+(?:\.\d+)+)<td>}i)
+    regex(/wordservice.*?(\d+(?:\.\d+)+).*?app/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :el_capitan"
+
   app "WordService.app"
+
+  zap trash: "~/Library/Preferences/org.grunenberg.WordService.plist"
 end

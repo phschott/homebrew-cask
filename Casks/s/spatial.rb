@@ -1,6 +1,6 @@
 cask "spatial" do
-  version "0.6.0"
-  sha256 "84cd3b031e21a0c95f3af66894fb98e6e76d8975f65391c70171dff101a902b5"
+  version "0.6.2"
+  sha256 "50b4c64e6c58e62e1d1e67ab03ac71cee6db88e1d081e6e159e9387d82655eb8"
 
   url "https://www.mikeswanson.com/spatial/releases/spatial_#{version}.zip"
   name "Spatial"
@@ -11,6 +11,8 @@ cask "spatial" do
     url "https://www.mikeswanson.com/spatial/releases/"
     regex(/href=.*?spatial[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on arch: :arm64
   depends_on macos: ">= :sonoma"

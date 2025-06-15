@@ -1,6 +1,6 @@
 cask "plex-media-server" do
-  version "1.40.2.8395,c67dce28e"
-  sha256 "04569bb1c0d153c1aa5e67d99873f39ace1963936d29947cff04ec2d59cf46ac"
+  version "1.41.8.9834,071366d65"
+  sha256 "106394e72172bab9a9a68fd84e9f0e3fcc3a5acef40c95807e39f7fb0902e387"
 
   url "https://downloads.plex.tv/plex-media-server-new/#{version.csv.first}-#{version.csv.second}/macos/PlexMediaServer-#{version.csv.first}-#{version.csv.second}-universal.zip"
   name "Plex Media Server"
@@ -9,9 +9,8 @@ cask "plex-media-server" do
 
   livecheck do
     url "https://plex.tv/api/downloads/5.json"
-    regex(%r{href=.*?/PlexMediaServer-(\d+(?:\.\d+)*)-([\da-f]+)-universal\.zip}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    strategy :json do |json|
+      json.dig("computer", "MacOS", "version")&.tr("-", ",")
     end
   end
 
@@ -25,9 +24,9 @@ cask "plex-media-server" do
             quit:      "com.plexapp.plexmediaserver"
 
   zap trash: [
-    "~/Library/Application Support/Plex Media Server/",
-    "~/Library/Caches/PlexMediaServer/",
-    "~/Library/Logs/Plex Media Server/",
+    "~/Library/Application Support/Plex Media Server",
+    "~/Library/Caches/PlexMediaServer",
+    "~/Library/Logs/Plex Media Server",
     "~/Library/Preferences/com.plexapp.plexmediaserver.plist",
   ]
 end

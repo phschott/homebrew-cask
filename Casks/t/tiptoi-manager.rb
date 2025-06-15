@@ -8,11 +8,14 @@ cask "tiptoi-manager" do
   homepage "https://service.ravensburger.de/tiptoi%25C2%25AE/tiptoi_Manager"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://service.ravensburger.de/tiptoi%C2%AE/Produkte_FAQs/Hilfestellungen_tiptoi%C2%AE"
+    regex(/Version\s*v?(\d+(?:\.\d+)+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
+  depends_on macos: ">= :sierra"
 
   pkg "tiptoi_Manager_Installer.pkg"
 
@@ -29,4 +32,8 @@ cask "tiptoi-manager" do
     "~/Library/Preferences/com.ravensburger.tiptoimanager.plist",
     "~/Library/Saved Application State/com.ravensburger.tiptoimanager.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

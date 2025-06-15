@@ -1,32 +1,42 @@
 cask "cloudflare-warp" do
-  version "2024.3.407.0,20240329.17"
-  sha256 "254a27fe01881ec5ea165519e9ad96498a4c93437a43be089c44c8ecfedf64fb"
+  version "2025.4.943.0"
+  sha256 "0f221edabd2eb9ff173380d7d9b26b9eb941b680a9d2ce3b1295a633243227d1"
 
-  url "https://1111-releases.cloudflareclient.com/mac/Cloudflare_WARP_#{version.csv.first}.pkg",
-      verified: "1111-releases.cloudflareclient.com/mac/"
+  url "https://downloads.cloudflareclient.com/v1/download/macos/version/#{version}",
+      verified: "downloads.cloudflareclient.com/v1/download/macos/"
   name "Cloudflare WARP"
   desc "Free app that makes your Internet safer"
   homepage "https://cloudflarewarp.com/"
 
   livecheck do
-    # :sparkle strategy using appcenter url cannot be used - see below link
-    # https://github.com/Homebrew/homebrew-cask/pull/109118#issuecomment-887184248
-    url "https://1111-releases.cloudflareclient.com/mac/Cloudflare_WARP.zip"
-    strategy :extract_plist
+    url "https://downloads.cloudflareclient.com/v1/update/sparkle/macos/ga"
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
+  conflicts_with cask: "cloudflare-warp@beta"
+  depends_on macos: ">= :catalina"
 
-  pkg "Cloudflare_WARP_#{version.csv.first}.pkg"
+  pkg "Cloudflare_WARP_#{version}.pkg"
 
-  uninstall launchctl: "com.cloudflare.1dot1dot1dot1.macos.loginlauncherapp",
+  uninstall launchctl: [
+              "com.cloudflare.1dot1dot1dot1.macos.loginlauncherapp",
+              "com.cloudflare.1dot1dot1dot1.macos.warp.daemon",
+            ],
+            quit:      "com.cloudflare.1dot1dot1dot1.macos",
             script:    {
               executable: "/Applications/Cloudflare WARP.app/Contents/Resources/uninstall.sh",
-              input:      ["Y\n"],
               sudo:       true,
-            }
+            },
+            pkgutil:   "com.cloudflare.1dot1dot1dot1.macos",
+            delete:    [
+              "/usr/local/bin/warp-cli",
+              "/usr/local/bin/warp-dex",
+              "/usr/local/bin/warp-diag",
+            ]
 
   zap trash: [
+    "/Library/LaunchDaemons/com.cloudflare.1dot1dot1dot1.macos.warp.daemon.plist",
     "~/Library/Application Scripts/com.cloudflare.1dot1dot1dot1.macos.loginlauncherapp",
     "~/Library/Application Support/com.cloudflare.1dot1dot1dot1.macos",
     "~/Library/Caches/com.cloudflare.1dot1dot1dot1.macos",
@@ -35,5 +45,6 @@ cask "cloudflare-warp" do
     "~/Library/HTTPStorages/com.cloudflare.1dot1dot1dot1.macos",
     "~/Library/HTTPStorages/com.cloudflare.1dot1dot1dot1.macos.binarycookies",
     "~/Library/Preferences/com.cloudflare.1dot1dot1dot1.macos.plist",
+    "~/Library/WebKit/com.cloudflare.1dot1dot1dot1.macos",
   ]
 end

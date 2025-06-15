@@ -21,6 +21,8 @@ cask "gittyup" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Gittyup.app"
@@ -31,4 +33,8 @@ cask "gittyup" do
     "~/Library/Preferences/com.Murmele.Gittyup.plist",
     "~/Library/Saved Application State/com.Murmele.Gittyup.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

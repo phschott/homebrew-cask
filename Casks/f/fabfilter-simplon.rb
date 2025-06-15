@@ -1,21 +1,18 @@
 cask "fabfilter-simplon" do
-  version "1.38"
-  sha256 "cc88e8bf40c2232f01022e471b6064977d83dadd321c6c664fe4e2d1007f8520"
+  version "1.40"
+  sha256 "1112b5019cf2925dfc8fe1ee96bb87dc25256984a9a4126d2c23e13fb498bee2"
 
-  url "https://www.fabfilter.com/downloads/ffsimplon#{version.no_dots}.dmg"
+  url "https://cdn-b.fabfilter.com/downloads/ffsimplon#{version.no_dots}.dmg"
   name "FabFilter Simplon"
   desc "Filter plug-in"
   homepage "https://www.fabfilter.com/products/simplon-basic-filter-plug-in"
 
   livecheck do
     url "https://www.fabfilter.com/download"
-    strategy :page_match do |page|
-      match = page.match(/ffsimplon(\d)(\d+)\.dmg/i)
-      next if match.blank?
-
-      "#{match[1]}.#{match[2]}"
-    end
+    regex(/FabFilter\s+Simplon.*?v?(\d+(?:\.\d+)+)/im)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :sierra"
 

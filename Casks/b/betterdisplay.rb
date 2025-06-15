@@ -7,13 +7,23 @@ cask "betterdisplay" do
       skip "Legacy version"
     end
   end
-  on_monterey :or_newer do
-    version "2.3.4"
-    sha256 "bc5d94a3e20f138e44c63a5919178b5f9902aa0e48837cb233809cb23c5a734e"
+  on_monterey do
+    version "2.3.9"
+    sha256 "3ee043fd5893ab354efbc4c9a92295a21b365e55af34cc64612255878b746722"
 
     livecheck do
-      url :url
-      strategy :github_latest
+      skip "Legacy version"
+    end
+  end
+  on_ventura :or_newer do
+    version "3.5.6"
+    sha256 "fbfdaac8699245db60260ecd4dc0d0644e3639774c20e45e2f548bd6a751f2bb"
+
+    livecheck do
+      url "https://betterdisplay.pro/betterdisplay/sparkle/appcast.xml"
+      strategy :sparkle do |items|
+        items.find { |item| item.channel.nil? }&.short_version
+      end
     end
   end
 
@@ -28,12 +38,14 @@ cask "betterdisplay" do
 
   app "BetterDisplay.app"
 
-  uninstall quit: "pro.betterdisplay.BetterDisplay"
+  uninstall quit:       "pro.betterdisplay.BetterDisplay",
+            login_item: "BetterDisplay"
 
   zap trash: [
     "~/Library/Application Support/BetterDisplay",
     "~/Library/Application Support/BetterDummy",
     "~/Library/Caches/pro.betterdisplay.BetterDisplay",
+    "~/Library/Caches/SentryCrash/BetterDisplay",
     "~/Library/HTTPStorages/pro.betterdisplay.BetterDisplay",
     "~/Library/HTTPStorages/pro.betterdisplay.BetterDisplay.binarycookies",
     "~/Library/Preferences/pro.betterdisplay.BetterDisplay.plist",

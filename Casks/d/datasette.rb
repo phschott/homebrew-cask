@@ -8,6 +8,8 @@ cask "datasette" do
   desc "Desktop application that wraps Datasette"
   homepage "https://datasette.io/desktop"
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "Datasette.app"
@@ -18,4 +20,8 @@ cask "datasette" do
     "~/Library/Preferences/io.datasette.app.plist",
     "~/Library/Saved Application State/io.datasette.app.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,17 +1,24 @@
 cask "elephas" do
-  version "9.13"
-  sha256 "090f9d16940a17e1e19c8f88148ea158af270f4e758e8e096e9630a87bb800d2"
+  version "11.1087,11_1087"
+  sha256 "6f23b3a02f0a605ba86358a55c3e72d13eb2a49b872fa636e3062696c43f6231"
 
-  url "https://assets.elephas.app/Elephas_#{version.no_dots}.dmg"
+  url "https://assets.elephas.app/Elephas_#{version.csv.second}.dmg"
   name "Elephas"
   desc "Personal AI Writing Assistant"
   homepage "https://elephas.app/"
 
   livecheck do
     url "https://assets.elephas.app/index.xml"
-    strategy :sparkle
+    regex(/Elephas[._-]v?(\d+(?:[._]\d+)*)\.dmg/i)
+    strategy :sparkle do |item, regex|
+      match = item.url.match(regex)
+      next if match.blank?
+
+      "#{item.short_version},#{match[1]}"
+    end
   end
 
+  auto_updates true
   conflicts_with cask: "elephas@beta"
   depends_on macos: ">= :monterey"
 

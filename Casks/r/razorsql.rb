@@ -1,12 +1,12 @@
 cask "razorsql" do
   arch arm: "_aarch64"
 
-  version "10.5.5"
-  sha256 arm:   "ddd6178b9a3874f9867a16f4b7a38fb698d97fcb4a5c4c6d807cb14f6068ba64",
-         intel: "56e586ef3fbf45cc9777d9f86c83d6c0ac867cae8e8f2776b357b3a0d7944d56"
+  version "10.6.5"
+  sha256 arm:   "85a618e46aa6e503acb99b91e288123c39ed15a9ffd483b810d06c740e9dab61",
+         intel: "57bb91a31298bac9730efa13a1d8c78262175b07aa637d2f3b2a5f2f8a8bc9dc"
 
-  url "https://s3.dualstack.us-east-1.amazonaws.com/downloads.razorsql.com/downloads/#{version.dots_to_underscores}/razorsql#{version.dots_to_underscores}#{arch}.dmg",
-      verified: "s3.dualstack.us-east-1.amazonaws.com/"
+  url "https://s3.amazonaws.com/downloads.razorsql.com/downloads/#{version.dots_to_underscores}/razorsql#{version.dots_to_underscores}#{arch}.dmg",
+      verified: "s3.amazonaws.com/downloads.razorsql.com/downloads/"
   name "RazorSQL"
   desc "SQL query tool and SQL editor"
   homepage "https://razorsql.com/"

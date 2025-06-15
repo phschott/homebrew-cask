@@ -7,7 +7,20 @@ cask "hostsx" do
   desc "Local hosts update tool"
   homepage "https://github.com/ZzzM/HostsX"
 
-  depends_on macos: ">= :sierra"
+  livecheck do
+    url "https://zzzm.github.io/HostsX/appcast.xml"
+    strategy :sparkle
+  end
+
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "HostsX.app"
+
+  zap trash: [
+    "~/Library/HTTPStorages/com.alpha.hostsx",
+    "~/Library/Preferences/com.alpha.hostsx.plist",
+  ]
 end

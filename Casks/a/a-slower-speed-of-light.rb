@@ -7,7 +7,13 @@ cask "a-slower-speed-of-light" do
   desc "First-person game"
   homepage "https://gamelab.mit.edu/games/a-slower-speed-of-light/"
 
-  deprecate! date: "2023-12-17", because: :discontinued
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-12-16", because: :discontinued
 
   app "A Slower Speed of Light.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

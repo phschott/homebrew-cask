@@ -1,5 +1,5 @@
 cask "ankama" do
-  version "3.12.12"
+  version "3.13.4"
   sha256 :no_check
 
   url "https://launcher.cdn.ankama.com/installers/production/Ankama%20Launcher-Setup.dmg"
@@ -12,6 +12,8 @@ cask "ankama" do
     strategy :electron_builder
   end
 
+  auto_updates true
+
   app "Ankama Launcher.app"
 
   uninstall quit: "Ankama Launcher"
@@ -21,4 +23,8 @@ cask "ankama" do
     "~/Library/Preferences/com.ankama.zaap.plist",
     "~/Library/Saved Application State/com.ankama.zaap.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

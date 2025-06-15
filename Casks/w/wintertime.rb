@@ -7,6 +7,8 @@ cask "wintertime" do
   desc "Utility to freeze apps running in the background to save battery"
   homepage "https://github.com/actuallymentor/wintertime-mac-background-freezer"
 
+  no_autobump! because: :requires_manual_review
+
   app "Wintertime.app"
 
   zap trash: [
@@ -15,4 +17,8 @@ cask "wintertime" do
     "~/Library/Preferences/com.electron.wintertime.plist",
     "~/Library/Saved Application State/com.electron.wintertime.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

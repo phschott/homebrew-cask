@@ -1,6 +1,6 @@
 cask "airtame" do
-  version "4.10.1"
-  sha256 "6c34b005b3373c957f80e181e9758a8fe2409fe33d2590b92f49c6e87db39c06"
+  version "4.13.1"
+  sha256 "dd2406abe0eaa468b19648784267130685bb608d6324de38c39eaff7dbeb3732"
 
   url "https://downloads-cdn.airtame.com/app/latest/mac/Airtame-#{version}.dmg"
   name "Airtame"
@@ -13,7 +13,7 @@ cask "airtame" do
   end
 
   auto_updates true
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "Airtame.app"
 
@@ -23,4 +23,8 @@ cask "airtame" do
     "~/Library/Preferences/com.airtame.airtame-application.plist",
     "~/Library/Saved Application State/com.airtame.airtame-application.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

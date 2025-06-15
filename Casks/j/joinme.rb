@@ -7,10 +7,9 @@ cask "joinme" do
   desc "Online conferencing software"
   homepage "https://www.join.me/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-16", because: :discontinued
 
   app "join.me.app"
 
@@ -23,4 +22,8 @@ cask "joinme" do
     "~/Library/Preferences/com.logmein.join.me.plist",
     "~/Library/Saved Application State/com.logmein.join.me.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "qt-creator@dev" do
-  version "13.0.0-rc1"
-  sha256 "9c2056aadf552a0d118bfd0afa9bcee5f3ed2fda588f55e22c8d504246678ea0"
+  version "17.0.0-rc1"
+  sha256 "c180f214f2c93afd4524c18cc985064bf3b4afecf82a26ba94bb5f97da843cbd"
 
   url "https://download.qt.io/development_releases/qtcreator/#{version.major_minor}/#{version}/qt-creator-opensource-mac-x86_64-#{version}.dmg"
   name "Qt Creator Dev"
@@ -23,7 +23,7 @@ cask "qt-creator@dev" do
     end
   end
 
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "Qt Creator.app"
 

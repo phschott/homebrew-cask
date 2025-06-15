@@ -1,6 +1,6 @@
 cask "phocus" do
-  version "3.8.1"
-  sha256 "d8798b89a6845c10688711ff8957cc2c17a6e12407082bfa032fe07bb20c44cb"
+  version "3.8.3"
+  sha256 "aacaafe8ec095dbcf6eab73f751981c887e05756e8fe4f9a493a6a1d529f5acb"
 
   url "https://cdn.hasselblad.com/software/Phocus_for_Mac/#{version}/Phocus-#{version}.dmg"
   name "Hasselblad Phocus"
@@ -19,6 +19,8 @@ cask "phocus" do
       end
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :catalina"
 

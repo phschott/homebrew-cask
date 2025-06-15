@@ -12,10 +12,18 @@ cask "v2ray-unofficial" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   app "V2Ray-Desktop.app"
 
   zap trash: [
     "~/Library/Preferences/V2Ray-Desktop",
     "~/Library/Saved Application State/com.yourcompany.V2Ray-Desktop.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

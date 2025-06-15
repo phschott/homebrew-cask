@@ -1,18 +1,16 @@
 cask "affinity-designer" do
-  version "2.5.0,2471"
-  sha256 "8a1a7ee199153dcdb674511626e6a6a89ac9955a2e7e0e609de66f0d2d68abd3"
+  version "2.6.3,3322"
+  sha256 "872b8d6cd2e475a11b5fade0c8f4a50982594be6c169a618d15ff1cdeef1e75d"
 
-  url "https://s3-eu-west-1.amazonaws.com/affinity-update/mac2/retail/Affinity%20Designer%20#{version.csv.first.major}%20Affinity%20Store%20#{version.csv.second}.zip",
-      verified: "s3-eu-west-1.amazonaws.com/"
+  url "https://affinity-update.s3.amazonaws.com/mac2/retail/Affinity%20Designer%20#{version.csv.first.major}%20Affinity%20Store%20#{version.csv.second}.zip",
+      verified: "affinity-update.s3.amazonaws.com/"
   name "Affinity Designer #{version.csv.first.major}"
   desc "Professional graphic design software"
   homepage "https://affinity.serif.com/en-us/designer/"
 
   livecheck do
     url "https://go.seriflabs.com/affinity-update-mac-retail-designer#{version.csv.first.major}"
-    strategy :sparkle do |item|
-      "#{item.short_version},#{item.version}"
-    end
+    strategy :sparkle
   end
 
   auto_updates true

@@ -1,6 +1,6 @@
 cask "enclave" do
-  version "2024.4.30"
-  sha256 "eb7085af8faa9cefe34ec9db5f16f6a0d481d75741ea68860356f61295a6e515"
+  version "2025.6.2"
+  sha256 "892a68a210462496bb8d1b90e2ae50be0eaf44634656ea37081ca4bfd33ba3a8"
 
   url "https://release.enclave.io/enclave_osx-installer-x64-stable-#{version}.pkg"
   name "Enclave"
@@ -12,6 +12,8 @@ cask "enclave" do
     regex(/(\d+(?:\.\d+)+(?:\.hotfix\d+)?)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   pkg "enclave_osx-installer-x64-stable-#{version}.pkg"
   binary "/Applications/enclave/enclave"
 
@@ -22,4 +24,8 @@ cask "enclave" do
     "/etc/enclave",
     "/var/log/enclave",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

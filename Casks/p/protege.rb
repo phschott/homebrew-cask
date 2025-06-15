@@ -1,12 +1,14 @@
 cask "protege" do
-  version "5.6.3"
-  sha256 "c525aec3022feb83b389314114d095061570617f85359cc8a085a65d6e28773f"
+  version "5.6.6"
+  sha256 "dcef7020ea1c42030d35f756ec5375d46fe10558e5e63322ece1044d3897336c"
 
   url "https://github.com/protegeproject/protege-distribution/releases/download/protege-#{version}/Protege-#{version}-mac.zip",
       verified: "github.com/protegeproject/protege-distribution/"
   name "Protégé"
   desc "Ontology editor"
   homepage "https://protege.stanford.edu/"
+
+  no_autobump! because: :requires_manual_review
 
   app "Protege-#{version}/Protégé.app"
 

@@ -7,7 +7,14 @@ cask "console" do
   desc "Replacement for console application"
   homepage "https://github.com/macmade/Console"
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :el_capitan"
 
   app "Console.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.xs-labs.Console.plist",
+    "~/Library/Saved Application State/com.xs-labs.Console.savedState",
+  ]
 end

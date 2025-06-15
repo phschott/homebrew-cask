@@ -7,8 +7,16 @@ cask "workbench" do
   desc "Seamless, automatic, “dotfile” sync to iCloud"
   homepage "https://github.com/mxcl/Workbench"
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :sierra"
 
   app "Workbench.app"
+
+  zap trash: "~/Library/Preferences/com.codebasesaga.macOS.Workbench.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

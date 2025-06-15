@@ -1,6 +1,6 @@
 cask "maltego" do
-  version "4.7.0"
-  sha256 "0fdf042ad567c47c0391db1313a8ae0acb6370259ee05df97c0d08210da581d1"
+  version "4.9.3"
+  sha256 "09b9f73d53e50b9be058d2e552a5c20435a0a0ab5c87342a6ba508cf95dff75e"
 
   url "https://downloads.maltego.com/maltego-v#{version.major}/mac/Maltego.v#{version}.dmg"
   name "Maltego"
@@ -10,6 +10,16 @@ cask "maltego" do
   livecheck do
     url "https://downloads.maltego.com/maltego-v#{version.major}/info.json"
     regex(/Maltego[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
+    strategy :json do |json, regex|
+      json.map do |item|
+        next if item["os"] != "mac"
+
+        match = item["filename"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   app "Maltego.app"
@@ -18,5 +28,6 @@ cask "maltego" do
 
   caveats do
     depends_on_java "11"
+    requires_rosetta
   end
 end

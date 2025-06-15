@@ -1,14 +1,16 @@
 cask "chirp" do
-  version "20240524"
-  sha256 "dcececa1f94853d44a5e4fa7b99fc306a57c2908f8599009897dafd809585b45"
+  version "20250606"
+  sha256 "8392b256d802320c736028743e5d254f08a8e10d908bea40beada3d4789dde37"
 
-  url "https://trac.chirp.danplanet.com/chirp_next/next-#{version}/chirp-next-#{version}.app.zip"
+  url "https://archive.chirpmyradio.com/chirp_next/next-#{version}/chirp-next-#{version}.app.zip",
+      verified: "archive.chirpmyradio.com/",
+      referer:  "https://archive.chirpmyradio.com/chirp_next/next-#{version}/"
   name "CHIRP"
   desc "Tool for programming amateur radio"
   homepage "https://chirp.danplanet.com/projects/chirp/wiki/Home"
 
   livecheck do
-    url "https://trac.chirp.danplanet.com/chirp_next/"
+    url "https://archive.chirpmyradio.com/chirp_next/"
     regex(/next[._-]v?(\d+(?:\.\d+)*)/i)
   end
 

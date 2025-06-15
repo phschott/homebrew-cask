@@ -1,8 +1,8 @@
 cask "emacs" do
-  arch arm: "arm64-11", intel: "x86_64-10_11"
+  arch arm: "arm64-11", intel: "x86_64-10_12"
 
-  version "29.3"
-  sha256 "819d733ca762ca2194aee507ba82682a9f75f4aad0a8177ba34591c95755c508"
+  version "30.1"
+  sha256 "5a6543e6b753b93389e6ad09ee2e6bbc3f0a5e6389ada572dfd3f0f8f7966bfe"
 
   url "https://emacsformacosx.com/emacs-builds/Emacs-#{version}-universal.dmg"
   name "Emacs"
@@ -13,6 +13,8 @@ cask "emacs" do
     url "https://emacsformacosx.com/atom/release"
     regex(%r{href=.*?/Emacs[._-]v?(\d+(?:\.\d+)*(?:-\d+)?)[._-]universal\.dmg}i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   conflicts_with cask:    [
                    "emacs@nightly",

@@ -12,6 +12,8 @@ cask "league-displays" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "LeagueDisplays.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "league-displays" do
     "~/Library/Logs/LeagueDisplays-Configurator.log",
     "~/Library/Screen Savers/League.saver",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

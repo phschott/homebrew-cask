@@ -1,6 +1,6 @@
 cask "rstudio" do
-  version "2024.04.1,748"
-  sha256 "a5eda69958e8c623d76545ac6d6356c0e6fbf564728304c72f0c730a5298173b"
+  version "2025.05.1,513"
+  sha256 "76e1538b94762b5bc01ce4918496764a50b2e6017cfb7a63dd5debd191491621"
 
   url "https://download1.rstudio.org/electron/macos/RStudio-#{version.csv.first}-#{version.csv.second}.dmg",
       verified: "download1.rstudio.org/electron/macos/"
@@ -10,8 +10,9 @@ cask "rstudio" do
 
   livecheck do
     url "https://posit.co/download/rstudio-desktop/"
-    strategy :page_match do |page|
-      match = page.match(/RStudio[._-]v?(\d+(?:\.\d+)+)[._-](\d+)\.dmg/i)
+    regex(/RStudio[._-]v?(\d+(?:\.\d+)+)[._-](\d+)\.dmg/i)
+    strategy :page_match do |page, regex|
+      match = page.match(regex)
       next if match.blank?
 
       "#{match[1]},#{match[2]}"

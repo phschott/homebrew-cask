@@ -1,6 +1,6 @@
 cask "gifox" do
-  version "2.6.4,020604.00"
-  sha256 "bde0124b76de0232f1ba85dcbe95e1cdd9a399e482198eaedfad3b9ae6aa1558"
+  version "2.7.0+0,020700.00"
+  sha256 "7991f3718e482a72bb6f9c03f281e2df3ea9203c80eb5eea409e71a9490afebb"
 
   url "https://d1fqctmfkpkkcg.cloudfront.net/gifox/#{version.csv.second}.dmg",
       verified: "d1fqctmfkpkkcg.cloudfront.net/gifox/"
@@ -9,15 +9,13 @@ cask "gifox" do
   homepage "https://gifox.io/"
 
   livecheck do
-    url "https://gifox.io/download/latest"
-    regex(%r{/(\d(\d)\d(\d)\d(\d).\d\d)\.dmg}i)
-    strategy :header_match do |headers, regex|
-      headers["location"].scan(regex).map do |match|
-        "#{match[1]}.#{match[2]}.#{match[3]},#{match[0]}"
-      end
-    end
+    url "https://d1fqctmfkpkkcg.cloudfront.net/gifox/appcast.xml"
+    strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
   depends_on macos: ">= :high_sierra"
 
   app "Gifox.app"

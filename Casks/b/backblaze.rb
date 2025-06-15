@@ -1,6 +1,6 @@
 cask "backblaze" do
-  version "9.0.1.768"
-  sha256 "e812aabbb3d09b12e7c6b56593d4c76342ad63be8fa03b2ce769a851ac6e6074"
+  version "9.2.1.860"
+  sha256 "e95eb0133a796b3696ab958b1061296d4929d9f2946dc88789957a5d773a9d0e"
 
   url "https://secure.backblaze.com/api/install_backblaze?file=bzinstall-mac-#{version}.dmg"
   name "Backblaze"
@@ -9,7 +9,9 @@ cask "backblaze" do
 
   livecheck do
     url "https://secure.backblaze.com/api/clientversion.xml"
-    regex(/mac[._-]version=.*?(\d+(?:\.\d+)+)/i)
+    strategy :xml do |xml|
+      xml.get_elements("//release").map { |item| item.attributes["mac_version"] }
+    end
   end
 
   auto_updates true

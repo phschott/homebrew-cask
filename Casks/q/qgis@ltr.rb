@@ -1,8 +1,8 @@
 cask "qgis@ltr" do
-  version "3.34.7,20240517_162727"
-  sha256 "5d178bafc9adb54ad3e9f8b1e46542ac8de8d2a983540c45711ebf6afba9342a"
+  version "3.40.5,20250321_160709"
+  sha256 "e25964bff62a884aab696c86f698172b0aa7b26a5fbb8279c0e17c97287c75e8"
 
-  url "https://qgis.org/downloads/macos/ltr/qgis_ltr_final-#{version.csv.first.dots_to_underscores}_#{version.csv.second}.dmg"
+  url "https://download.qgis.org/downloads/macos/ltr/qgis_ltr_final-#{version.csv.first.dots_to_underscores}_#{version.csv.second}.dmg"
   name "QGIS LTR"
   desc "Geographic Information System"
   homepage "https://www.qgis.org/"
@@ -15,8 +15,6 @@ cask "qgis@ltr" do
     end
   end
 
-  deprecate! date: "2025-05-01", because: :unsigned
-
   depends_on macos: ">= :high_sierra"
 
   app "QGIS-LTR.app"
@@ -26,4 +24,8 @@ cask "qgis@ltr" do
     "~/Library/Caches/QGIS",
     "~/Library/Saved Application State/org.qgis.qgis*.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

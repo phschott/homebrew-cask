@@ -1,9 +1,9 @@
 cask "notesnook" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.0.6"
-  sha256 arm:   "266eeb65612c32ca632ab30e0c63c11893f42397c5dda8fe59774136c9afe23c",
-         intel: "03445b9ba6e8608d81dcd7be15ccc0337aa6b4cd8ac0d583f82d8dd2c81646d8"
+  version "3.1.1"
+  sha256 arm:   "1fedf22ffec1d47a12064afa7a8ba902a3e85c3979b76cc6023a5554eb27d66f",
+         intel: "642a0c3fd709b956637c5a6c974b0780cf3006b443d095568bb4c601a11080ad"
 
   url "https://github.com/streetwriters/notesnook/releases/download/v#{version}/notesnook_mac_#{arch}.dmg",
       verified: "github.com/streetwriters/notesnook/"
@@ -17,6 +17,7 @@ cask "notesnook" do
   end
 
   auto_updates true
+  depends_on macos: ">= :sierra"
 
   app "Notesnook.app"
 

@@ -1,23 +1,20 @@
 cask "recents" do
-  version "2.3.2,6577"
-  sha256 :no_check
+  version "2.4.2"
+  sha256 "d8ff2d951d3ed003be07b95b018af3ec51c608edd3b8cc0691579f1b5d93441f"
 
-  url "https://recentsapp.com/releases/Recents_latest.dmg"
+  url "https://recentsapp.com/releases/Recents_#{version}.dmg"
   name "Recents"
   desc "File launcher"
   homepage "https://recentsapp.com/"
 
   livecheck do
-    url "https://api.appcenter.ms/v0.1/public/sparkle/apps/74f5ee9e-bf2d-4be3-b92a-3e8766433b8b"
-    strategy :page_match do |page|
-      match = page.match(/Version\s(\d+(?:\.\d+)+)\s\((\d*)\)/i)
-      next if match.blank?
-
-      "#{match[1]},#{match[2]}"
-    end
+    url "https://recentsapp.com/releases/recents-appcast.xml"
+    strategy :sparkle, &:short_version
   end
 
-  depends_on macos: ">= :mojave"
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :ventura"
 
   app "Recents.app"
 

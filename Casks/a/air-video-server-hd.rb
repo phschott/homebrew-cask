@@ -13,6 +13,10 @@ cask "air-video-server-hd" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+
   app "Air Video Server HD.app"
 
   zap trash: [
@@ -20,4 +24,8 @@ cask "air-video-server-hd" do
     "~/Library/Logs/AirVideoServerHD",
     "~/Library/Preferences/com.inmethod.AirVideoServerHD.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,9 +1,9 @@
 cask "polymail" do
   arch arm: "-arm64"
 
-  version "2.3.10"
-  sha256 arm:   "a28d32abdddaac548040414bc598860ac6fa4741aab3ad0eaad88c7b66f1b7fe",
-         intel: "af3544111b813dcd701d4350e3789c581423c818c2f6153b607f44f674c4bcc0"
+  version "2.3.12"
+  sha256 arm:   "dfb738c6fbed46ebe15159656993d74b415faf57f51fba0e80427555c56b8cdd",
+         intel: "bd86c2187b0faf505afbb3121c6f81858d5121ef2234446964d9e13f484d4a0a"
 
   url "https://sparkle-updater.polymail.io/macos#{arch}/builds/Polymail-v#{version}.dmg"
   name "Polymail"
@@ -16,6 +16,7 @@ cask "polymail" do
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Polymail.app"
 

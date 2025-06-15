@@ -1,18 +1,19 @@
 cask "gog-galaxy" do
-  version "2.0.74.336"
-  sha256 "634510f8ad52e084efc77e6eec1d63ec83a5e47d8dbaf6d38b47455899762d3c"
+  version "2.0.84.122"
+  sha256 "fd8f57a08862a711aab3b152e5c8e783e2d6de6c75207a8494680bd68276e2b3"
 
-  url "https://cdn.gog.com/open/galaxy/client/#{version.chomp("a")}/galaxy_client_#{version}.pkg"
+  url "https://gog-cdn-fastly.gog.com/open/galaxy/client/galaxy_client_#{version}.pkg"
   name "GOG Galaxy"
   desc "Game client"
   homepage "https://www.gog.com/galaxy"
 
   livecheck do
     url :homepage
-    regex(%r{href=.*?/galaxy_client_(\d+(?:\.\d+)*a?)\.pkg}i)
+    regex(/href=.*?galaxy[._-]client[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
 
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   pkg "galaxy_client_#{version}.pkg"
 
@@ -32,4 +33,8 @@ cask "gog-galaxy" do
     "~/Library/Preferences/com.gog.galaxy.plist",
     "~/Library/Saved Application State/com.gog.galaxy.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

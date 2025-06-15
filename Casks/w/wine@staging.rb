@@ -1,6 +1,6 @@
 cask "wine@staging" do
-  version "9.8"
-  sha256 "18ee05fc12d12483fb957ab9a1b8c6aeb7077f212d15644bb7c0f448d8c2698e"
+  version "10.6"
+  sha256 "4721403f7c9c225175c7e40034f63858d13ec77ed072d7500d819b902bd6e41b"
 
   # Current winehq packages are deprecated and these are packages from
   # the new maintainers that will eventually be pushed to Winehq.
@@ -11,10 +11,24 @@ cask "wine@staging" do
   desc "Compatibility layer to run Windows applications"
   homepage "https://wiki.winehq.org/MacOS"
 
+  # Not every GitHub release provides a `wine-staging` file, so we check multiple
+  # recent releases instead of only the "latest" release.
   livecheck do
     url :url
-    strategy :github_latest
     regex(/^v?((?:\d+(?:\.\d+)+)(?:-RC\d)?)$/i)
+    strategy :github_releases do |json, regex|
+      file_regex = /^wine[._-]staging[._-].*?$/i
+
+      json.map do |release|
+        next if release["draft"] || release["prerelease"]
+        next unless release["assets"]&.any? { |asset| asset["name"]&.match?(file_regex) }
+
+        match = release["tag_name"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   conflicts_with cask: [
@@ -34,9 +48,6 @@ cask "wine@staging" do
   binary "#{dir_path}/wine/bin/regedit"
   binary "#{dir_path}/wine/bin/regsvr32"
   binary "#{dir_path}/wine/bin/wine"
-  binary "#{dir_path}/wine/bin/wine-preloader"
-  binary "#{dir_path}/wine/bin/wine64"
-  binary "#{dir_path}/wine/bin/wine64-preloader"
   binary "#{dir_path}/wine/bin/wineboot"
   binary "#{dir_path}/wine/bin/winecfg"
   binary "#{dir_path}/wine/bin/wineconsole"
@@ -61,15 +72,7 @@ cask "wine@staging" do
         "~/.local/share/mime",
       ]
 
-  caveats <<~EOS
-    #{token} supports both 32-bit and 64-bit. It is compatible with an existing
-    32-bit wine prefix, but it will now default to 64-bit when you create a new
-    wine prefix. The architecture can be selected using the WINEARCH environment
-    variable which can be set to either win32 or win64.
-
-    To create a new pure 32-bit prefix, you can run:
-      $ WINEARCH=win32 WINEPREFIX=~/.wine32 winecfg
-
-    See the Wine FAQ for details: https://wiki.winehq.org/FAQ#Wineprefixes
-  EOS
+  caveats do
+    requires_rosetta
+  end
 end

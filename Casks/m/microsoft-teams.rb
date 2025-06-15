@@ -1,6 +1,6 @@
 cask "microsoft-teams" do
-  version "24102.2214.2869.7475"
-  sha256 "6d81c7650170d9742fde4995ff5501a1378874707bfe5f44e0b92d4c1537331c"
+  version "25122.1207.3700.1444"
+  sha256 "73f12c604e25b04f914cf1b183dd3ccb302a0f7067230465a37901ca15b0e7b0"
 
   url "https://statics.teams.cdn.office.net/production-osx/#{version}/MicrosoftTeams.pkg",
       verified: "statics.teams.cdn.office.net/production-osx/"
@@ -55,25 +55,21 @@ cask "microsoft-teams" do
             ]
 
   zap trash: [
-        "~/Library/Application Scripts/com.microsoft.teams2",
-        "~/Library/Application Scripts/com.microsoft.teams2.launcher",
-        "~/Library/Application Scripts/com.microsoft.teams2.notificationcenter",
+        "~/Library/Application Scripts/*.com.microsoft.teams",
+        "~/Library/Application Scripts/com.microsoft.teams*",
         "~/Library/Application Support/com.microsoft.teams",
         "~/Library/Application Support/Microsoft/Teams",
         "~/Library/Application Support/Teams",
         "~/Library/Caches/com.microsoft.teams",
-        "~/Library/Containers/com.microsoft.teams2",
-        "~/Library/Containers/com.microsoft.teams2.launcher",
-        "~/Library/Containers/com.microsoft.teams2.notificationcenter",
+        "~/Library/Containers/com.microsoft.teams*",
         "~/Library/Cookies/com.microsoft.teams.binarycookies",
         "~/Library/Group Containers/*.com.microsoft.teams",
         "~/Library/HTTPStorages/com.microsoft.teams",
         "~/Library/HTTPStorages/com.microsoft.teams.binarycookies",
         "~/Library/Logs/Microsoft Teams Helper (Renderer)",
         "~/Library/Logs/Microsoft Teams",
-        "~/Library/Preferences/com.microsoft.teams.plist",
-        "~/Library/Saved Application State/com.microsoft.teams.savedState",
-        "~/Library/Saved Application State/com.microsoft.teams2.savedState",
+        "~/Library/Preferences/com.microsoft.teams*.plist",
+        "~/Library/Saved Application State/com.microsoft.teams*.savedState",
         "~/Library/WebKit/com.microsoft.teams",
       ],
       rmdir: "~/Library/Application Support/Microsoft"

@@ -8,7 +8,9 @@ cask "skiff" do
   desc "End-to-end encrypted email, calendar, documents, and files support"
   homepage "https://skiff.com/"
 
-  deprecate! date: "2023-12-17", because: :discontinued
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-12-16", because: :moved_to_mas
 
   auto_updates true
   depends_on macos: ">= :catalina"
@@ -19,10 +21,4 @@ cask "skiff" do
     "~/Library/Application Scripts/org.reactjs.native.Skiff-Desktop",
     "~/Library/Containers/org.reactjs.native.Skiff-Desktop",
   ]
-
-  caveats do
-    <<~EOS
-      Newer version is only available in Mac App Store.
-    EOS
-  end
 end

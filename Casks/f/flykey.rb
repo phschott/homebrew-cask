@@ -1,6 +1,6 @@
 cask "flykey" do
-  version "1.6.5,2024052201"
-  sha256 "e275afe105bb1bd88013a7116f1783477c561b7522fa3ef9e04141ea6911b0ab"
+  version "1.6.7,2024082401"
+  sha256 "e08311dd732f5f31282c01f91c8dec9b9d9db27dc628bfd4f8b574b8f46781d6"
 
   url "https://cdn.better365.cn/FlyKey/#{version.csv.second[0..3]}/FlyKey#{version.csv.first}_#{version.csv.second}.zip"
   name "FlyKey"
@@ -11,6 +11,8 @@ cask "flykey" do
     url "https://www.better365.cn/FlyKey.xml"
     strategy :sparkle
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :catalina"
 

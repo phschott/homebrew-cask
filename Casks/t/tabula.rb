@@ -8,5 +8,16 @@ cask "tabula" do
   desc "Tool for liberating data tables trapped inside PDF files"
   homepage "https://tabula.technology/"
 
+  no_autobump! because: :requires_manual_review
+
   app "tabula/Tabula.app"
+
+  zap trash: [
+    "~/Library/Application Support/Tabula",
+    "~/Library/Saved Application State/org.nerdpower.tabula.Tabula.savedState",
+  ]
+
+  caveats do
+    requires_rosetta
+  end
 end

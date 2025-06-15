@@ -1,9 +1,9 @@
 cask "rstudio@daily" do
-  version "2024.07.0-daily-178"
-  sha256 "d23835b309e7ece2f1095d666b75b5502266ebc6281ff6d29e84b78421efa74b"
+  version "2025.08.0-daily-210"
+  sha256 "625a60ee052f7cbed48aaf730d988b9092e06b71da98e4c38f5003b4e34ec2ef"
 
-  url "https://s3.amazonaws.com/rstudio-ide-build/electron/macos/RStudio-#{version}.dmg",
-      verified: "s3.amazonaws.com/rstudio-ide-build/electron/macos/"
+  url "https://rstudio-ide-build.s3.amazonaws.com/electron/macos/RStudio-#{version}.dmg",
+      verified: "rstudio-ide-build.s3.amazonaws.com/electron/macos/"
   name "RStudio Daily"
   desc "Data science software focusing on R and Python"
   homepage "https://dailies.rstudio.com/"
@@ -11,8 +11,8 @@ cask "rstudio@daily" do
   livecheck do
     url "https://dailies.rstudio.com/rstudio/latest/index.json"
     strategy :json do |json|
-      json["products"]["electron"]["platforms"]["macos"]["version"]
-        &.tr("+", "-")
+      json.dig("products", "electron", "platforms", "macos", "version")
+          &.tr("+", "-")
     end
   end
 

@@ -13,10 +13,16 @@ cask "scrapp" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Scrapp.app"
 
   zap trash: [
     "~/Library/Application Support/com.noArt.Scrapp",
     "~/Library/Caches/com.noArt.Scrapp",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

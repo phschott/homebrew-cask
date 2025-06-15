@@ -1,8 +1,8 @@
 cask "inky" do
-  version "0.14.1"
-  sha256 "95a99301939ed16ef4602b6eba1cd754df1ecb521750e366871b12988f024115"
+  version "0.15.1"
+  sha256 "75a8a28202a093a3ba5f6d8e66137f4208df5705aed420af0d460fe6efb2252f"
 
-  url "https://github.com/inkle/inky/releases/download/#{version}/Inky_mac.dmg",
+  url "https://github.com/inkle/inky/releases/download/#{version}/inky.dmg",
       verified: "github.com/inkle/inky/"
   name "Inky"
   desc "Editor for ink: inkle's narrative scripting language"
@@ -12,6 +12,10 @@ cask "inky" do
     url :url
     strategy :github_latest
   end
+
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :catalina"
 
   app "Inky.app"
 

@@ -1,8 +1,11 @@
 cask "8x8-work" do
-  version "8.13.2-4"
-  sha256 "ae438c182ff7e6a18f9c94bc523d3361af7c72ca2d06d4ca6a61d1fb4c6c8314"
+  arch arm: "-arm64"
 
-  url "https://vod-updates.8x8.com/ga/work-dmg-v#{version}.dmg"
+  version "8.23.2-2"
+  sha256 arm:   "ce4cbdbea67e3dafd97f605073871091e35b68cce5cbf77c7831845a28bb33d4",
+         intel: "081621b3d12b34f75d3b221ca16b9fa5d6447c3084bfb8a2b0e1f481dc8292b5"
+
+  url "https://work-desktop-assets.8x8.com/prod-publish/ga/work#{arch}-dmg-v#{version}.dmg"
   name "8x8_work"
   desc "Communications application with voice, video, chat, and web conferencing"
   homepage "https://www.8x8.com/products/apps"
@@ -12,7 +15,7 @@ cask "8x8-work" do
     regex(/work[._-]dmg[._-]v(\d+(?:[.-]\d+)+)\.dmg/i)
   end
 
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :catalina"
 
   app "8x8 Work.app"
 

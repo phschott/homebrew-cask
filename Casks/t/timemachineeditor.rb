@@ -1,5 +1,5 @@
 cask "timemachineeditor" do
-  version "5.2.2,219"
+  version "5.2.2"
   sha256 :no_check
 
   url "https://tclementdev.com/timemachineeditor/TimeMachineEditor.pkg"
@@ -8,9 +8,11 @@ cask "timemachineeditor" do
   homepage "https://tclementdev.com/timemachineeditor/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url :homepage
+    regex(/href=.*TimeMachineEditor\s*v?(\d+(?:\.\d+)+)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
 

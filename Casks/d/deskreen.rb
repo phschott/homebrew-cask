@@ -13,6 +13,8 @@ cask "deskreen" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Deskreen.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "deskreen" do
     "~/Library/Preferences/com.pavlobu.Deskreen.plist",
     "~/Library/Saved Application State/com.pavlobu.Deskreen.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

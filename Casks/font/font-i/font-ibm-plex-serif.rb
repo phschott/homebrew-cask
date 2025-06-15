@@ -1,28 +1,32 @@
 cask "font-ibm-plex-serif" do
-  version :latest
-  sha256 :no_check
+  version "1.1.0"
+  sha256 "76f1a272b084d2beedcd22aaaa653bc6f92b71b5689081aef9c5b05d0a470e1b"
 
-  url "https://github.com/google/fonts.git",
-      verified:  "github.com/google/fonts",
-      branch:    "main",
-      only_path: "ofl/ibmplexserif"
+  url "https://github.com/IBM/plex/releases/download/%40ibm%2Fplex-serif%40#{version}/ibm-plex-serif.zip"
   name "IBM Plex Serif"
-  homepage "https://fonts.google.com/specimen/IBM+Plex+Serif"
+  homepage "https://github.com/IBM/plex"
 
-  font "IBMPlexSerif-Bold.ttf"
-  font "IBMPlexSerif-BoldItalic.ttf"
-  font "IBMPlexSerif-ExtraLight.ttf"
-  font "IBMPlexSerif-ExtraLightItalic.ttf"
-  font "IBMPlexSerif-Italic.ttf"
-  font "IBMPlexSerif-Light.ttf"
-  font "IBMPlexSerif-LightItalic.ttf"
-  font "IBMPlexSerif-Medium.ttf"
-  font "IBMPlexSerif-MediumItalic.ttf"
-  font "IBMPlexSerif-Regular.ttf"
-  font "IBMPlexSerif-SemiBold.ttf"
-  font "IBMPlexSerif-SemiBoldItalic.ttf"
-  font "IBMPlexSerif-Thin.ttf"
-  font "IBMPlexSerif-ThinItalic.ttf"
+  livecheck do
+    url :url
+    regex(%r{^@ibm/plex-serif@?(\d+(?:\.\d+)+)$}i)
+  end
+
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Bold.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-BoldItalic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-ExtraLight.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-ExtraLightItalic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Italic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Light.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-LightItalic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Medium.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-MediumItalic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Regular.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-SemiBold.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-SemiBoldItalic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Text.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-TextItalic.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-Thin.otf"
+  font "ibm-plex-serif/fonts/complete/otf/IBMPlexSerif-ThinItalic.otf"
 
   # No zap stanza required
 end

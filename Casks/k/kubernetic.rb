@@ -13,6 +13,8 @@ cask "kubernetic" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Kubernetic.app"
 
   uninstall signal: [
@@ -27,4 +29,8 @@ cask "kubernetic" do
     "~/Library/Preferences/com.kubernetic.desktop.*",
     "~/Library/Saved Application State/com.kubernetic.desktop.*",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

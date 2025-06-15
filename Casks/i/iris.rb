@@ -13,6 +13,8 @@ cask "iris" do
     regex(/Iris[._-]?v?(\d+(?:\.\d+)+)[._-]?OSX\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Iris.app"
 
   uninstall launchctl: "co.iristech.Iris",
@@ -22,4 +24,8 @@ cask "iris" do
     "~/Library/Preferences/com.iristech.Iris.plist",
     "~/Library/Saved Application State/co.iristech.Iris.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

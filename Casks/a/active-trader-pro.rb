@@ -12,6 +12,8 @@ cask "active-trader-pro" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Active Trader Pro.app"
@@ -25,4 +27,8 @@ cask "active-trader-pro" do
     "~/Library/Preferences/com.fmr.activetrader.plist",
     "~/Library/Saved Application State/com.fmr.activetrader.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

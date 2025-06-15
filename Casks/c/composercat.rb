@@ -7,10 +7,13 @@ cask "composercat" do
   desc "Graphical interface for Composer (PHP)"
   homepage "https://getcomposercat.com/"
 
-  livecheck do
-    url :homepage
-    regex(%r{href=.*?/Composercat[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-10-12", because: :unmaintained
 
   app "Composercat.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

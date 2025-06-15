@@ -7,10 +7,9 @@ cask "subtitle-master" do
   desc "Search for subtitles"
   homepage "https://github.com/subtitle-master/subtitlemaster"
 
-  livecheck do
-    url :url
-    regex(/^v?(\d+(?:\.\d+)+)(?:-SNAPSHOT)?$/i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-17", because: "is 32-bit only"
 
   app "Subtitle Master.app"
 end

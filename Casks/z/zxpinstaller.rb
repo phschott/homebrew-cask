@@ -8,7 +8,13 @@ cask "zxpinstaller" do
   desc "Adobe extensions installer"
   homepage "https://zxpinstaller.com/"
 
+  no_autobump! because: :requires_manual_review
+
   app "ZXPInstaller.app"
 
   zap trash: "~/Library/Preferences/com.electron.zxpinstaller.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,9 +1,9 @@
 cask "geomap" do
   arch arm: "Silicon", intel: "Intel"
 
-  version "3.7.2"
-  sha256 arm:   "8863385520eb4bff2b0b2a9a3fd639ab88d68616b8792db863f6a927933cacd2",
-         intel: "fe33677cb601bb5a29c6dee1669b6596754a2fd11b37c6b99c281cfa633cb7cf"
+  version "3.7.5"
+  sha256 arm:   "a4d372bfa25a0116b7c19ccac09e1e7d91d11a1eea529c2ec65ee0d4d4ee9b6b",
+         intel: "d66dffb33193db23eb7926a09ca754966157bf7086ff3f1f625505b590e66be9"
 
   url "https://app.geomapapp.org/MapApp/GeoMapApp-#{version}-#{arch}.dmg"
   name "GeoMapApp"
@@ -14,6 +14,8 @@ cask "geomap" do
     url "https://www.geomapapp.org/MacInstall.html"
     regex(/href=.*?GeoMapApp[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   app "GeoMapApp.app"
 

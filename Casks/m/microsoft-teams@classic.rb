@@ -1,6 +1,6 @@
 cask "microsoft-teams@classic" do
-  version "1.7.00.13452"
-  sha256 "89970cc80de644134a477447bfa4b01e5446083c469558baf51f7b32227671b3"
+  version "1.7.00.15956"
+  sha256 "1a9e2ba7774d7bef0c0b450d6aa700d14d6b76637af7d60d291f3610a47f04c1"
 
   url "https://statics.teams.cdn.office.net/production-osx/#{version}/Teams_osx.pkg",
       verified: "statics.teams.cdn.office.net/production-osx/"
@@ -8,20 +8,9 @@ cask "microsoft-teams@classic" do
   desc "Meet, chat, call, and collaborate in just one place"
   homepage "https://www.microsoft.com/en-us/microsoft-teams/group-chat-software"
 
-  # Microsoft releases multiple versions and builds of Teams, as listed here:
-  #   https://raw.githubusercontent.com/ItzLevvie/MicrosoftTeams-msinternal/master/defconfig
-  # and here:
-  #   https://raw.githubusercontent.com/ItzLevvie/MicrosoftTeams-msinternal/master/defconfig2
-  #
-  # We only track the "production build"/"Public (R4) build" version,
-  # which agrees with the version reported by `livecheck`.
-  #
-  # Any pull request that updates this Cask to a version that
-  # differs from the `livecheck` version will be closed.
-  livecheck do
-    url "https://aka.ms/teamsmac"
-    strategy :header_match
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-03", because: :discontinued
 
   auto_updates true
   conflicts_with cask: "microsoft-office-businesspro"

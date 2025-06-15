@@ -12,6 +12,8 @@ cask "pomello" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Pomello.app"
 
   zap trash: [
@@ -23,4 +25,8 @@ cask "pomello" do
     "~/Library/Preferences/com.tinynudge.pomello.plist",
     "~/Library/Saved Application State/com.tinynudge.pomello.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -8,6 +8,8 @@ cask "cerebro" do
   desc "Open-source launcher"
   homepage "https://cerebroapp.vercel.app/"
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "Cerebro.app"
@@ -20,4 +22,8 @@ cask "cerebro" do
     "~/Library/Preferences/com.cerebroapp.Cerebro.plist",
     "~/Library/Saved Application State/com.cerebroapp.Cerebro.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

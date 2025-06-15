@@ -12,6 +12,8 @@ cask "keepassx" do
     regex(/href=.*?KeePassX[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "KeePassX.app"
 
   uninstall_preflight do
@@ -19,4 +21,8 @@ cask "keepassx" do
   end
 
   zap trash: "~/.keepassx"
+
+  caveats do
+    requires_rosetta
+  end
 end

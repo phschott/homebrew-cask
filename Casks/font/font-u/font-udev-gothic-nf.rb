@@ -1,10 +1,9 @@
 cask "font-udev-gothic-nf" do
-  version "1.3.1"
-  sha256 "84004a3038bdf528286a113b4db076d8412bb4ca6771d02a240318473f9b9fce"
+  version "2.1.0"
+  sha256 "2d3ea89a7dfbf5ad07893fa1a39894f5860a146fd2633311176c61dcca6120e7"
 
   url "https://github.com/yuru7/udev-gothic/releases/download/v#{version}/UDEVGothic_NF_v#{version}.zip"
   name "UDEV Gothic NF"
-  desc "Integrate fonts from BIZ UD Gothic and JetBrains Mono"
   homepage "https://github.com/yuru7/udev-gothic"
 
   font "UDEVGothic_NF_v#{version}/UDEVGothic35NF-Bold.ttf"

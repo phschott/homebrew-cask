@@ -1,20 +1,21 @@
 cask "jellyfin" do
   arch arm: "arm64", intel: "amd64"
-  arch_suffix = on_arch_conditional arm: "-arm64"
 
-  version "10.9.3"
-  sha256 arm:   "25f634d71e84cc3f8210692c301f59f8e83ecdd3a126b7ebc5c08dcdaf5074d6",
-         intel: "bf455fed09bf72511d804a77c33198e196a402f17011650a00c18a0d7903f982"
+  version "10.10.7"
+  sha256 arm:   "6a6515d9b4143897087504ed7a06b327ab191662e9e3f9d13a27a624ceedd4c8",
+         intel: "3eb5b811a45f79b3164c1433e5a41d5333f9d5b18a3ec313a393665833785a16"
 
-  url "https://repo.jellyfin.org/files/server/macos/stable/v#{version}/#{arch}/jellyfin_#{version}#{arch_suffix}.dmg"
+  url "https://repo.jellyfin.org/files/server/macos/stable/v#{version}/#{arch}/jellyfin_#{version}-#{arch}.dmg"
   name "Jellyfin"
   desc "Media system"
   homepage "https://jellyfin.org/"
 
   livecheck do
     url "https://repo.jellyfin.org/?path=/server/macos/latest-stable/#{arch}"
-    regex(/href=.*?jellyfin[._-]v?(\d+(?:[.-]\d+)+)#{arch_suffix}\.dmg/i)
+    regex(/href=.*?jellyfin[._-]v?(\d+(?:[.-]\d+)+)-#{arch}\.dmg/i)
   end
+
+  depends_on macos: ">= :monterey"
 
   app "Jellyfin.app"
 

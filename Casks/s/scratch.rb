@@ -12,6 +12,8 @@ cask "scratch" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "Scratch #{version.major}.app"
@@ -20,4 +22,8 @@ cask "scratch" do
     "~/Library/Application Support/Scratch",
     "~/Library/Preferences/edu.mit.scratch.scratch-desktop.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,9 +1,9 @@
 cask "papers" do
   arch arm: "arm64", intel: "x64"
 
-  version "4.37.2374"
-  sha256 arm:   "2602b57bd93ada7c64a64b6c8b147ed371f1281b028fb083f8ac7e5ea60a3f6a",
-         intel: "8be45835e26e6ab6f79ec46efd8dd0b03b6e62cd510bc106ffee6694078bca85"
+  version "4.37.2395"
+  sha256 arm:   "f897a69ee2d983a8e737395230a2879c5580abfd658a7386963c7b9fc56b942e",
+         intel: "888c302d335095f81e30843f59e081b3b90cd4e1e4b72dbc89f055ae2d548761"
 
   url "https://update.readcube.com/desktop/updates/Papers_Setup_#{version}-#{arch}.zip"
   name "ReadCube Papers"
@@ -14,6 +14,10 @@ cask "papers" do
     url "https://s3.amazonaws.com/update.readcube.com/desktop/updates/latest-mac.yml"
     strategy :electron_builder
   end
+
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
 
   app "Papers.app"
 

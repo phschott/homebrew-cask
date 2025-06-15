@@ -7,10 +7,16 @@ cask "sqlectron" do
   name "Sqlectron"
   homepage "https://sqlectron.github.io/"
 
+  no_autobump! because: :requires_manual_review
+
   app "sqlectron.app"
 
   zap trash: [
     "~/.sqlectron.json",
     "~/Library/Application Support/Sqlectron",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

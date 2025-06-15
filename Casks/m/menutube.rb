@@ -8,6 +8,8 @@ cask "menutube" do
   desc "Tool to capture YouTube into the menu bar"
   homepage "https://edanchenkov.github.io/MenuTube/"
 
+  no_autobump! because: :requires_manual_review
+
   app "MenuTube.app"
 
   zap trash: [
@@ -15,4 +17,8 @@ cask "menutube" do
     "~/Library/Preferences/com.rednuclearmonkey.menutube.plist",
     "~/Library/Saved Application State/com.rednuclearmonkey.menutube.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

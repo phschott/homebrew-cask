@@ -12,6 +12,8 @@ cask "sonarr@beta" do
     regex(%r{href=["']?v?(\d+(?:\.\d+)+)/?["' >]}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   deprecate! date: "2025-05-01", because: :unsigned
 
   conflicts_with cask: "sonarr"
@@ -23,4 +25,8 @@ cask "sonarr@beta" do
     "~/.config/Sonarr",
     "~/Library/Saved Application State/com.osx.sonarr.tv.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

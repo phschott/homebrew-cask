@@ -1,8 +1,8 @@
 cask "navicat-for-oracle" do
-  version "17.0.7"
+  version "17.2.8"
   sha256 :no_check
 
-  url "https://dn.navicat.com/download/navicat#{version.major_minor.no_dots}_ora_en.dmg"
+  url "https://dn.navicat.com/download/navicat#{version.major}_ora_en.dmg"
   name "Navicat for Oracle"
   desc "Database administration and development tool for Oracle"
   homepage "https://www.navicat.com/products/navicat-for-oracle"
@@ -11,7 +11,7 @@ cask "navicat-for-oracle" do
     cask "navicat-premium"
   end
 
-  depends_on macos: ">= :mojave"
+  depends_on macos: ">= :big_sur"
 
   app "Navicat for Oracle.app"
 
@@ -21,4 +21,8 @@ cask "navicat-for-oracle" do
     "~/Library/Preferences/com.navicat.NavicatForOracle.plist",
     "~/Library/Saved Application State/com.navicat.NavicatForOracle.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -7,6 +7,10 @@ cask "marshallofsound-google-play-music-player" do
   name "Google Play Music Desktop Player"
   homepage "https://www.googleplaymusicdesktopplayer.com/"
 
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-27", because: :unmaintained
+
   app "Google Play Music Desktop Player.app"
 
   uninstall signal: [
@@ -27,4 +31,8 @@ cask "marshallofsound-google-play-music-player" do
     "~/Library/Preferences/google-play-music-desktop-player.plist",
     "~/Library/Saved Application State/google-play-music-desktop-player.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

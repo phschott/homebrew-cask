@@ -1,17 +1,16 @@
 cask "synology-drive" do
-  version "3.5.0,16084"
-  sha256 "3436315215ad01552da427f559e9aa4a16421471a02c6c2b917e8795dc4e947d"
+  version "3.5.2,16111"
+  sha256 "ddf17fd4d19025389544fb8f1ad9e6abc39caf11c0f3c5b3163df17f2e653ac8"
 
-  url "https://global.download.synology.com/download/Utility/SynologyDriveClient/#{version.csv.first}-#{version.csv.second}/Mac/Installer/synology-drive-client-#{version.csv.second}.dmg"
+  url "https://global.download.synology.com/download/Utility/SynologyDriveClient/#{version.tr(",", "-")}/Mac/Installer/synology-drive-client-#{version.csv.second}.dmg"
   name "Synology Drive"
   desc "Sync and backup service to Synology NAS drives"
   homepage "https://www.synology.com/"
 
   livecheck do
-    url "https://www.synology.com/en-us/releaseNote/SynologyDriveClient"
-    regex(/>\s*Version:\s*(\d+(?:\.\d+)+)-(\d+)\s*</i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
+    url "https://www.synology.com/api/releaseNote/findChangeLog?identify=SynologyDriveClient&lang=en-us"
+    strategy :json do |json|
+      json.dig("info", "versions", "", "all_versions")&.map { |item| item["version"]&.tr("-", ",") }
     end
   end
 
@@ -25,9 +24,12 @@ cask "synology-drive" do
             ],
             quit:      [
               "com.synology.CloudStation",
-              "com.synology.CloudStationUI",
               "com.synology.SynologyDrive.FinderHelper",
               "io.com.synology.CloudStationUI",
+            ],
+            signal:    [
+              ["TERM", "com.synology.SynologyDrive.CloudStationUI"],
+              ["TERM", "com.synology.SynologyDrive.FinderHelper.FinderSync"],
             ],
             pkgutil:   "com.synology.CloudStation",
             delete:    "/Applications/Synology Drive Client.app"

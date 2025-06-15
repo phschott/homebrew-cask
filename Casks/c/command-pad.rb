@@ -7,6 +7,8 @@ cask "command-pad" do
   desc "Start and stop command-line tools and monitor the output"
   homepage "https://github.com/supnate/command-pad"
 
+  no_autobump! because: :requires_manual_review
+
   app "Command Pad.app"
 
   zap trash: [
@@ -16,4 +18,8 @@ cask "command-pad" do
     "~/Library/Preferences/com.webows.commandpad.plist",
     "~/Library/Saved Application State/com.webows/commandpad.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

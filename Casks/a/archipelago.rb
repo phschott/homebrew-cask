@@ -1,13 +1,13 @@
 cask "archipelago" do
-  version "6.0.6"
-  sha256 "824b80a00ad81be4560527941e846bf251a28e3e966231b79243dbb8cd7868c2"
+  version "6.0.8"
+  sha256 "58e394886db7e5a32feeb48d7b78951ee230689bf79279e67f79c881df42bb1f"
 
   url "https://github.com/npezza93/archipelago/releases/download/v#{version}/Archipelago.zip"
   name "Archipelago"
   desc "Terminal emulator built on web technology"
   homepage "https://github.com/npezza93/archipelago"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: ">= :sequoia"
 
   app "Archipelago.app"
 

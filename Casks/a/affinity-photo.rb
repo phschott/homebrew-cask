@@ -1,18 +1,16 @@
 cask "affinity-photo" do
-  version "2.5.0,2471"
-  sha256 "01540364c89f312a3f1dc09ede66c3e7a7599019183484a8ba63092e17021094"
+  version "2.6.3,3322"
+  sha256 "b8a76da2d09147e82b272f0024636655563f17f7f0bd9352e0d0cc8cacb92e59"
 
-  url "https://s3-eu-west-1.amazonaws.com/affinity-update/mac2/retail/Affinity%20Photo%20#{version.csv.first.major}%20Affinity%20Store%20#{version.csv.second}.zip",
-      verified: "s3-eu-west-1.amazonaws.com/"
+  url "https://affinity-update.s3.amazonaws.com/mac2/retail/Affinity%20Photo%20#{version.csv.first.major}%20Affinity%20Store%20#{version.csv.second}.zip",
+      verified: "affinity-update.s3.amazonaws.com/"
   name "Affinity Photo #{version.csv.first.major}"
   desc "Professional image editing software"
   homepage "https://affinity.serif.com/en-us/photo/"
 
   livecheck do
     url "https://go.seriflabs.com/affinity-update-mac-retail-photo#{version.csv.first.major}"
-    strategy :sparkle do |item|
-      "#{item.short_version},#{item.version}"
-    end
+    strategy :sparkle
   end
 
   auto_updates true

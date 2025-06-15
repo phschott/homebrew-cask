@@ -1,6 +1,6 @@
 cask "oracle-jdk-javadoc" do
-  version "21.0.3,7,121eac36c6e8ebc1979abd5d0b26be58"
-  sha256 "196407ea287f70f05f6c3efdb66166945b56ad9528ed3e63554b668fcbc55eb7"
+  version "24.0.1,9,24a58e0e276943138bf3e963e6291ac2"
+  sha256 "8d1a811454d3764a6c2967b4dd53911630ec37a9ff6feb9bfc94b8318044d3cb"
 
   url "https://download.oracle.com/otn_software/java/jdk/#{version.csv.first}+#{version.csv.second}/#{version.csv.third}/jdk-#{version.csv.first}_doc-all.zip",
       cookies: {
@@ -11,10 +11,20 @@ cask "oracle-jdk-javadoc" do
   homepage "https://www.oracle.com/java/technologies/downloads/"
 
   livecheck do
-    url "https://www.oracle.com/java/technologies/javase-jdk#{version.major}-doc-downloads.html"
+    url :homepage
     regex(%r{/(\d+(?:\.\d+)*)(?:\+|%2B)(\d+(?:\.\d+)*)/(\h+)/jdk[._-]v?(\d+(?:\.\d+)*)_doc-all\.zip}i)
     strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[0]},#{match[1]},#{match[2]}" }
+      major = page.scan(%r{href=.*?/technologies/javase-jdk(\d+)-doc-downloads\.html}i)
+                  .max_by { |match| Version.new(match[0]) }
+                  &.first
+      next if major.blank?
+
+      download_page = Homebrew::Livecheck::Strategy.page_content(
+        "https://www.oracle.com/java/technologies/javase-jdk#{major}-doc-downloads.html",
+      )
+      next if (download_page_content = download_page[:content]).blank?
+
+      download_page_content.scan(regex).map { |match| "#{match[0]},#{match[1]},#{match[2]}" }
     end
   end
 

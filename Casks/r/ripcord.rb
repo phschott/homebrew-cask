@@ -12,6 +12,8 @@ cask "ripcord" do
     regex(%r{/Ripcord_Mac_(\d+(?:\.\d+)*)\.zip}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Ripcord.app"
@@ -21,4 +23,8 @@ cask "ripcord" do
     "~/Library/Preferences/com.cancelfm.Ripcord.plist",
     "~/Library/Saved Application State/com.cancelfm.Ripcord.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

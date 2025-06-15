@@ -29,5 +29,18 @@ cask "natron" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Natron.app"
+
+  zap trash: [
+    "~/.Natron",
+    "~/Library/Application Support/INRIA/Natron",
+    "~/Library/Caches/INRIA/Natron",
+    "~/Library/Preferences/com.inria.Natron.plist",
+  ]
+
+  caveats do
+    requires_rosetta
+  end
 end

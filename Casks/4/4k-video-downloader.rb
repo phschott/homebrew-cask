@@ -1,6 +1,6 @@
 cask "4k-video-downloader" do
-  version "4.31.0"
-  sha256 "d217dba6fe0162e1e0a7c2231434c0d1b0aaf7dbb4cccfdb358166ca89c1e762"
+  version "4.33.5"
+  sha256 "e16993ebb60f18612fa2444c8b60d95745f14d6fca226a00c5d10eee1fb8d78a"
 
   url "https://dl.4kdownload.com/app/4kvideodownloader_#{version.major_minor_patch}_x64.dmg"
   name "4K Video Downloader"
@@ -23,4 +23,8 @@ cask "4k-video-downloader" do
     "~/Library/Preferences/com.openmedia.4kvideodownloader.plist",
     "~/Library/Saved Application State/com.openmedia.4kvideodownloader.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,5 +1,5 @@
 cask "megazeux" do
-  version "2.93"
+  version "2.93d"
   sha256 :no_check
 
   url "https://www.digitalmzx.com/download.php?latest=osx"
@@ -8,8 +8,8 @@ cask "megazeux" do
   homepage "https://www.digitalmzx.com/"
 
   livecheck do
-    url "https://github.com/AliceLR/megazeux"
-    strategy :git
+    url "https://www.digitalmzx.com/megazeux.php"
+    regex(/href=["'][^"' >]*?download\.php\?latest=osx["' ][^>]*?>\s*v?(\d+(?:\.\d+)+[a-z]?)\s*</im)
   end
 
   app "MegaZeux.app"

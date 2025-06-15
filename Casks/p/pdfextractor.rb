@@ -11,6 +11,8 @@ cask "pdfextractor" do
     regex(/Version\s+(\d+(?:\.\d+)+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "PDFExtractor.app"
@@ -19,4 +21,8 @@ cask "pdfextractor" do
     "~/Library/Preferences/com.briksoftware.pdfextractor.plist",
     "~/Library/Saved Application State/com.briksoftware.pdfextractor.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "qownnotes" do
-  version "24.5.9"
-  sha256 "d8d90c6b1b26c85e048af7e9e3b71ac511826289c8b9dc7b5fc6b170a82ee816"
+  version "25.6.1"
+  sha256 "b02d123dbd7792b0d0764c67ce60412dbcf4665c1041f03fbe42742d81f2e391"
 
   url "https://github.com/pbek/QOwnNotes/releases/download/v#{version}/QOwnNotes.dmg",
       verified: "github.com/pbek/QOwnNotes/"
@@ -14,7 +14,7 @@ cask "qownnotes" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :high_sierra"
 
   app "QOwnNotes.app"
 
@@ -22,4 +22,8 @@ cask "qownnotes" do
     "~/Library/Preferences/com.pbe.QOwnNotes.plist",
     "~/Library/Saved Application State/com.PBE.QOwnNotes.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

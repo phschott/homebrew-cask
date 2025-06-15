@@ -1,10 +1,9 @@
 cask "font-liberation-nerd-font" do
-  version "3.2.1"
-  sha256 "7be6c701399ad4c69225f0fa632ad7adb8ba999a2ca5b8a208a9dfd2bc25649f"
+  version "3.4.0"
+  sha256 "c9c25282d2d4c8eda098fc009e69cd62de35f599927939cb091275a4493eeb55"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/LiberationMono.zip"
   name "Literation Nerd Font families (Liberation Mono)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

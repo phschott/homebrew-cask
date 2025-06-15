@@ -12,6 +12,8 @@ cask "textbar" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "TextBar.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "textbar" do
     "~/Library/Caches/com.RichSomerfield.TextBar",
     "~/Library/Preferences/com.RichSomerfield.TextBar.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

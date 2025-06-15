@@ -1,48 +1,31 @@
 cask "microsoft-edge" do
-  linkid = on_arch_conditional arm: "2093504", intel: "2069148"
+  version "137.0.3296.83,ce5492c7-7fd4-48a8-9702-7b9d5672c08e"
+  sha256 "4b913e7938964641cd681ce70f234496c7297255d03b72e9d2aa79af5d7518e3"
 
-  on_arm do
-    version "125.0.2535.67,1f54c158-9eb1-4a0a-81d7-85f728cd3268"
-    sha256 "c6c2f71782e744f9dda968bca701cf8b6fbe7e6f1cf5ffe166aaf8c86453bfb7"
-  end
-  on_intel do
-    version "125.0.2535.67,db13481c-73b5-4f62-84f9-a2593f02a1c4"
-    sha256 "d9ea8486814236b9a66f4f237efe385389772c9432a59cb406feeb1cb57909d2"
-  end
-
-  url "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/#{version.csv.second}/MicrosoftEdge-#{version.csv.first}.pkg"
+  url "https://msedge.sf.dl.delivery.mp.microsoft.com/filestreamingservice/files/#{version.csv.second}/MicrosoftEdge-#{version.csv.first}.dmg"
   name "Microsoft Edge"
-  desc "Web browser"
+  desc "Multi-platform web browser"
   homepage "https://www.microsoft.com/en-us/edge?form="
 
   livecheck do
-    url "https://go.microsoft.com/fwlink/?linkid=#{linkid}"
-    regex(%r{/([^/]+)/MicrosoftEdge[._-]v?(\d+(?:\.\d+)+)\.pkg}i)
+    url "https://go.microsoft.com/fwlink/?linkid=2192091"
+    regex(%r{/([^/]+)/MicrosoftEdge[._-]v?(\d+(?:\.\d+)+)\.dmg}i)
     strategy :header_match do |headers, regex|
-      headers["location"].scan(regex).map { |match| "#{match[1]},#{match[0]}" }
+      match = headers["location"]&.match(regex)
+      next if match.blank?
+
+      "#{match[2]},#{match[1]}"
     end
   end
 
   auto_updates true
+  depends_on macos: ">= :big_sur"
 
-  pkg "MicrosoftEdge-#{version.csv.first}.pkg",
-      choices: [
-        {
-          "choiceIdentifier" => "com.microsoft.package.Microsoft_AutoUpdate.app", # Office16_all_autoupdate.pkg
-          "choiceAttribute"  => "selected",
-          "attributeSetting" => 0,
-        },
-      ]
+  app "Microsoft Edge.app"
 
-  uninstall launchctl: [
-              "com.microsoft.EdgeUpdater.update-internal.109.0.1518.89.system",
-              "com.microsoft.EdgeUpdater.update.system",
-              "com.microsoft.EdgeUpdater.wake.system",
-            ],
-            pkgutil:   "com.microsoft.edgemac"
+  uninstall launchctl: "com.microsoft.EdgeUpdater.wake"
 
-  zap delete: "/Library/Application Support/Microsoft/EdgeUpdater",
-      trash:  [
+  zap trash: [
         "~/Library/Application Scripts/com.microsoft.edgemac.wdgExtension",
         "~/Library/Application Support/Microsoft Edge",
         "~/Library/Application Support/Microsoft/EdgeUpdater",
@@ -50,12 +33,16 @@ cask "microsoft-edge" do
         "~/Library/Caches/com.microsoft.EdgeUpdater",
         "~/Library/Caches/Microsoft Edge",
         "~/Library/Containers/com.microsoft.edgemac.wdgExtension",
-        "~/Library/HTTPStorages/com.microsoft.edge*",
+        "~/Library/HTTPStorages/com.microsoft.edgemac",
+        "~/Library/HTTPStorages/com.microsoft.EdgeUpdater",
         "~/Library/LaunchAgents/com.microsoft.EdgeUpdater.*.plist",
-        "~/Library/Microsoft/EdgeUpdater",
+        "~/Library/Microsoft/MicrosoftSoftwareUpdate/Actives/com.microsoft.edgemac",
         "~/Library/Preferences/com.microsoft.edgemac.plist",
-        "~/Library/Saved Application State/com.microsoft.edgemac.*",
+        "~/Library/Saved Application State/com.microsoft.edgemac.savedState",
         "~/Library/WebKit/com.microsoft.edgemac",
       ],
-      rmdir:  "/Library/Application Support/Microsoft"
+      rmdir: [
+        "~/Library/Application Support/Microsoft",
+        "~/Library/Microsoft",
+      ]
 end

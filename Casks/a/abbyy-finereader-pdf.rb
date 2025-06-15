@@ -15,6 +15,8 @@ cask "abbyy-finereader-pdf" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :big_sur"
 
   app "ABBYY FineReader PDF.app"
@@ -30,4 +32,8 @@ cask "abbyy-finereader-pdf" do
     "~/Library/Saved Application State/com.abbyy.FineReader.savedState",
     "~/Library/Saved Application State/com.abbyy.FRPDFViewer.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

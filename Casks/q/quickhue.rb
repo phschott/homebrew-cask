@@ -7,10 +7,9 @@ cask "quickhue" do
   desc "Menu bar utility for controlling the Philips Hue lighting system"
   homepage "https://github.com/danparsons/QuickHue"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-04", because: :discontinued
 
   app "QuickHue.app"
 
@@ -19,4 +18,8 @@ cask "quickhue" do
     "~/Library/Caches/cat.moo.QuickHue",
     "~/Library/Preferences/cat.moo.QuickHue.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

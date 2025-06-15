@@ -1,6 +1,6 @@
 cask "wrike" do
-  version "4.3.1"
-  sha256 "bc279c0c30f8698e563a3830eecc05eec8e602f1785044a0e08fba2fe186d7a7"
+  version "4.5.2"
+  sha256 "433ddd4251c55a2ef963fe99acbf3eeddb8bae6b60837f52f46c0aa9242edbae"
 
   url "https://dl.wrike.com/download/WrikeDesktopApp.v#{version}.dmg"
   name "Wrike"
@@ -9,8 +9,18 @@ cask "wrike" do
 
   livecheck do
     url "https://www.wrike.com/frontend/electron-app/changelog.json"
-    regex(/"version"\s*:\s*"v?(\d+(?:\.\d+)+)(?:"|\s*\(for\s+Mac)/i)
+    regex(/^v?(\d+(?:\.\d+)+)(?:$|\s*\(for\s+Mac)/i)
+    strategy :json do |json, regex|
+      json.map do |item|
+        match = item["version"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
+
+  depends_on macos: ">= :catalina"
 
   app "Wrike for Mac.app"
 
@@ -20,4 +30,8 @@ cask "wrike" do
     "~/Library/Preferences/com.wrike.Wrike.plist",
     "~/Library/Saved Application State/com.wrike.Wrike.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

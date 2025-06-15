@@ -8,5 +8,11 @@ cask "armory" do
   desc "Python-Based Bitcoin Software"
   homepage "https://btcarmory.com/"
 
+  no_autobump! because: :requires_manual_review
+
   app "Armory.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -7,6 +7,10 @@ cask "crypter" do
   desc "Encryption software"
   homepage "https://github.com/HR/Crypter"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-10-27", because: :unmaintained
+
   app "Crypter.app"
 
   zap trash: [
@@ -15,4 +19,8 @@ cask "crypter" do
     "~/Library/Preferences/com.github.hr.crypter.plist",
     "~/Library/Saved Application State/com.github.hr.crypter.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

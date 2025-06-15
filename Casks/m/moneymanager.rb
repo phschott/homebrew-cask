@@ -1,6 +1,6 @@
 cask "moneymanager" do
-  version "1.8.12"
-  sha256 "66109eaaa473ea1635caad1e273f44dc83bfcf9eaa9d9206edebf41868f81a8d"
+  version "1.8.15"
+  sha256 "f658a86aed05b1ac3fd008527c6e6bfec557b3ffc745011fd04096291aebeab4"
 
   url "https://download.realbyteapps.com/MoneyManager-#{version}.dmg"
   name "MoneyManager"
@@ -26,4 +26,8 @@ cask "moneymanager" do
     "~/Library/Preferences/com.realbyteapps.moneymanagerpc.plist",
     "~/Library/Saved Application State/com.realbyteapps.moneymanagerpc.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

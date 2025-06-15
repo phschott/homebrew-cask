@@ -8,9 +8,13 @@ cask "diashapes" do
   desc "Additional shapes for Dia"
   homepage "http://dia-installer.de/shapes/index.html"
 
-  livecheck do
-    url "https://sourceforge.net/projects/dia-installer/rss?path=/diashapes"
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-09-09", because: :unmaintained
 
   app "Diashapes.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

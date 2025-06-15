@@ -12,6 +12,8 @@ cask "nteract" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "nteract.app"
@@ -25,4 +27,8 @@ cask "nteract" do
     "~/Library/Preferences/io.nteract.nteract.plist",
     "~/Library/Saved Application State/io.nteract.nteract.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

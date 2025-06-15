@@ -1,6 +1,6 @@
 cask "bike" do
-  version "1.18.4,179"
-  sha256 "2df4d7e6378d1c606319797890a9fcf46f73fddbaa5940ccf3b6840aa2388a5c"
+  version "1.22,192"
+  sha256 "b645efb49e902dcd20e00668291cb113a7a0b7228796a9b383a1ac9acb7e70e4"
 
   url "https://www.hogbaysoftware.com/bike/releases/#{version.csv.second}.dmg"
   name "Bike"
@@ -13,7 +13,7 @@ cask "bike" do
   end
 
   auto_updates true
-  depends_on macos: ">= :big_sur"
+  depends_on macos: ">= :monterey"
 
   app "Bike.app"
 

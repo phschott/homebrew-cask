@@ -1,7 +1,7 @@
 cask "marathon-2" do
   # NOTE: "2" is not a version number, but an intrinsic part of the product name
-  version "20240513"
-  sha256 "e051ce3ecb23a2e13d99d693073abe01af3b5d5a7dbd444a16d29dc9b13bb1bb"
+  version "20250302"
+  sha256 "0a38b01ca53d37ad03f401e28edebc44ef1473b400182c196060b538e5284396"
 
   url "https://github.com/Aleph-One-Marathon/alephone/releases/download/release-#{version}/Marathon2-#{version}-Mac.dmg",
       verified: "github.com/Aleph-One-Marathon/alephone/"

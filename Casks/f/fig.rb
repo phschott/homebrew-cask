@@ -7,12 +7,9 @@ cask "fig" do
   desc "Reimagine your terminal"
   homepage "https://fig.io/"
 
-  livecheck do
-    url "https://repo.fig.io/generic/stable/index.json"
-    strategy :json do |json|
-      json["hints"]["livecheck"]
-    end
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-08-03", because: :discontinued
 
   auto_updates true
   depends_on macos: ">= :high_sierra"

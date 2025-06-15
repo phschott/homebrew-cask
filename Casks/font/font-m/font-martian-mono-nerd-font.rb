@@ -1,10 +1,9 @@
 cask "font-martian-mono-nerd-font" do
-  version "3.2.1"
-  sha256 "a0bb5ab838bb2dcbcc2a7824e6a73505e8dc8f95f48183e056d82790108c32ea"
+  version "3.4.0"
+  sha256 "76efe59051015cd688d027995c0bca6f365c75438025ba065ac9c744e82c8095"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/MartianMono.zip"
   name "MartianMono Nerd Font (MartianMono)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

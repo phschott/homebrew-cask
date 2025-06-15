@@ -14,6 +14,8 @@ cask "copytranslator" do
     strategy :page_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "copytranslator.app"
@@ -28,4 +30,8 @@ cask "copytranslator" do
         "~/Library/Saved Application State/com.copytranslator.copytranslator.savedState",
       ],
       rmdir: "~/copytranslator/locales"
+
+  caveats do
+    requires_rosetta
+  end
 end

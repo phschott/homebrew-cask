@@ -13,6 +13,8 @@ cask "espresso" do
     regex(/data-title="(\d+(?:\.\d+)+)"/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "Espresso.app"
@@ -23,4 +25,8 @@ cask "espresso" do
     "~/Library/Preferences/com.kanagacode.espresso.plist",
     "~/Library/WebKit/com.kanagacode.espresso",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

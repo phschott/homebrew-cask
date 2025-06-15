@@ -1,6 +1,6 @@
 cask "aptible" do
-  version "0.19.9,20240529184158,403"
-  sha256 "19140e1faf0b6c3083afc9ee628245bc7013c539bfebe7198efb20d514bde362"
+  version "0.24.6,20250515202208,gh-54"
+  sha256 "8146d6b02acc6476d98202905640ad4beac4363c17acf537b89538274b00d256"
 
   url "https://omnibus-aptible-toolbelt.s3.amazonaws.com/aptible/omnibus-aptible-toolbelt/master/#{version.csv.third}/pkg/aptible-toolbelt-#{version.csv.first}%2B#{version.csv.second}-mac-os-x.10.15.7-1.pkg",
       verified: "omnibus-aptible-toolbelt.s3.amazonaws.com/"
@@ -10,7 +10,7 @@ cask "aptible" do
 
   livecheck do
     url :homepage
-    regex(%r{href=.*?/(\d+)/pkg/aptible-toolbelt[._-]v?(\d+(?:\.\d+)+)%2B(\d+)[._-]mac}i)
+    regex(%r{href=.*?/((?:gh-)?\d+)/pkg/aptible-toolbelt[._-]v?(\d+(?:\.\d+)+)%2B(\d+)[._-]mac}i)
     strategy :page_match do |page, regex|
       page.scan(regex).map { |match| "#{match[1]},#{match[2]},#{match[0]}" }
     end

@@ -19,6 +19,8 @@ cask "the-archive-browser" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "The Archive Browser.app"
@@ -31,4 +33,8 @@ cask "the-archive-browser" do
         "~/Library/Application Support/The Archive Browser",
         "~/Library/Caches/cx.c3.thearchivebrowser",
       ]
+
+  caveats do
+    requires_rosetta
+  end
 end

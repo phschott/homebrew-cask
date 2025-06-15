@@ -16,5 +16,12 @@ cask "ipepresenter" do
     regex(/href=.*?ipepresenter[._-](\d+(?:\.\d+)+)[._-]mac[._-]#{arch}\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "IpePresenter.app"
+
+  zap trash: [
+    "~/Library/Preferences/org.otfried.ipe.IpePresenter.plist",
+    "~/Library/Saved Application State/org.otfried.ipe.IpePresenter.savedState",
+  ]
 end

@@ -1,6 +1,6 @@
 cask "elgato-stream-deck" do
-  version "6.6.1.20596"
-  sha256 "67bc1fd54be53b789b98603079fbb939997a3828691b720f6e654e904b013d5c"
+  version "6.9.1.21711"
+  sha256 "f491192afb2d7cb904eaeeda68c5df5dcd3b6c204381b18ed1e3adff0c701995"
 
   url "https://edge.elgato.com/egc/macos/sd/Stream_Deck_#{version}.pkg"
   name "Elgato Stream Deck"

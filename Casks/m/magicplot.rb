@@ -12,10 +12,16 @@ cask "magicplot" do
     regex(/href=.*?MagicPlot(\d+(?:\.\d+)*)\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MagicPlot#{version}.app"
 
   zap trash: [
     "~/Library/Application Support/MagicPlot",
     "~/Library/Saved Application State/com.magicplot.MagicPlot.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

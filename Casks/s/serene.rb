@@ -13,6 +13,8 @@ cask "serene" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Serene.app"
 
   zap trash: [
@@ -20,4 +22,8 @@ cask "serene" do
     "~/Library/Logs/Serene",
     "~/Library/Saved Application State/com.vh.sereneapp.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

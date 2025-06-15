@@ -12,11 +12,14 @@ cask "freesurfer" do
     regex(/v(\d+(?:\.\d+)+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   suite "freesurfer"
 
   zap trash: "~/Library/Preferences/edu.harvard.mgh.nmr.FreeView.plist"
 
   caveats do
+    requires_rosetta
     free_license "https://surfer.nmr.mgh.harvard.edu/registration.html"
   end
 end

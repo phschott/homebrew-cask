@@ -13,15 +13,13 @@ cask "propresenter" do
         end
       end
     end
-
-    depends_on macos: ">= :big_sur"
   end
   on_monterey :or_newer do
-    version "7.16.2,118489613"
-    sha256 "f58d7c547ef8a950d79c42db9b6b49675c1f48efa5ff339294a6c5f6ad5e790e"
+    version "18.4,302252046"
+    sha256 "fcfb4f9391002065a1f807a1476f51defbcc07b50720f27e0400fedb6952b697"
 
     livecheck do
-      url "https://api.renewedvision.com/v1/pro/upgrade?platform=macos&osVersion=#{MacOS.full_version}&appVersion=0&buildNumber=0&includeNotes=0"
+      url "https://api.renewedvision.com/v1/pro/upgrade?platform=macos&osVersion=99&appVersion=0&buildNumber=0&includeNotes=0"
       strategy :json do |json|
         json["upgrades"]&.map do |item|
           next if item["version"].blank? || item["buildNumber"].blank?
@@ -30,8 +28,6 @@ cask "propresenter" do
         end
       end
     end
-
-    depends_on macos: ">= :monterey"
   end
 
   url "https://renewedvision.com/downloads/propresenter/mac/ProPresenter_#{version.csv.first}_#{version.csv.second}.zip"
@@ -41,6 +37,7 @@ cask "propresenter" do
 
   auto_updates true
   conflicts_with cask: "propresenter@beta"
+  depends_on macos: ">= :big_sur"
 
   app "ProPresenter.app"
 

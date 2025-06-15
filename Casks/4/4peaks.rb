@@ -12,6 +12,8 @@ cask "4peaks" do
     regex(/"product-version">v?\s+?(\d+(?:\.\d+)+)[\s<]/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "4Peaks.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "4peaks" do
     "~/Library/Preferences/com.mekentosj.4peaks.plist",
     "~/Library/Saved Application State/com.mekentosj.4peaks.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

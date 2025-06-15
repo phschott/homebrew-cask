@@ -4,7 +4,6 @@ cask "font-fira-code" do
 
   url "https://github.com/tonsky/FiraCode/releases/download/#{version}/Fira_Code_v#{version}.zip"
   name "Fira Code"
-  desc "Free monospaced font with programming ligatures"
   homepage "https://github.com/tonsky/FiraCode"
 
   font "ttf/FiraCode-Bold.ttf"
@@ -13,6 +12,7 @@ cask "font-fira-code" do
   font "ttf/FiraCode-Regular.ttf"
   font "ttf/FiraCode-Retina.ttf"
   font "ttf/FiraCode-SemiBold.ttf"
+  font "variable_ttf/FiraCode-VF.ttf"
 
   # No zap stanza required
 end

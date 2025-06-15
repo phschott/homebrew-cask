@@ -6,7 +6,15 @@ cask "nativedisplaybrightness" do
   name "NativeDisplayBrightness"
   homepage "https://github.com/Bensge/NativeDisplayBrightness/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-27", because: :unmaintained
+
   app "NativeDisplayBrightness.app"
 
   uninstall quit: "com.bensge.NativeDisplayBrightness"
+
+  caveats do
+    requires_rosetta
+  end
 end

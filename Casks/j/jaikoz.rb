@@ -1,7 +1,7 @@
 cask "jaikoz" do
   arch arm: "-m1"
 
-  version "11.8,1.0"
+  version "12.4"
   sha256 :no_check
 
   url "https://www.jthink.net/jaikoz/jsp/manualdownload/jaikoz-osx#{arch}.dmg"
@@ -10,9 +10,11 @@ cask "jaikoz" do
   homepage "https://www.jthink.net/jaikoz/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://www.jthink.net/jaikoz/jsp/download/start.jsp"
+    regex(/Jaikoz\s+v?(\d+(?:\.\d+)+)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :sierra"
 

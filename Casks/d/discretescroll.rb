@@ -1,11 +1,13 @@
 cask "discretescroll" do
-  version "1.0.1"
-  sha256 "e93595d2ad8f2cd7eaace41582d4734e4de19f547cf9d524724a5f30cb4a4b61"
+  version "1.2.1"
+  sha256 "f2cc275e4537811bf35b2cec2128c086eefbe613c3b79b08819f4f966f1f7a60"
 
   url "https://github.com/emreyolcu/discrete-scroll/releases/download/v#{version}/DiscreteScroll.zip"
   name "DiscreteScroll"
   desc "Utility to fix a common scroll wheel problem"
   homepage "https://github.com/emreyolcu/discrete-scroll"
+
+  no_autobump! because: :requires_manual_review
 
   app "DiscreteScroll.app"
 

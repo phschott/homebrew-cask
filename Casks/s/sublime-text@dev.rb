@@ -1,7 +1,7 @@
 cask "sublime-text@dev" do
   # NOTE: The first digit of the build number is the major version.
-  version "4175"
-  sha256 "dc53a38f0062fb821e4c11f627bd4c4f46b5f6530d9db9d0061701c7851df692"
+  version "4199"
+  sha256 "c258595c8eb1c5a78f24e10e5bf67778cab3dd87c1b6c18e12286be355e0a919"
 
   url "https://download.sublimetext.com/sublime_text_build_#{version}_mac.zip"
   name "Sublime Text"
@@ -9,8 +9,10 @@ cask "sublime-text@dev" do
   homepage "https://www.sublimetext.com/dev"
 
   livecheck do
-    url "https://www.sublimetext.com/download_thanks_dev?target=mac"
-    regex(/href=.*?v?(\d+)_mac\.zip/i)
+    url "https://www.sublimetext.com/updates/#{version[0]}/dev_update_check"
+    strategy :json do |json|
+      json["latest_version"]&.to_s
+    end
   end
 
   auto_updates true

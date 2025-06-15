@@ -7,10 +7,16 @@ cask "crunch" do
   desc "PNG image optimiser"
   homepage "https://github.com/chrissimpkins/Crunch"
 
+  no_autobump! because: :requires_manual_review
+
   app "Crunch.app"
 
   zap trash: [
     "~/Library/Preferences/com.csimpkins.Crunch.plist",
     "~/Library/Saved Application State/com.csimpkins.Crunch.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

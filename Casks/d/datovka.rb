@@ -1,12 +1,12 @@
 cask "datovka" do
   arch arm: "arm64-macos13.3", intel: "64bit-macos10.12"
 
-  version "4.23.8"
-  sha256 arm:   "63914fffd0eda78f0dac09dd24f3b50a6f1bb422b349d992be898cad7e183559",
-         intel: "d62e6745c0cf2156778a101c554bd08df2618ccbd869d97d3709e71fe1c9dcbd"
+  version "4.26.0"
+  sha256 arm:   "aaad641f75ef07bc93f08ee788696e0b4da95e6bec64e19acd4da046526e1869",
+         intel: "b7fd62f7e73fec1c1f7c54d8f7bd477df2b4a6988a1a5817eea30dcfb5406d8a"
 
-  url "https://secure.nic.cz/files/datove_schranky/#{version}/datovka-#{version}-#{arch}.dmg",
-      verified: "secure.nic.cz/files/datove_schranky/"
+  url "https://datovka.nic.cz/#{version}/datovka-#{version}-#{arch}.dmg",
+      verified: "datovka.nic.cz/"
   name "Datovka"
   desc "Access and store data messages in a local database"
   homepage "https://www.datovka.cz/"

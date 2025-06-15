@@ -11,10 +11,9 @@ cask "devbook" do
   desc "Search engine for developers"
   homepage "https://usedevbook.com/"
 
-  livecheck do
-    url "https://download.todesktop.com/2102273jsy18baz/latest-mac.yml"
-    strategy :electron_builder
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-10", because: :discontinued
 
   auto_updates true
 

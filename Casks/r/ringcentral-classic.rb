@@ -12,6 +12,8 @@ cask "ringcentral-classic" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   # Renamed for consistency: app name is different in the Finder and in a shell.
   app "Glip.app", target: "RingCentral Classic.app"
 
@@ -28,4 +30,8 @@ cask "ringcentral-classic" do
     "~/Library/Preferences/com.Glip.Glip.plist",
     "~/Library/Saved Application State/com.Glip.Glip.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

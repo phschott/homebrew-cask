@@ -8,11 +8,19 @@ cask "licensed" do
   homepage "https://amarsagoo.info/licensed/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url :homepage
+    regex(%r{>\s*Version\s*v?(\d+(?:\.\d+)+)[^<]*</}i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :high_sierra"
 
   app "Licensed.app"
+
+  zap trash: [
+    "~/Library/Application Support/Licensed",
+    "~/Library/Preferences/com.asagoo.licensed.plist",
+    "~/Library/Saved Application State/com.asagoo.licensed.savedState",
+  ]
 end

@@ -1,5 +1,5 @@
 cask "macx-dvd-ripper-pro" do
-  version "6.8.2"
+  version "6.8.3"
   sha256 :no_check
 
   url "https://www.macxdvd.com/download/macx-dvd-ripper-pro.dmg"
@@ -12,6 +12,8 @@ cask "macx-dvd-ripper-pro" do
     regex(/Version:\s+(\d+(?:\.\d+)*)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MacX DVD Ripper Pro.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "macx-dvd-ripper-pro" do
     "~/Library/Preferences/com.macxdvd.macxvideoconverterpro.plist",
     "~/Library/Saved Application State/com.macxdvd.macxvideoconverterpro.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

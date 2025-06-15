@@ -6,12 +6,9 @@ cask "clix" do
   name "CLIX"
   homepage "https://rixstep.com/4/0/clix/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist do |items|
-      items["com.rixstep.CLIX"].version
-    end
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-08-05", because: :no_longer_available
 
   app "CLIX/CLIX.app"
 
@@ -21,5 +18,9 @@ cask "clix" do
 
   postflight do
     set_permissions "#{appdir}/CLIX/CLIX.app", "0700"
+  end
+
+  caveats do
+    requires_rosetta
   end
 end

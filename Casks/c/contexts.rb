@@ -17,14 +17,14 @@ cask "contexts" do
         item.version.chars.join(".")
       end
     end
-
-    depends_on macos: ">= :catalina"
   end
 
   url "https://contexts.co/releases/Contexts-#{version}.dmg"
   name "Contexts"
   desc "Allows switching between application windows"
   homepage "https://contexts.co/"
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
 

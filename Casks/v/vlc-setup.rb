@@ -12,6 +12,8 @@ cask "vlc-setup" do
     regex(/VLCSetup[._-](\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "VLC Setup.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "vlc-setup" do
     "~/Library/Preferences/com.HobbyistSoftware.VLCSetup.plist",
     "~/Library/Saved Application State/com.HobbyistSoftware.VLCSetup.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

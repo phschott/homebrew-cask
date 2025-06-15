@@ -1,9 +1,9 @@
 cask "1password@beta" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "8.10.34-26.BETA"
-  sha256 arm:   "641ba0b09e9e1b5a30966422e6fbd07cf2b8ce6e730e444bf0a3f30a625d8fbc",
-         intel: "a73867968c374d7d5d9b455bb8070514daf81a6f69c38b06f59b14d1f9d7ee69"
+  version "8.10.82-27.BETA"
+  sha256 arm:   "3e26ed2292a9ca9d3e8e4cd9f6874da30e867b0fdf8d6cbd12f74881e7b0a40e",
+         intel: "8c2c733f146f6fb82384379955c4dcb840f8378dfa689b22be97e069ef5d55cd"
 
   url "https://downloads.1password.com/mac/1Password-#{version}-#{arch}.zip"
   name "1Password"
@@ -11,8 +11,10 @@ cask "1password@beta" do
   homepage "https://1password.com/"
 
   livecheck do
-    url "https://app-updates.agilebits.com/product_history/OPM#{version.major}"
-    regex(%r{href=.*?/1Password[._-]?v?(\d+(?:.\d+)*(?:[._-]BETA))[._-]?\$ARCH\.zip}i)
+    url "https://app-updates.agilebits.com/check/2/99/#{arch}/OPM#{version.major}/en/0/A1/Y"
+    strategy :json do |json|
+      json["version"]
+    end
   end
 
   auto_updates true
@@ -20,7 +22,7 @@ cask "1password@beta" do
     "1password",
     "1password@nightly",
   ]
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :monterey"
 
   app "1Password.app"
 

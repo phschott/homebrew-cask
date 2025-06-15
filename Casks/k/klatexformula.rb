@@ -8,10 +8,16 @@ cask "klatexformula" do
   desc "Generate images from LaTeX equations"
   homepage "https://klatexformula.sourceforge.io/"
 
+  no_autobump! because: :requires_manual_review
+
   app "klatexformula.app"
 
   zap trash: [
     "~/Library/Preferences/org.klatexformula.klatexformula.plist",
     "~/Library/Saved Application State/org.klatexformula.klatexformula.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

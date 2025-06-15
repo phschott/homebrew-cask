@@ -1,6 +1,6 @@
 cask "coherence-x" do
-  version "4.7"
-  sha256 "af8feb15453ea3b2feeadace1b307416df40b0896f8c42cd075173defcf2f5c8"
+  version "4.7.1"
+  sha256 "c3dae3759ff13e08e8fc6693030563057084dbf56a37df18e9ff5ee9fb108e4b"
 
   url "https://bzgdownloads.s3.amazonaws.com/Coherence/Coherence+X+#{version}.zip",
       verified: "bzgdownloads.s3.amazonaws.com/Coherence/"
@@ -13,13 +13,21 @@ cask "coherence-x" do
     strategy :sparkle
   end
 
-  depends_on macos: ">= :high_sierra"
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Coherence X.app"
 
   zap trash: [
-    "~/Library/Application Support/ccom.BZG.CoherenceX*",
     "~/Library/Application Support/Coherence X",
-    "~/Library/Preferences/com.BZG.CoherenceX*",
+    "~/Library/Application Support/com.BZG.CoherenceX#{version.major}",
+    "~/Library/Caches/com.BZG.CoherenceX#{version.major}",
+    "~/Library/HTTPStorages/com.BZG.CoherenceX#{version.major}",
+    "~/Library/HTTPStorages/com.BZG.CoherenceX#{version.major}.binarycookies",
+    "~/Library/Preferences/com.BZG.CoherenceX#{version.major}.plist",
+    "~/Library/Saved Application State/com.BZG.CoherenceX#{version.major}.savedState",
+    "~/Library/WebKit/com.BZG.CoherenceX#{version.major}",
   ]
 end

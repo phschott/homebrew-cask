@@ -1,6 +1,6 @@
 cask "memory-clean-3" do
   # NOTE: "3" is not a version number, but an intrinsic part of the product name
-  version "1.0.24,10.24"
+  version "1.0.24"
   sha256 :no_check
 
   url "https://fiplab.com/app-download/Memory_Clean_3.zip"
@@ -9,9 +9,13 @@ cask "memory-clean-3" do
   homepage "https://fiplab.com/apps/memory-clean-3-for-mac"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://api.appcenter.ms/v0.1/public/sparkle/apps/386e625b-eaba-4248-8398-1802cf24cbb2"
+    strategy :sparkle, &:short_version
   end
+
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
 
   app "Memory Clean 3.app"
 

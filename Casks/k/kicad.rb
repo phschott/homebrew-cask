@@ -1,8 +1,8 @@
 cask "kicad" do
-  version "8.0.2"
-  sha256 "cfce083d69205d5f53cbde7fdfebd63d3b0d2006ea8336ab0da83f6308f3daf2"
+  version "9.0.2"
+  sha256 "4c5e28dd755c86a02f7934682d6ff1797c1c098079c599d5092dd285768c848e"
 
-  url "https://github.com/KiCad/kicad-source-mirror/releases/download/#{version}/kicad-unified-universal-#{version}-1.dmg",
+  url "https://github.com/KiCad/kicad-source-mirror/releases/download/#{version}/kicad-unified-universal-#{version}.dmg",
       verified: "github.com/KiCad/kicad-source-mirror/"
   name "KiCad"
   desc "Electronics design automation suite"

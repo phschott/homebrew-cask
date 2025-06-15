@@ -1,9 +1,9 @@
 cask "flox" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "1.0.6"
-  sha256 arm:   "2455534134ebbd1b19f6f8e3a733b3f739909f84ce355e40aa8ca20a53ab3116",
-         intel: "90f54ca359568f5c8d75e9bb40497ff04346cbdb56ca8e42509247493371277b"
+  version "1.4.4"
+  sha256 arm:   "8e762ba5cc0c27452379f471860511db9d82ebe8dba695cd7ccb0f085ad96aa4",
+         intel: "cd62981613c641a394616162078a9bcf1a32bb505fe033181e7fac5173bbb87a"
 
   url "https://downloads.flox.dev/by-env/stable/osx/flox-#{version}.#{arch}-darwin.pkg"
   name "flox"
@@ -20,28 +20,30 @@ cask "flox" do
 
   pkg "flox-#{version}.#{arch}-darwin.pkg"
 
-  uninstall early_script: {
-              executable:   "/usr/bin/killall",
-              args:         ["-9", "pkgdb"],
-              sudo:         true,
-              must_succeed: false,
-            },
-            launchctl:    [
+  uninstall launchctl: [
               "org.nixos.darwin-store",
               "org.nixos.nix-daemon",
             ],
-            quit:         [
+            quit:      [
               "org.nixos.darwin-store",
               "org.nixos.nix-daemon",
             ],
-            script:       {
+            script:    {
               executable: "/usr/local/share/flox/scripts/uninstall",
               sudo:       true,
             },
-            pkgutil:      "com.floxdev.flox"
+            pkgutil:   "com.floxdev.flox"
 
-  zap trash: [
-    "~/.cache/flox",
-    "~/.config/flox",
-  ]
+  zap script: {
+        executable: "/usr/local/share/flox/scripts/uninstall_zap",
+        args:       ["--zap"],
+        sudo:       true,
+      },
+      trash:  [
+        "/etc/flox-version.update",
+        "/etc/nix/nix.conf.bak",
+        "/usr/local/share/flox/scripts/uninstall_zap",
+        "~/.cache/flox",
+        "~/.config/flox",
+      ]
 end

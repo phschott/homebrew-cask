@@ -6,10 +6,13 @@ cask "dejalu" do
   name "DejaLu"
   homepage "https://dejalu.me/"
 
-  livecheck do
-    url "https://d.dejalu.me/dejalu-eKTEtTljm4/sparkle.xml"
-    strategy :sparkle
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-10", because: :unmaintained
 
   app "DejaLu.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

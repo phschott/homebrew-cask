@@ -7,5 +7,13 @@ cask "mks" do
   desc "Mechanical keyboard simulator"
   homepage "https://github.com/x0054/MKS"
 
+  no_autobump! because: :requires_manual_review
+
   app "MKS.app"
+
+  zap trash: "~/Library/Preferences/com.zynath.MKS.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

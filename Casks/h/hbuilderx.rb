@@ -1,8 +1,11 @@
 cask "hbuilderx" do
-  version "4.15.2024050802"
-  sha256 "681c41db86e4a638d360a06571b56558f933c2f825af57cbac14f2a53d8f8136"
+  arch arm: ".arm64"
 
-  url "https://download1.dcloud.net.cn/download/HBuilderX.#{version}.dmg",
+  version "4.66.2025051912"
+  sha256 arm:   "5bbee3a496f770c846ea7dc1bd6014acb1d1a55c5b278d07ee916bb216d07f5f",
+         intel: "ad5e42d34356cea237d516ae8861e86578488ba38bb45251a0badc5ff6905d71"
+
+  url "https://download1.dcloud.net.cn/download/HBuilderX.#{version}#{arch}.dmg",
       verified: "download1.dcloud.net.cn/download/"
   name "HBuilderX"
   desc "HTML editor"

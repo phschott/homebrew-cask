@@ -1,19 +1,22 @@
 cask "subler" do
-  version "1.7.5"
-  sha256 "3596dad190deae9dfcdd6bac68a477def27df407e97f6870553b4640c08fd0b6"
+  version "1.8.8"
+  sha256 "1f98ba2a31514d8eca319a0b3bb319827eea17facfd17e755fc6c1481da82d1f"
 
-  url "https://bitbucket.org/galad87/subler/downloads/Subler-#{version}.zip",
-      verified: "bitbucket.org/galad87/subler/"
+  url "https://github.com/SublerApp/Subler/releases/download/#{version}/Subler-#{version}.zip",
+      verified: "github.com/SublerApp/Subler/"
   name "Subler"
   desc "Mux and tag mp4 files"
   homepage "https://subler.org/"
 
   livecheck do
     url "https://subler.org/appcast/appcast.xml"
-    regex(/url=.*?Subler[._-]v?(\d+(?:\.\d+)+)\.zip/i)
+    strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Subler.app"
 

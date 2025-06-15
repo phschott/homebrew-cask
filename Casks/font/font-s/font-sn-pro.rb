@@ -1,11 +1,10 @@
 cask "font-sn-pro" do
-  version "1.1.0"
-  sha256 "b8953185881a741e62912033d0fdc0ad99f31e470c6a51c07859f883ec26ee19"
+  version "1.5.0"
+  sha256 "e8f7678e7b78a2ed9fd1efbbd7404e7722e6d1b93911550493f5381b1e7f0e31"
 
   url "https://github.com/supernotes/sn-pro/releases/download/#{version}/SN-Pro.zip",
       verified: "github.com/supernotes/sn-pro/"
   name "SN Pro Font Family"
-  desc "SN Pro is a friendly sans serif typeface optimized for use with Markdown"
   homepage "https://supernotes.app/open-source/sn-pro"
 
   livecheck do

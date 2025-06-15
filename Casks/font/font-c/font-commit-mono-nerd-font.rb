@@ -1,10 +1,9 @@
 cask "font-commit-mono-nerd-font" do
-  version "3.2.1"
-  sha256 "99e3e1b6126191cc0f7e49ede5dc20b65a6b8ca808da0139b5669e412632bf8d"
+  version "3.4.0"
+  sha256 "fa658c4056a304398aea6459146700383a64a82d5bd6ece267e1375e7aa67f23"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/CommitMono.zip"
   name "CommitMono Nerd Font (Commit Mono)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

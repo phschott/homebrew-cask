@@ -1,6 +1,6 @@
 cask "qspace-pro" do
-  version "4.3.2"
-  sha256 "91729d1e43d68e0b70e6bf56a1255804d8e28780efbaeffd7558145771649840"
+  version "5.3.4"
+  sha256 "b3665148e3e9c5960ef467eaed1bab0e5645eadbc07f76a66b4ffa4755cf78bf"
 
   url "https://cdn.awehunt.com/qs/rel/QSpace%20Pro_V#{version}.dmg"
   name "QSpace Pro"
@@ -13,7 +13,7 @@ cask "qspace-pro" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sierra"
+  depends_on macos: ">= :high_sierra"
 
   app "QSpace Pro.app"
 

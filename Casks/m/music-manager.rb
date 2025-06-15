@@ -7,10 +7,9 @@ cask "music-manager" do
   desc "Upload music to the Google Music library"
   homepage "https://play.google.com/music/listen"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-06", because: :no_longer_available
 
   # Renamed for consistency: app name is different in the Finder and in a shell.
   # Original discussion: https://github.com/Homebrew/homebrew-cask/pull/4282

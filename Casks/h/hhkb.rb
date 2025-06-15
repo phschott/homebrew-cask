@@ -10,8 +10,10 @@ cask "hhkb" do
 
   livecheck do
     url "https://happyhackingkb.com/download/"
-    regex(/macOS\s+:\s+Version\s+(\d+(?:\.\d+)+)/i)
+    regex(%r{macOS\s*</td>.*?HHKBkeymapTool[._-]v?\d+(?:\.\d+)*[^.]*?\.dmg.*?>\s*v?(\d+(?:\.\d+)+)\s*<}im)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :mojave"
 

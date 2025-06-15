@@ -1,9 +1,9 @@
 cask "screaming-frog-seo-spider" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "20.1"
-  sha256 arm:   "a39d20ba77e1423840a60318bc91e8831c9b182b4c5fd4ca87ee7f5cf85d0611",
-         intel: "88d33be6bb195ec3a83cfc8c139263e11a3f8e33d39ea47a78c4ec4a0dc25003"
+  version "22.0"
+  sha256 arm:   "2b3760f43875622e3f642fc85249ae53ddf67f4525337ac21ddc209fd6eed78d",
+         intel: "12aa254d60932c37a0b967896ec3098edfae3d2b2e5e03a4461ec6b33b06a00d"
 
   url "https://download.screamingfrog.co.uk/products/seo-spider/ScreamingFrogSEOSpider-#{version}-#{arch}.dmg"
   name "Screaming Frog SEO Spider"
@@ -21,6 +21,6 @@ cask "screaming-frog-seo-spider" do
 
   zap trash: [
     "~/.ScreamingFrogSEOSpider",
-    "~/Library/Application Support/uk.co.screamingfrog.seospider.ui.b/",
+    "~/Library/Application Support/uk.co.screamingfrog.seospider.ui.b",
   ]
 end

@@ -12,6 +12,8 @@ cask "hermit-crab" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Hermit Crab.app"
@@ -19,4 +21,8 @@ cask "hermit-crab" do
   uninstall quit: "com.belkadan.Hermit-Crab"
 
   zap trash: "~/Library/Preferences/com.belkadan.Hermit-Crab.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

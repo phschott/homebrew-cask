@@ -1,6 +1,6 @@
 cask "little-navmap" do
-  version "3.0.6"
-  sha256 "aa7e1c02e59643bf2c39a56ec851232c3c1371b5c241b34cf4d7f6bd5717fd76"
+  version "3.0.17"
+  sha256 "8c1faacd96932bc2f6b05cb9fef74826bb8804010a6efe7768831be260afdfd2"
 
   url "https://github.com/albar965/littlenavmap/releases/download/v#{version}/LittleNavmap-macOS-#{version}.zip",
       verified: "github.com/albar965/littlenavmap/"
@@ -16,5 +16,10 @@ cask "little-navmap" do
     "~/Library/Saved Application State/com.yourcompany.littlenavmap.savedState",
   ]
 
-  caveats "The X-Plane plugin will be at #{staged_path} after installation."
+  caveats do
+    requires_rosetta
+    <<~EOS
+      "The X-Plane plugin will be at #{staged_path} after installation."
+    EOS
+  end
 end

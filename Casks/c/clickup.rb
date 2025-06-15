@@ -1,9 +1,9 @@
 cask "clickup" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.3.79,240105hz1mbg8s0"
-  sha256 arm:   "fd0a88bc4396f35e10409a07f4e5576acbc3fd787ed5639e076c6517ff263e34",
-         intel: "3fad667921e5abf3e40ac70419a7e4565bd452b50c359c39817f970b37095ce7"
+  version "3.5.120,250609kokr2q9fk"
+  sha256 arm:   "9e98d39fdd57153abf7cab5367f7081cc5523689c477f8888a82d42a10d1adc4",
+         intel: "3005af1ae8a1c159549c1ba8bc284c3e5dfa58b7f939cac968f341024c67259f"
 
   url "https://download.todesktop.com/221003ra4tebclw/ClickUp%20#{version.csv.first}%20-%20Build%20#{version.csv.second}-#{arch}.dmg",
       verified: "download.todesktop.com/221003ra4tebclw/"
@@ -16,7 +16,7 @@ cask "clickup" do
   livecheck do
     url "https://download.todesktop.com/221003ra4tebclw/latest-mac.yml"
     regex(/ClickUp\s*v?(\d+(?:\.\d+)+).*?Build\s*([a-z0-9]+)[._-]#{arch}\.dmg/i)
-    strategy :electron_builder do |yaml|
+    strategy :electron_builder do |yaml, regex|
       yaml["files"]&.map do |item|
         match = item["url"]&.match(regex)
         next if match.blank?
@@ -26,7 +26,8 @@ cask "clickup" do
     end
   end
 
-  depends_on macos: ">= :catalina"
+  auto_updates true
+  depends_on macos: ">= :big_sur"
 
   app "ClickUp.app"
 

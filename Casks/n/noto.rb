@@ -12,6 +12,8 @@ cask "noto" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Noto.app"
@@ -24,4 +26,8 @@ cask "noto" do
     "~/Library/Preferences/com.brunophilipe.Noto.plist",
     "~/Library/Saved Application State/com.brunophilipe.Noto.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

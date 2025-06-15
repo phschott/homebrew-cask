@@ -1,5 +1,5 @@
 cask "elmedia-player" do
-  version "8.18"
+  version "8.21"
   sha256 :no_check
 
   url "https://cdn.electronic.us/products/elmedia/mac/download/elmediaplayer.dmg"
@@ -11,6 +11,8 @@ cask "elmedia-player" do
     url "https://cdn.electronic.us/products/elmedia/mac/update/settings.xml"
     strategy :sparkle, &:short_version
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :sierra"

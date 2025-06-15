@@ -12,6 +12,8 @@ cask "airserver" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "AirServer.app"
@@ -21,4 +23,8 @@ cask "airserver" do
     "~/Library/Preferences/com.pratikkumar.airserver-mac.AirServer.plist",
     "~/Library/Preferences/com.pratikkumar.airserver-mac.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

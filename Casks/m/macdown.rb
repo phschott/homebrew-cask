@@ -19,6 +19,8 @@ cask "macdown" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "MacDown.app"
@@ -33,4 +35,8 @@ cask "macdown" do
     "~/Library/Saved Application State/com.uranusjr.macdown.savedState",
     "~/Library/WebKit/com.uranusjr.macdown",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

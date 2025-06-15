@@ -1,6 +1,6 @@
 cask "maxon" do
-  version "3.1"
-  sha256 "7e7ba5ef683d84dac6645eea1fa32e7d737f1225865adaec27da11bf17cf96a2"
+  version "2025.4.0"
+  sha256 "699102191be91cf2446e445334565cfd200e889391104b64e406fe0630c5f378"
 
   url "https://mx-app-blob-prod.maxon.net/mx-package-production/installer/macos/maxon/maxonapp/releases/#{version}/Maxon_App_#{version}_Mac.zip"
   name "Maxon App"
@@ -9,11 +9,15 @@ cask "maxon" do
 
   livecheck do
     url "https://packages.maxon.net/manifests?platform=macos&org=maxon&type=products&family=fuse"
-    regex(/"filename".+"Maxon_App[._-]v?(\d+(?:\.\d+)+)_Mac\.zip"/i)
+    strategy :json do |json|
+      json.map do |item|
+        item["version"]
+      end
+    end
   end
 
   installer script: {
-    executable: "#{staged_path}/Maxon App Installer.app/Contents/Scripts/install.sh",
+    executable: "#{staged_path}/Maxon_App_#{version}_Mac.app/Contents/MacOS/installbuilder.sh",
     sudo:       true,
   }
 
@@ -22,6 +26,7 @@ cask "maxon" do
               "com.maxon.mxredirect.agent",
               "com.redgiant.service",
             ],
+            quit:      "net.maxon.app-manager",
             delete:    [
               "/Applications/Maxon.app",
               "/Library/Application Support/Maxon",

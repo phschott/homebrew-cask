@@ -1,5 +1,5 @@
 cask "chrome-remote-desktop-host" do
-  version "125.0.6422.6"
+  version "137.0.7151.18"
   sha256 :no_check
 
   url "https://dl.google.com/chrome-remote-desktop/chromeremotedesktop.dmg"
@@ -29,7 +29,7 @@ cask "chrome-remote-desktop-host" do
               "com.google.pkg.ChromeRemoteDesktopHostUninstaller",
             ]
 
-  zap trash: "~/Library/Saved Application State/com.google.chromeremotedesktop.me2me-host-uninstaller.savedState/"
+  zap trash: "~/Library/Saved Application State/com.google.chromeremotedesktop.me2me-host-uninstaller.savedState"
 
   caveats do
     logout

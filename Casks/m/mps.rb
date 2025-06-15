@@ -1,9 +1,9 @@
 cask "mps" do
   arch arm: "macos-aarch64", intel: "macos"
 
-  version "2023.3,233.13135.979"
-  sha256 arm:   "133e5bae81d675a6ee7780efec18dd96dfed059dbfdd2ad4a1028d9956a1ec6e",
-         intel: "c1e46dcb3429772b164f423cedc644f388217d1e7310d682b2341f9e744333bf"
+  version "2025.1,251.23774.423"
+  sha256 arm:   "cb2aaa6311252a655ef55f813d3dff78890c2a10cf0aeff885018c316390486b",
+         intel: "1ddae8569c8a96beeb5e85d20f1eed9115ace532a1154b5624f526cb49ddeaa8"
 
   url "https://download.jetbrains.com/mps/#{version.major_minor}/MPS-#{version.csv.first}-#{arch}.dmg"
   name "JetBrains MPS"
@@ -13,17 +13,32 @@ cask "mps" do
   livecheck do
     url "https://data.services.jetbrains.com/products/releases?code=MPS&latest=true&type=release"
     strategy :json do |json|
-      json["MPS"].map do |release|
-        "#{release["version"]},#{release["build"]}"
+      json["MPS"]&.map do |release|
+        version = release["version"]
+        build = release["build"]
+        next if version.blank? || build.blank?
+
+        "#{version},#{build}"
       end
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :high_sierra"
 
-  app "MPS #{version.major_minor}.app", target: "MPS.app"
-  binary "#{appdir}/MPS.app/Contents/MacOS/mps"
+  app "MPS.app"
+  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
+  shimscript = "#{staged_path}/mps.wrapper.sh"
+  binary shimscript, target: "mps"
+
+  preflight do
+    File.write shimscript, <<~EOS
+      #!/bin/sh
+      exec '#{appdir}/MPS.app/Contents/MacOS/mps' "$@"
+    EOS
+  end
 
   zap trash: [
     "~/Library/Application Support/MPS#{version.csv.first.major_minor}",

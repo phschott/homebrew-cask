@@ -12,6 +12,8 @@ cask "zy-player" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "ZY Player.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "zy-player" do
     "~/Library/Preferences/com.hunlongyu.zy.plist",
     "~/Library/Saved Application State/com.hunlongyu.zy.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

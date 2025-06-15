@@ -8,10 +8,9 @@ cask "nvalt" do
   desc "Note taking app"
   homepage "https://brettterpstra.com/projects/nvalt/"
 
-  livecheck do
-    url "https://updates.designheresy.com/nvalt/updates.xml"
-    strategy :sparkle
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-27", because: :unmaintained
 
   app "nvALT.app"
 
@@ -19,4 +18,8 @@ cask "nvalt" do
     "~/Library/Application Support/Notational Velocity",
     "~/Library/Preferences/net.elasticthreads.nv.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

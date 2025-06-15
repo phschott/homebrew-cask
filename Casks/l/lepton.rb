@@ -8,6 +8,8 @@ cask "lepton" do
   desc "Snippet management app"
   homepage "https://hackjutsu.com/Lepton/"
 
+  no_autobump! because: :requires_manual_review
+
   app "Lepton.app"
 
   zap trash: [
@@ -16,4 +18,8 @@ cask "lepton" do
     "~/Library/Preferences/com.cosmox.lepton.plist",
     "~/Library/Saved Application State/com.cosmox.lepton.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -12,6 +12,8 @@ cask "sizeup" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "SizeUp.app"
@@ -20,4 +22,8 @@ cask "sizeup" do
     "~/Library/Application Support/SizeUp",
     "~/Library/Preferences/com.irradiatedsoftware.SizeUp.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

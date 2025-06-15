@@ -1,6 +1,6 @@
 cask "warp" do
-  version "0.2024.05.21.16.09.stable_02"
-  sha256 "70af3633bbce8ed0dd7d66da6336c71e472ac05f0bddcad503d8c9a2d9cfa57e"
+  version "0.2025.06.11.08.11.stable_01"
+  sha256 "b6a1e02ee6a18390078030b9be9d216e74003472fdac36e282fc34a30fa30c7b"
 
   url "https://app.warp.dev/download/brew?version=v#{version}"
   name "Warp"
@@ -10,7 +10,7 @@ cask "warp" do
   livecheck do
     url "https://releases.warp.dev/channel_versions.json"
     strategy :json do |json|
-      json["stable"]["version"][1..]
+      json.dig("stable", "version")&.delete_prefix("v")
     end
   end
 

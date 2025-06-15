@@ -12,6 +12,8 @@ cask "paparazzi" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Paparazzi!.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "paparazzi" do
     "~/Library/Preferences/org.derailer.Paparazzi.plist",
     "~/Library/Saved Application State/org.derailer.Paparazzi.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

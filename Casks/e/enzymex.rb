@@ -12,6 +12,8 @@ cask "enzymex" do
     regex(/\d+(?:\.\d+)+/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "EnzymeX.app"
 
   zap trash: [
@@ -20,4 +22,8 @@ cask "enzymex" do
     "~/Library/Preferences/com.mekentosj.enzymex.plist",
     "~/Library/Saved Application State/com.mekentosj.enzymex.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

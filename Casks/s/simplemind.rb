@@ -1,6 +1,6 @@
 cask "simplemind" do
-  version "2.4.0,b3040"
-  sha256 "a4bdc06dd3b3e18cf6e1df73f4a632bd6f19cc8ee0016b3c8ed8920f361052c8"
+  version "2.6.1,b3092"
+  sha256 "90995a92dabc878fc80f0fb9acd439e6bd8ab803ca2e5bbbc0fd51e9168ff05d"
 
   url "https://simpleapps.eu/simplemind/SM2Mac_G7Ynr4BfJYzhbHtCCTr/SimpleMindMacOS#{version.csv.first.no_dots}#{version.csv.second}.dmg"
   name "SimpleMind"
@@ -9,7 +9,7 @@ cask "simplemind" do
 
   livecheck do
     url "https://simpleapps.eu/download/full-edition/simplemind-pro-mac/"
-    regex(%r{<b>Version: ([\d.]+) ([a-zA-Z0-9]+)</b>}i)
+    regex(%r{<b>\s*Version:\s*v?(\d+(?:\.\d+)+)\s+([a-z0-9]+)\s*</b>}i)
     strategy :page_match do |page, regex|
       page.scan(regex).map { |match| "#{match[0]},#{match[1]}" }
     end

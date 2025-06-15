@@ -1,20 +1,20 @@
 cask "virtualdj" do
-  version "2024,8124"
-  sha256 "fddcdd538b4b1a8a70b7cba07f1f1303c73a387eeae3e7600eccdf96c9ec2e08"
+  version "2025,8615,ACF9C6EC"
+  sha256 "a1a26eb200ef19b669e328af6678b14be0255b7787557662729eb5044ffbb6a5"
 
-  url "https://download.virtualdj.com/install_virtualdj_#{version.csv.first}_b#{version.csv.second}_mac.pkg"
+  url "https://download.virtualdj.com/b#{version.csv.second}/#{version.csv.third}/install_virtualdj_#{version.csv.first}_b#{version.csv.second}_mac.pkg"
   name "VirtualDJ"
   desc "DJ Software"
   homepage "https://virtualdj.com/"
 
   livecheck do
     url "https://virtualdj.com/download/mac"
-    regex(/install[._-]virtualdj[._-]v?(\d+(?:\.\d+)*)[._-]b(\d+)[._-]mac\.pkg/i)
+    regex(%r{/([^/]+)/install[._-]virtualdj[._-]v?(\d+(?:\.\d+)*)[._-]b(\d+)[._-]mac\.pkg}i)
     strategy :header_match do |headers, regex|
-      match = headers["location"].match(regex)
+      match = headers["location"]&.match(regex)
       next if match.blank?
 
-      "#{match[1]},#{match[2]}"
+      "#{match[2]},#{match[3]},#{match[1]}"
     end
   end
 

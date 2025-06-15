@@ -1,11 +1,13 @@
 cask "maciasl" do
-  version "1.6.4"
-  sha256 "1a4885e9a1dbd66c38f68c5c471b2024f9e085db10bfbe0e7e1e5e32ed32790d"
+  version "1.6.5"
+  sha256 "67071f4e91167360e4881ed2532cf6cc3cdcc4850b1ccbcaf4e13f270465f878"
 
   url "https://github.com/acidanthera/MaciASL/releases/download/#{version}/MaciASL-#{version}-RELEASE.dmg"
   name "MaciASL"
   desc "ACPI Machine Language (AML) compiler and IDE"
   homepage "https://github.com/acidanthera/MaciASL"
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
 

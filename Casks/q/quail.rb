@@ -7,6 +7,8 @@ cask "quail" do
   desc "Unofficial but officially accepted esa app"
   homepage "https://github.com/1000ch/quail"
 
+  no_autobump! because: :requires_manual_review
+
   app "Quail.app"
 
   zap trash: [
@@ -17,4 +19,8 @@ cask "quail" do
     "~/Library/Preferences/net.1000ch.quail.plist",
     "~/Library/Saved Application State/net.1000ch.quail.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

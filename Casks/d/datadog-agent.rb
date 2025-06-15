@@ -1,16 +1,24 @@
 cask "datadog-agent" do
-  version "7.54.0-1"
-  sha256 "49483a3a9cd25ee1aaa8658c4320acf89577bfcc52d41a0fea6c42a9d6236f66"
+  version "7.66.1-1"
+  sha256 "05319b3a331d181d18e71fa6ce36484beee3b31eddad8fc9cdeff04f7e30d872"
 
-  url "https://s3.amazonaws.com/dd-agent/datadog-agent-#{version}.dmg",
-      verified: "s3.amazonaws.com/dd-agent/"
+  url "https://dd-agent.s3.amazonaws.com/datadog-agent-#{version}.dmg",
+      verified: "dd-agent.s3.amazonaws.com/"
   name "Datadog Agent"
   desc "Monitoring and security across systems, apps, and services"
   homepage "https://www.datadoghq.com/"
 
   livecheck do
-    url "https://s3.amazonaws.com/dd-agent/"
-    regex(%r{<Key>datadog-agent-([\d.-]+)\.dmg</Key>}i)
+    url "https://dd-agent.s3.amazonaws.com/?prefix=datadog-agent"
+    regex(/datadog-agent[._-]v?(\d+(?:[.-]\d+)+)\.dmg/i)
+    strategy :xml do |xml, regex|
+      xml.get_elements("//Contents/Key").map do |item|
+        match = item.text&.strip&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
 
   installer manual: "datadog-agent-#{version}.pkg"

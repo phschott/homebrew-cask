@@ -10,9 +10,11 @@ cask "grids" do
   livecheck do
     url "https://gridsapp.net/appcast.json"
     strategy :json do |json|
-      json["version"]["mac"]
+      json.dig("version", "mac")
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :mojave"

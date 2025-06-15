@@ -13,6 +13,8 @@ cask "firecamp" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Firecamp.app"
 
   zap trash: [
@@ -20,4 +22,8 @@ cask "firecamp" do
     "~/Library/Application Support/firecamp",
     "~/Library/Preferences/com.firecamp.app.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

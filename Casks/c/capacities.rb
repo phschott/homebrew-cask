@@ -1,28 +1,28 @@
 cask "capacities" do
   arch arm: "-arm64"
 
-  version "1.37.8"
-  sha256 arm:   "0d0b93c3fc843d73c70d24926da645e5ffa138c836f3f296396fe1b03f429685",
-         intel: "0b6bcd325f724350546922dff505ca0007ea75fe3b0bd71010d2cef11398d70e"
+  version "1.48.9"
+  sha256 arm:   "213630c74457865fd3e9c54731da9f7a756a5cf4a735214a7b63efeb1085ff38",
+         intel: "8d28fff68d00b238f707e8ec688bf2379664f4f7f9d71fbdc047242181ba7fb1"
 
-  url "https://capacities-frontend-app.s3.eu-central-1.amazonaws.com/Capacities-#{version}#{arch}.dmg",
-      verified: "capacities-frontend-app.s3.eu-central-1.amazonaws.com/"
+  url "https://capacities-desktop-app.fra1.cdn.digitaloceanspaces.com/Capacities-#{version}#{arch}.dmg",
+      verified: "capacities-desktop-app.fra1.cdn.digitaloceanspaces.com/"
   name "Capacities"
   desc "App to write and organise your ideas"
   homepage "https://capacities.io/"
 
   livecheck do
-    url "https://capacities-frontend-app.s3.eu-central-1.amazonaws.com/latest-mac.yml"
+    url "https://capacities-desktop-app.fra1.cdn.digitaloceanspaces.com/latest-mac.yml"
     strategy :electron_builder
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Capacities.app"
 
   zap trash: [
     "~/Library/Application Support/Capacities",
-    "~/Library/Logs/Capacities/",
+    "~/Library/Logs/Capacities",
     "~/Library/Preferences/io.capacities.app.plist",
     "~/Library/Saved Application State/io.capacities.app.savedState",
   ]

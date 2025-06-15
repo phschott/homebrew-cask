@@ -14,6 +14,8 @@ cask "plug" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Plug.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "plug" do
     "~/Library/Caches/com.plug.Plug2",
     "~/Library/Preferences/com.plug.Plug2.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

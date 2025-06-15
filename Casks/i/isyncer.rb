@@ -1,6 +1,6 @@
 cask "isyncer" do
-  version "4.0.0"
-  sha256 "e96d0b54d6cf3905b1d13eab1c1560c853ea8e12111f22e44222f015d23f95f9"
+  version "4.2.0"
+  sha256 "9179d36369778c4dab6a323e8504703db378dc06f80d5ef9259d2ebe4c4d4a24"
 
   url "https://www.isyncer.de/system/iSyncerV#{version}mac-installer.tgz"
   name "iSyncer"
@@ -12,7 +12,13 @@ cask "isyncer" do
     regex(/href=.*?iSyncer[._-]?v?(\d+(?:\.\d+)+)[._-]?mac[._-]installer\.t/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   pkg "iSyncer-installer-#{version}.pkg"
 
   uninstall pkgutil: "main.ISyncer.*"
+
+  caveats do
+    requires_rosetta
+  end
 end

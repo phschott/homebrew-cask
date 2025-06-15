@@ -1,6 +1,6 @@
 cask "typeface" do
-  version "3.13.0,4137"
-  sha256 "6db0119a9a8d1e16aa1d188ea1a5a9e9073af82ec7377c24a25f2758235b97ed"
+  version "4.0.1,4595"
+  sha256 "d4e7bfb05fb72909b61f68c01c500095f33e4d7c3175cc246aabec6dcc1fe547"
 
   url "https://dcdn.typefaceapp.com/Typeface-#{version.csv.first}-#{version.csv.second}/Typeface-#{version.csv.first}-#{version.csv.second}.dmg"
   name "Typeface"
@@ -12,6 +12,7 @@ cask "typeface" do
     strategy :sparkle
   end
 
+  auto_updates true
   depends_on macos: ">= :catalina"
 
   app "Typeface.app"

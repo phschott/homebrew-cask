@@ -12,6 +12,8 @@ cask "fanny" do
     regex(%r{href=.*?FannyWidget\.zip["' >].*?v?(\d+(?:\.\d+)+).*?</a>}im)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :high_sierra"
 
   app "FannyWidget-v#{version.csv.first}/Fanny.app"
@@ -22,4 +24,8 @@ cask "fanny" do
     "~/Library/Group Containers/fanny-shared-defaults",
     "~/Library/Preferences/com.fannywidget.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

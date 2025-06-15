@@ -9,11 +9,10 @@ cask "mumble@snapshot" do
 
   livecheck do
     url "https://dl.mumble.info/latest/snapshot/client-macos-x64"
-    regex(/mumble[._-]client[._-](.+?)(?:\.x64|~snapshot)?\.dmg/i)
-    strategy :header_match do |headers, regex|
-      headers["content-disposition"][regex, 1].tr("~", "_")
-    end
+    strategy :header_match
   end
+
+  no_autobump! because: :requires_manual_review
 
   deprecate! date: "2025-05-01", because: :unsigned
 
@@ -29,4 +28,8 @@ cask "mumble@snapshot" do
     "~/Library/Preferences/net.sourceforge.mumble.Mumble.plist",
     "~/Library/Saved Application State/net.sourceforge.mumble.Mumble.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

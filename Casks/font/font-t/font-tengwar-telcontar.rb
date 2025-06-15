@@ -4,13 +4,11 @@ cask "font-tengwar-telcontar" do
 
   url "https://downloads.sourceforge.net/freetengwar/TengwarTelcontar.#{version}.zip"
   name "Tengwar Telcontar"
-  desc "Tengwar Telcontar - a Unicode Tengwar font"
-  homepage "http://freetengwar.sourceforge.net/tengtelc.html"
+  homepage "https://freetengwar.sourceforge.net/tengtelc.html"
 
   livecheck do
-    url :homepage
-    regex(/href=.*?TengwarTelcontar[._-]v?(\d+)\.zip/i)
-    strategy :page_match
+    url "https://sourceforge.net/projects/freetengwar/rss?path=/TengwarFont"
+    regex(%r{url=.*?/TengwarTelcontar[._-]?v?(\d+(?:\.\d+)*)\.zip}i)
   end
 
   font "tengtelc.ttf"

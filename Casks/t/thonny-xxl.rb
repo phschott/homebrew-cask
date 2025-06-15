@@ -8,9 +8,9 @@ cask "thonny-xxl" do
   desc "Python IDE for beginners"
   homepage "https://thonny.org/"
 
-  livecheck do
-    skip "No reliable way to get version info"
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-04", because: :discontinued
 
   conflicts_with cask: "thonny"
 

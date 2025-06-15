@@ -11,10 +11,16 @@ cask "chiaki" do
     url :homepage
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Chiaki.app"
 
   zap trash: [
     "~/Library/Application Support/Chiaki",
     "~/Library/Preferences/com.chiaki.Chiaki.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

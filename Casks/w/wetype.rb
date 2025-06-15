@@ -1,15 +1,22 @@
 cask "wetype" do
-  version "1.1.1,335"
-  sha256 "8fb4868c7f9576da1ac0d1de2e07e8dddd2e373cd8f4f6bf3cede3d40f19464a"
+  version "1.3.2,481"
+  sha256 "6218b9582f61e667511688b43ba387824ee27533c4629fdd89a8f6b1f905cb70"
 
-  url "https://wetype.wxqcloud.qq.com/app/mac/#{version.csv.first}/WeTypeInstaller_#{version.csv.first}_#{version.csv.second}.zip"
+  url "https://download.z.weixin.qq.com/app/mac/#{version.csv.first}/WeTypeInstaller_#{version.csv.first}_#{version.csv.second}.zip"
   name "WeType"
-  desc "Text input app"
+  name "微信输入法"
+  desc "Text input app from WeChat team for Chinese users"
   homepage "https://z.weixin.qq.com/"
 
   livecheck do
-    strategy :sparkle
-    url "https://download.weread.qq.com/app/wxkb/mac/updates.xml"
+    url "https://z.weixin.qq.com/web/api/app_info"
+    regex(/WeTypeInstaller[._-]v?(\d+(?:\.\d+)+)[._-](\d+)\.zip/i)
+    strategy :json do |json, regex|
+      match = json.dig("data", "mac", "download_link")&.match(regex)
+      next if match.blank?
+
+      "#{match[1]},#{match[2]}"
+    end
   end
 
   auto_updates true

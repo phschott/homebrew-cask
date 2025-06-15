@@ -1,18 +1,15 @@
 cask "whatsapp@legacy" do
-  version "2.2420.51"
-  sha256 "c1e9be5a215446e853ec41de554bb245805f46c382c91c1923efca18ec66e4c6"
+  version "2.2437.54"
+  sha256 "a85519c5cabe3846986fe0b40c6b8b1124fc962d9c0d514087617d6528b334ab"
 
   url "https://web.whatsapp.com/desktop/mac/files/release-#{version}.zip"
   name "WhatsApp Legacy"
   desc "Legacy desktop client for WhatsApp"
   homepage "https://www.whatsapp.com/"
 
-  livecheck do
-    url "https://web.whatsapp.com/desktop/mac/releases"
-    strategy :json do |json|
-      json["name"]
-    end
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2025-02-22", because: :no_longer_available
 
   auto_updates true
   conflicts_with cask: [
@@ -32,4 +29,8 @@ cask "whatsapp@legacy" do
     "~/Library/Preferences/WhatsApp.plist",
     "~/Library/Saved Application State/WhatsApp.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

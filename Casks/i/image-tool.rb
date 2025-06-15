@@ -7,7 +7,9 @@ cask "image-tool" do
   desc "Scale images and convert image file formats"
   homepage "https://archive.org/details/jimmcgowan-2000s-software"
 
-  deprecate! date: "2023-12-17", because: :discontinued
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-14", because: "is 32-bit only"
 
   depends_on macos: "<= :mojave"
 

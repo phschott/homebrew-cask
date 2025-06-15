@@ -10,10 +10,12 @@ cask "appzapper" do
   livecheck do
     url :homepage
     regex(/href=.*?appzapper(\d+)(\d+)(\d+)\.zip/i)
-    strategy :page_match do |page|
+    strategy :page_match do |page, regex|
       page.scan(regex).map { |match| "#{match[0]}.#{match[1]}.#{match[2]}" }
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :sierra"
@@ -24,4 +26,8 @@ cask "appzapper" do
     "~/Library/Application Support/AppZapper",
     "~/Library/Preferences/com.appzapper.appzapper2.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

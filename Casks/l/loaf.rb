@@ -1,12 +1,14 @@
 cask "loaf" do
-  version "2.0.3"
-  sha256 "778eb0405960fb5a28cb7f5d2109a139c00124b2386adc3ee878681f4c68f4e2"
+  version "2.0.9"
+  sha256 "e01953ba3fa4f84daf3a5b0ca0cfe730958f2f1d4a674bbaf7eab31bcfd0012e"
 
   url "https://github.com/philipardeljan/getloaf/releases/download/v#{version}/loaf.dmg",
       verified: "github.com/philipardeljan/getloaf/"
   name "Loaf"
   desc "Animated icon library"
   homepage "https://getloaf.io/"
+
+  no_autobump! because: :requires_manual_review
 
   app "Loaf.app"
 
@@ -16,4 +18,8 @@ cask "loaf" do
     "~/Library/Preferences/com.loaf.studio.plist",
     "~/Library/Saved Application State/com.loaf.studio.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

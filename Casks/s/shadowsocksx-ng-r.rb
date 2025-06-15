@@ -7,6 +7,8 @@ cask "shadowsocksx-ng-r" do
   desc "Next Generation of ShadowsocksX"
   homepage "https://github.com/qinyuhang/ShadowsocksX-NG-R/"
 
+  no_autobump! because: :requires_manual_review
+
   conflicts_with cask: "shadowsocksx"
   depends_on macos: ">= :el_capitan"
 
@@ -35,4 +37,8 @@ cask "shadowsocksx-ng-r" do
     "~/Library/Caches/com.qiuyuzhou.ShadowsocksX-NG",
     "~/Library/Preferences/com.qiuyuzhou.ShadowsocksX-NG.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

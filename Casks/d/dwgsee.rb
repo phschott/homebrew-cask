@@ -7,10 +7,9 @@ cask "dwgsee" do
   desc "DWG viewer and editor"
   homepage "https://www.dwgsee.com/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-05", because: :no_longer_available
 
   app "DWGSee.app"
 end

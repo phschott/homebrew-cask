@@ -20,6 +20,8 @@ cask "klogg" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "klogg.app"
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/klogg.wrapper.sh"
@@ -38,4 +40,8 @@ cask "klogg" do
     "~/Library/Preferences/com.klogg.klogg_session.plist",
     "~/Library/Saved Application State/com.github.variar.klogg.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

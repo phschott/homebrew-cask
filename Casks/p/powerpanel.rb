@@ -1,6 +1,6 @@
 cask "powerpanel" do
-  version "2.5.2"
-  sha256 "b4a86390d34535affe0e5d5d25ea70c80be46b510e1b3215813218b930ddecac"
+  version "2.6.1"
+  sha256 "2208c48df9b1c893a66de7b1652e1ff30ca1728948860db9fcf919c7d066fed4"
 
   url "https://dl4jz3rbrsfum.cloudfront.net/software/PPP_Mac_v#{version}.pkg",
       verified: "dl4jz3rbrsfum.cloudfront.net/"
@@ -12,6 +12,8 @@ cask "powerpanel" do
     url "https://www.cyberpowersystems.com/product/software/power-panel-personal/powerpanel-personal-mac/"
     regex(/href=.*?PPP[._-]Mac[._-]v?(\d+(?:\.\d+)+)\.pkg/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :mojave"
 

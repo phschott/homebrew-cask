@@ -1,19 +1,19 @@
 cask "tableau-prep" do
-  version "2024.1.2"
-  sha256 "c4eecb1d8dc2330aefd093324b73e01102ecf5e2db8750791081652bf7424dac"
+  arch arm: "-arm64"
 
-  url "https://downloads.tableau.com/esdalt/tableau_prep/#{version}/TableauPrep-#{version.dots_to_hyphens}.dmg",
+  version "2025.1.2"
+  sha256 arm:   "31fa87e300e5817f149178f9ded684e97a650385168548ba37718c4635e40c5b",
+         intel: "b0b53779d11ff0f65e0b2a6edf4bdf242768ebcf2729416fee02fd43f53ec8c3"
+
+  url "https://downloads.tableau.com/esdalt/tableau_prep/#{version}/TableauPrep-#{version.dots_to_hyphens}#{arch}.dmg",
       user_agent: "curl/8.7.1"
   name "Tableau Prep"
   name "Tableau Prep Builder"
   desc "Combine, shape, and clean your data for analysis"
-  homepage "https://www.tableau.com/support/releases/prep"
+  homepage "https://www.tableau.com/products/prep"
 
   livecheck do
-    url "https://downloads.tableau.com/TableauAutoUpdate.xml"
-    strategy :xml do |xml|
-      xml.get_elements("//version").map { |item| item.attributes["releaseNotesVersion"] }
-    end
+    cask "tableau"
   end
 
   depends_on macos: ">= :el_capitan"

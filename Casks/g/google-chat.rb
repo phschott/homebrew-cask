@@ -11,6 +11,8 @@ cask "google-chat" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Chat.app"
 
   zap trash: [
@@ -19,4 +21,8 @@ cask "google-chat" do
     "~/Library/Preferences/com.google.chat*",
     "~/Library/Saved Application State/com.google.chat.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

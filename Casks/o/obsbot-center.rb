@@ -1,6 +1,6 @@
 cask "obsbot-center" do
-  version "2.0.8.37"
-  sha256 "4f95bb4f8ec5ca70d56d2906f6503a7a58eb3b0bf7fc77bd4d4e0aa7f151dd9a"
+  version "2.0.10.40"
+  sha256 "7b1c1eff35d192f63dd6cf3f1d3d993223c53f4a1b3f43217509aca65de4140c"
 
   url "https://resource-cdn.obsbothk.com/download/obsbot-center/Obsbot_Center_OA_E_MacOS_#{version}_release.dmg",
       verified: "resource-cdn.obsbothk.com/download/obsbot-center/"
@@ -8,10 +8,9 @@ cask "obsbot-center" do
   desc "Configuration and firmware update utility for OBSBOT Tiny and Meet series"
   homepage "https://www.obsbot.com/download"
 
-  livecheck do
-    url "https://www.obsbot.com/download/obsbot-tiny-series"
-    regex(/Obsbot[._-]Center[._-]OA[._-]E[._-]MacOS[._-](\d+(?:\.\d+)+)[._-]release\.dmg/i)
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2025-04-07", because: "now has the download artifact behind a signed URL"
 
   depends_on macos: ">= :big_sur"
 
@@ -23,4 +22,8 @@ cask "obsbot-center" do
     "~/Library/HTTPStorages/com.obsbot.OBSBOT_Center",
     "~/Library/Preferences/com.obsbot.OBSBOT_Center.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

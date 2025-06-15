@@ -1,6 +1,6 @@
 cask "mailplane" do
-  version "4.3.8,4942"
-  sha256 "2c66788feebd36e08f672f576169538f93a9a8f7b49c1853db78cf7cdbd74833"
+  version "4.3.12,4954"
+  sha256 "dcd7243a0ea909b838d92664ea8e85dcb9f3e0648da713568b4856384a7b924b"
 
   url "https://builds.mailplaneapp.com/Mailplane_#{version.major}_#{version.csv.second}.tbz"
   name "Mailplane"
@@ -12,10 +12,16 @@ cask "mailplane" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :sierra"
 
   app "Mailplane.app"
 
   zap trash: "~/Library/Preferences/com.mailplaneapp.Mailplane.plist"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "thinlinc-client" do
-  version "4.16.0_3389"
-  sha256 "7537495138dd63499067d70f5965a134a6887c1817f47fc768a7bea25a6244b8"
+  version "4.18.0_3768"
+  sha256 "3a8ca607e386a9b0f8a6e15b183f96a1d3abeac607b8d12510206d135d9201a3"
 
   url "https://www.cendio.com/downloads/clients/tl-#{version}-client-macos.iso"
   name "ThinLinc"
@@ -12,7 +12,13 @@ cask "thinlinc-client" do
     regex(/tl[._-]v?(\d+(?:[._]\d+)+)[._-]client[._-]macos\.iso/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "ThinLinc Client.app"
 
   zap trash: "~/.thinlinc"
+
+  caveats do
+    requires_rosetta
+  end
 end

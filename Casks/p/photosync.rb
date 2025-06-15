@@ -12,5 +12,15 @@ cask "photosync" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "PhotoSync.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.touchbyte.mac.PhotoSync",
+    "~/Library/Caches/com.touchbyte.mac.PhotoSync",
+    "~/Library/HTTPStorages/com.touchbyte.mac.PhotoSync",
+    "~/Library/Preferences/com.touchbyte.mac.PhotoSync.plist",
+    "~/Library/Saved Application State/com.touchbyte.mac.PhotoSync.savedState",
+  ]
 end

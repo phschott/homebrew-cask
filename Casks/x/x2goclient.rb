@@ -18,6 +18,8 @@ cask "x2goclient" do
     regex(/x2goclient[._-]v?(\d+(?:\.\d+)+)/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :el_capitan"
 
   app "x2goclient.app"
@@ -28,4 +30,8 @@ cask "x2goclient" do
     "~/Library/Application Support/CrashReporter/x2goclient_*.plist",
     "~/Library/Preferences/x2goclient.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

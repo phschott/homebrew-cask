@@ -1,5 +1,5 @@
 cask "license-control-center" do
-  version "6.12.10.1325"
+  version "6.12.11.1328"
   sha256 :no_check
 
   url "https://download.steinberg.net/downloads/eLicenserControl.dmg",
@@ -9,9 +9,13 @@ cask "license-control-center" do
   homepage "https://helpcenter.steinberg.de/hc/en-us/articles/360008841379"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://r.mb.steinberg.net/rc-elc-mac"
+    strategy :header_match
   end
+
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2025-05-27", because: :discontinued
 
   installer manual: "eLicenserControlSetup.app"
 

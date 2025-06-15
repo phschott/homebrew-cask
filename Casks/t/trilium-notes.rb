@@ -7,10 +7,11 @@ cask "trilium-notes" do
   desc "Personal knowledge base"
   homepage "https://github.com/zadam/trilium"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2025-04-05", because: :unmaintained, replacement_cask: "triliumnext-notes"
+
+  depends_on macos: ">= :high_sierra"
 
   app "trilium-mac-x64/Trilium Notes.app"
 
@@ -20,4 +21,8 @@ cask "trilium-notes" do
     "~/Library/Preferences/com.electron.trilium-notes.plist",
     "~/Library/Saved Application State/com.electron.trilium-notes.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,12 +1,12 @@
 cask "nosql-workbench" do
   arch arm: "arm64", intel: "x64"
 
-  version "3.13.1"
-  sha256 arm:   "95487612931034139a1992b79280799b465c152cc9287c6339e267b69defc434",
-         intel: "b51d16d795648eb067504498a8a94e3eefbe4430aade40c17a25b21718844e3f"
+  version "3.13.6"
+  sha256 arm:   "6d4eebd66a5bd5415f91ca982181355998b5208f36ffd86a8bf3ff4e91d1e23e",
+         intel: "e42df694a8921a882f441e0f8e5b28d6a9782ecbc7c3815cbfe737b2215a419d"
 
-  url "https://s3.amazonaws.com/nosql-workbench/NoSQL%20Workbench-mac-#{arch}-#{version}.dmg",
-      verified: "s3.amazonaws.com/nosql-workbench/"
+  url "https://nosql-workbench.s3.amazonaws.com/NoSQL%20Workbench-mac-#{arch}-#{version}.dmg",
+      verified: "nosql-workbench.s3.amazonaws.com/"
   name "NoSQL Workbench"
   desc "Client-side GUI application for modern database development and operations"
   homepage "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html"
@@ -17,6 +17,7 @@ cask "nosql-workbench" do
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "NoSQL Workbench.app"
 

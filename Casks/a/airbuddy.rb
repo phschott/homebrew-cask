@@ -1,6 +1,6 @@
 cask "airbuddy" do
-  version "2.7.2,637"
-  sha256 "6ecc557d6b6199eb45d207cc82c65101f74dce1a6553e3692be5ed93934569e8"
+  version "2.7.3,641"
+  sha256 "730bd216f69111b17e26f5796397456a3e9f65bcddcdc8c1833750f560dc0856"
 
   url "https://su.airbuddy.app/kCRSAmcjBc/AirBuddy_v#{version.csv.first}-#{version.csv.second}.dmg"
   name "AirBuddy"
@@ -11,6 +11,8 @@ cask "airbuddy" do
     url "https://su.airbuddy.app/kCRSAmcjBc/appcast_hyeon.xml"
     strategy :sparkle
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :mojave"

@@ -8,5 +8,11 @@ cask "mjml" do
   desc "Desktop app for MJML"
   homepage "https://mjmlio.github.io/mjml-app/"
 
+  no_autobump! because: :requires_manual_review
+
   app "MJML.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

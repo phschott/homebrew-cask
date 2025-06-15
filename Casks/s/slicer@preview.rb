@@ -2,11 +2,7 @@ cask "slicer@preview" do
   version :latest
   sha256 :no_check
 
-  url "https://download.slicer.org/find?os=macosx&stability=nightly" do |page|
-    require "json"
-    file_path = JSON.parse(page)["download_url"]
-    URI.join(page.url, file_path)
-  end
+  url "https://download.slicer.org/download?os=macosx&stability=nightly"
   name "3D Slicer"
   desc "Medical image processing and visualization system"
   homepage "https://www.slicer.org/"
@@ -24,4 +20,8 @@ cask "slicer@preview" do
     "~/Library/Preferences/Slicer.plist",
     "~/Library/Saved Application State/org.slicer.slicer.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

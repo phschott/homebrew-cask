@@ -13,6 +13,10 @@ cask "weektodo" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   app "WeekToDo.app"
 
   zap trash: [
@@ -20,4 +24,8 @@ cask "weektodo" do
     "~/Library/Preferences/weektodo-app.netlify.app.plist",
     "~/Library/Saved Application State/weektodo-app.netlify.app.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

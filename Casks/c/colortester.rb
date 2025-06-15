@@ -7,10 +7,9 @@ cask "colortester" do
   desc "Colour accessibility and contrast tester"
   homepage "https://alfasado.net/apps/colortester.html"
 
-  livecheck do
-    url :url
-    strategy :extract_plist
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-07-09", because: "is 32-bit only"
 
   app "ColorTester/ColorTester.app"
 

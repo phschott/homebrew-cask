@@ -7,6 +7,8 @@ cask "pine" do
   desc "Native markdown editor"
   homepage "https://github.com/lukakerr/pine"
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Pine.app"
@@ -19,4 +21,8 @@ cask "pine" do
     "~/Library/Saved Application State/io.github.lukakerr.Pine.savedState",
     "~/Library/WebKit/io.github.lukakerr.Pine",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

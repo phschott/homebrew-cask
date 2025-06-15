@@ -1,15 +1,15 @@
 cask "aldente" do
-  version "1.26.1,55"
-  sha256 "0a6a506b6403cae0f2501059bc2470e3f476e1c7011ecc39a86cf036534526ce"
+  version "1.33.1"
+  sha256 "70f47181014764a53631a3de6de8886b72a2b449cae5f71d0b496a9f782aae90"
 
-  url "https://apphousekitchen.com/aldente/AlDente#{version.csv.first}.dmg"
+  url "https://apphousekitchen.com/aldente/AlDente#{version}.dmg"
   name "AlDente"
   desc "Menu bar tool to limit maximum charging percentage"
   homepage "https://apphousekitchen.com/"
 
   livecheck do
-    url "https://apphousekitchen.com/aldente/AlDente-Pro.dmg"
-    strategy :extract_plist
+    url "https://apphousekitchen.com/aldente/aldenteproappcast.xml"
+    strategy :sparkle, &:short_version
   end
 
   auto_updates true
@@ -25,8 +25,10 @@ cask "aldente" do
   zap trash: [
     "~/Library/Application Support/AlDente",
     "~/Library/Caches/com.apphousekitchen.aldente-pro",
+    "~/Library/HTTPStorages/com.apphousekitchen.aldente-pro",
     "~/Library/HTTPStorages/com.apphousekitchen.aldente-pro.binarycookies",
     "~/Library/Preferences/com.apphousekitchen.aldente-pro.plist",
     "~/Library/Preferences/com.apphousekitchen.aldente-pro_backup.plist",
+    "~/Library/Preferences/com.apphousekitchen.aldente-pro_stats.sqlite3",
   ]
 end

@@ -1,6 +1,6 @@
 cask "hopper-disassembler" do
-  version "5.15.6"
-  sha256 "9c85aded5ff3ca500868927c4462775ab9f1d25bb66a90ff0b6cfdd50d375691"
+  version "5.19.5"
+  sha256 "1b319a69f02cd139ddb64667dcb172400efbda2e7b70c715348889c39a3c8ced"
 
   url "https://www.hopperapp.com/downloader/hopperv4/Hopper-#{version}-demo.dmg",
       user_agent: :fake
@@ -9,7 +9,8 @@ cask "hopper-disassembler" do
   homepage "https://www.hopperapp.com/"
 
   livecheck do
-    skip "Cannot get version info unless livecheck can specify user_agent"
+    url "https://www.hopperapp.com/rss/changelog.xml"
+    regex(/Version\s+v?(\d+(?:\.\d+)+)/i)
   end
 
   depends_on macos: ">= :high_sierra"

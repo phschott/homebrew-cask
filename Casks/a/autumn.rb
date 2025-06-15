@@ -8,6 +8,8 @@ cask "autumn" do
   desc "Window manager for JavaScript development"
   homepage "https://apandhi.github.io/Autumn/"
 
+  deprecate! date: "2025-04-21", because: :unmaintained
+
   depends_on macos: ">= :high_sierra"
 
   app "Autumn.app"
@@ -17,4 +19,8 @@ cask "autumn" do
     "~/Library/Preferences/com.sephware.autumn.plist",
     "~/Library/WebKit/com.sephware.autumn",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

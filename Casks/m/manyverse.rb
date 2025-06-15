@@ -14,7 +14,13 @@ cask "manyverse" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Manyverse.app"
 
   zap trash: "~/Library/Application Support/manyverse"
+
+  caveats do
+    requires_rosetta
+  end
 end

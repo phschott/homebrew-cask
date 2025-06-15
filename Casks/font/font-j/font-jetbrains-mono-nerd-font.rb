@@ -1,10 +1,9 @@
 cask "font-jetbrains-mono-nerd-font" do
-  version "3.2.1"
-  sha256 "6596922aabaf8876bb657c36a47009ac68c388662db45d4ac05c2536c2f07ade"
+  version "3.4.0"
+  sha256 "76f05ff3ace48a464a6ca57977998784ff7bdbb65a6d915d7e401cd3927c493c"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/JetBrainsMono.zip"
   name "JetBrainsMono Nerd Font families (JetBrains Mono)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

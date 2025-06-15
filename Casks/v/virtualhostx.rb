@@ -12,6 +12,8 @@ cask "virtualhostx" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "VirtualHostX.app"
@@ -22,4 +24,8 @@ cask "virtualhostx" do
     "~/Library/Caches/com.clickontyler.VirtualHostX",
     "~/Library/Preferences/com.clickontyler.VirtualHostX.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

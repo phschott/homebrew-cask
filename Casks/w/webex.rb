@@ -1,20 +1,21 @@
 cask "webex" do
-  arch arm: "Desktop-MACOS-Apple-Silicon", intel: "TeamsDesktop-MACOS"
+  arch arm: "apple-silicon", intel: "intel"
 
-  version "44.5.0.29672"
+  version "45.6.0.32551"
   sha256 :no_check
 
-  url "https://binaries.webex.com/Webex#{arch}-Gold/Webex.dmg"
+  url "https://binaries.webex.com/webex-macos-#{arch}/Webex.dmg"
   name "Webex Teams"
   desc "Video communication and virtual meeting platform"
   homepage "https://www.webex.com/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://help.webex.com/en-us/article/mqkve8"
+    regex(/>\s*Mac[^<]*?v?(\d+(?:\.\d+)+)\s*</i)
   end
 
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "Webex.app"
 

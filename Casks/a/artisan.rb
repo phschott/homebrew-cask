@@ -1,6 +1,6 @@
 cask "artisan" do
-  version "2.10.4"
-  sha256 "1e378633ef788925a0a2d1709acd32467a93fd9996467fff5db1e45ecaeb84e4"
+  version "3.1.4"
+  sha256 "d48f4d978a8eb7aae6d0076976b99a2ecd8a1ed8ec564e63eb01c748cab16f16"
 
   url "https://github.com/artisan-roaster-scope/artisan/releases/download/v#{version}/artisan-mac-#{version}.dmg",
       verified: "github.com/artisan-roaster-scope/artisan/"
@@ -13,7 +13,7 @@ cask "artisan" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :catalina"
+  depends_on macos: ">= :big_sur"
 
   app "Artisan.app"
 

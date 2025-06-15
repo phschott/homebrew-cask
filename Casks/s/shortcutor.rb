@@ -12,6 +12,8 @@ cask "shortcutor" do
     regex(%r{href=.*?/Shortcutor[._-]?v?(\d+(?:\.\d+)+)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Shortcutor.app"
@@ -23,4 +25,8 @@ cask "shortcutor" do
     "~/Library/Logs/Shortcutor",
     "~/Library/Preferences/com.shortcutor.shortcutor.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

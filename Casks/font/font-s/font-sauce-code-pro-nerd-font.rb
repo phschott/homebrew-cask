@@ -1,10 +1,9 @@
 cask "font-sauce-code-pro-nerd-font" do
-  version "3.2.1"
-  sha256 "dcba53be6a360aac5bd1424ac4ab316c5401f7e5a1fa28be4fa626ce07a30c0f"
+  version "3.4.0"
+  sha256 "f8abc5576d1761b8c2a7c03aaff54a692af109f12f2cde641320c8d2f4c5ad53"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/SourceCodePro.zip"
   name "SauceCodePro Nerd Font (Source Code Pro)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

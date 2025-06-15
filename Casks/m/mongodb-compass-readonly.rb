@@ -1,9 +1,9 @@
 cask "mongodb-compass-readonly" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.43.0"
-  sha256 arm:   "b963026ceb972e9293dc534c6c04518fe20f121dc00f370d2b91c311b8152432",
-         intel: "ce0f5dbce10439553775394bd87fc3eb0c687d228632289e7f51511be2cd1b7c"
+  version "1.46.3"
+  sha256 arm:   "d93e91afaaf6ae057640ec45d49c69404ebbce84c98dc55dc474042d7da1588a",
+         intel: "b16c3e053d7fa9c87f7c354baa76201c1c7a49f04c160cb1f6df2157bad63602"
 
   url "https://downloads.mongodb.com/compass/mongodb-compass-readonly-#{version}-darwin-#{arch}.dmg"
   name "MongoDB Compass Readonly"
@@ -12,8 +12,18 @@ cask "mongodb-compass-readonly" do
 
   livecheck do
     url "https://info-mongodb-com.s3.amazonaws.com/com-download-center/compass.json"
-    regex(/"version"\s*:\s*"(\d+(?:\.\d+)+)\s*\(Readonly/i)
+    regex(/^v?(\d+(?:\.\d+)+)[._-]readonly$/i)
+    strategy :json do |json, regex|
+      json["versions"]&.map do |item|
+        match = item["_id"]&.match(regex)
+        next if match.blank?
+
+        match[1]
+      end
+    end
   end
+
+  depends_on macos: ">= :catalina"
 
   app "MongoDB Compass Readonly.app"
 

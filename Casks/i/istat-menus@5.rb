@@ -12,6 +12,8 @@ cask "istat-menus@5" do
     strategy :header_match
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "iStat Menus.app"
@@ -44,4 +46,8 @@ cask "istat-menus@5" do
     "~/Library/Preferences/com.bjango.istatmenus.plist",
     "~/Library/Preferences/com.bjango.istatmenusstatus.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

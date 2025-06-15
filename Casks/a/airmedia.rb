@@ -15,7 +15,13 @@ cask "airmedia" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "Crestron AirMedia.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

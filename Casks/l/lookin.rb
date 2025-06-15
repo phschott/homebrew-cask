@@ -16,8 +16,18 @@ cask "lookin" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :big_sur"
 
   app "Lookin.app"
+
+  zap trash: [
+    "~/Library/Application Support/hughkli.Lookin",
+    "~/Library/Caches/hughkli.Lookin",
+    "~/Library/HTTPStorages/hughkli.Lookin",
+    "~/Library/Preferences/hughkli.Lookin.plist",
+    "~/Library/Saved Application State/hughkli.Lookin.savedState",
+  ]
 end

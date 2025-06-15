@@ -6,10 +6,13 @@ cask "yemuzip" do
   name "YemuZip"
   homepage "https://yellowmug.com/yemuzip/"
 
-  livecheck do
-    url "https://yellowmug.com/yemuzip/appcast-1014.xml"
-    strategy :sparkle
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-10-12", because: :unmaintained
 
   app "YemuZip.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

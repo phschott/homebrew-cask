@@ -13,6 +13,10 @@ cask "captin" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   app "Captin.app"
 
   uninstall quit: "com.100hps.captin"

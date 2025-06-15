@@ -1,8 +1,11 @@
 cask "sejda-pdf" do
-  version "7.7.0"
-  sha256 "1d2419d3a100643cd6451f97e175b87c1d675fed2e69352b5c118ae3ceafe115"
+  arch arm: "_arm64"
 
-  url "https://downloads.sejda-cdn.com/sejda-desktop_#{version}.dmg",
+  version "7.8.6"
+  sha256 arm:   "3cedd0aa2dd65f124222038b5779eb446f8a7346408ad20e914f3b17926606a1",
+         intel: "f22fc3fa2cd56a28bdf25e9066359b4284c36ffd26ec312f978128505c2580fc"
+
+  url "https://downloads.sejda-cdn.com/sejda-desktop_#{version}#{arch}.dmg",
       verified: "downloads.sejda-cdn.com/"
   name "Sejda PDF Desktop"
   desc "PDF editor"

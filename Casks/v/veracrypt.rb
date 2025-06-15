@@ -1,6 +1,6 @@
 cask "veracrypt" do
-  version "1.26.7"
-  sha256 "a335192da6703ef09af856d1d7ef0b83de384e760c57b13200070d4c6b7a173a"
+  version "1.26.24"
+  sha256 "b052052519179ac5ab1ca73df9b087adcd06b95e9b872866e279a68db0745b21"
 
   url "https://launchpad.net/veracrypt/trunk/#{version}/+download/VeraCrypt_#{version}.dmg",
       verified: "launchpad.net/veracrypt/trunk/"
@@ -13,6 +13,7 @@ cask "veracrypt" do
     regex(/href=.*?VeraCrypt[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
 
+  conflicts_with cask: "veracrypt-fuse-t"
   depends_on cask: "macfuse"
 
   pkg "VeraCrypt_Installer.pkg"

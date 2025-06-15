@@ -8,6 +8,13 @@ cask "kubenav" do
   desc "Navigator for your Kubernetes clusters right in your pocket"
   homepage "https://kubenav.io/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-05-31", because: :discontinued
+  disable! date: "2025-05-31", because: :discontinued
+
+  depends_on macos: ">= :monterey"
+
   app "kubenav.app"
   binary "#{appdir}/kubenav.app/Contents/MacOS/kubenav"
 

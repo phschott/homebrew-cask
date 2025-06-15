@@ -1,10 +1,9 @@
 cask "font-daddy-time-mono-nerd-font" do
-  version "3.2.1"
-  sha256 "0b6d33e09e9bde5347756283bb4ca500d42e661bd386f69cecacf286423f9a2d"
+  version "3.4.0"
+  sha256 "3350e2309dce64b1a7b4221795e43b331499f13c3efb02d904ca157755fcf413"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/DaddyTimeMono.zip"
   name "DaddyTimeMono Nerd Font (DaddyTimeMono)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

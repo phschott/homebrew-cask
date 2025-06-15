@@ -12,7 +12,13 @@ cask "m3unify" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :mojave"
 
   app "M3Unify.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

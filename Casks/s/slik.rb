@@ -7,10 +7,9 @@ cask "slik" do
   desc "Apps and web apps launcher"
   homepage "https://apps.inspira.io/slik/"
 
-  livecheck do
-    url "https://apps.inspira.io/updates/slik-appcast.xml"
-    strategy :sparkle, &:short_version
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-09-06", because: :unmaintained
 
   auto_updates true
   depends_on macos: ">= :el_capitan"
@@ -28,4 +27,8 @@ cask "slik" do
         "~/Library/Application Scripts/io.inspira.slik",
         "~/Library/Application Support/io.inspira.slik",
       ]
+
+  caveats do
+    requires_rosetta
+  end
 end

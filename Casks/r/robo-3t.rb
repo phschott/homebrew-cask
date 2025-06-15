@@ -8,7 +8,9 @@ cask "robo-3t" do
   desc "MongoDB management tool"
   homepage "https://robomongo.org/"
 
-  deprecate! date: "2023-12-17", because: :discontinued
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-12-16", because: :discontinued
 
   app "Robo 3T.app"
 
@@ -22,4 +24,8 @@ cask "robo-3t" do
     "~/Library/Saved Application State/com.3tsoftwarelabs.robo3t.savedState",
     "~/Library/Saved Application State/Robo 3T.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

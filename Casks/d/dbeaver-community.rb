@@ -1,9 +1,9 @@
 cask "dbeaver-community" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "24.0.5"
-  sha256 arm:   "e79e1e6b9a75311e17207b52781c9de12fca7b870a4596c84d3351443a11a8f2",
-         intel: "5ce41a30d407382e1d5495c8527e25e0e6bb1a885babe24c0c5bac232fd4fad7"
+  version "25.1.0"
+  sha256 arm:   "d7555b1a7673d9f0ed1b92d14195a741d5c24fbaab2226b6d9a3bee6703f2d01",
+         intel: "dd1a091af39a7ee291a3d767fa6f09dbbe0ed3a17c6145b1d5801c44c41bfd0b"
 
   url "https://dbeaver.io/files/#{version}/dbeaver-ce-#{version}-macos-#{arch}.dmg"
   name "DBeaver Community Edition"
@@ -25,7 +25,9 @@ cask "dbeaver-community" do
   uninstall signal: ["TERM", "org.jkiss.dbeaver.core.product"]
 
   zap trash: [
+    "~/Library/Caches/org.jkiss.dbeaver.core.product",
     "~/Library/DBeaverData",
+    "~/Library/HTTPStorages/org.jkiss.dbeaver.core.product",
     "~/Library/Preferences/org.jkiss.dbeaver.core.product.plist",
     "~/Library/Saved Application State/org.jkiss.dbeaver.core.product.savedState",
   ]

@@ -13,6 +13,8 @@ cask "shimo" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :high_sierra"
 
@@ -24,4 +26,8 @@ cask "shimo" do
     "~/Library/HTTPStorages/com.feingeist.Shimo.binarycookies",
     "~/Library/Preferences/com.feingeist.Shimo.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

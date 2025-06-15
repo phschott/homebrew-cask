@@ -1,10 +1,9 @@
 cask "font-iosevka-nerd-font" do
-  version "3.2.1"
-  sha256 "40e4256822d648bcd147be0f9afbe89e9eb611b59edf3d757768d51ad593963d"
+  version "3.4.0"
+  sha256 "51c7eebb8f933cc3d10c718a191317e7f028c2c7f0fc7e6f5c699655a797e02f"
 
   url "https://github.com/ryanoasis/nerd-fonts/releases/download/v#{version}/Iosevka.zip"
   name "Iosevka Nerd Font (Iosevka)"
-  desc "Developer targeted fonts with a high number of glyphs"
   homepage "https://github.com/ryanoasis/nerd-fonts"
 
   livecheck do

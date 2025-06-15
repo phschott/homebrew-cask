@@ -7,6 +7,8 @@ cask "whichspace" do
   desc "Active space menu bar icon"
   homepage "https://github.com/gechr/WhichSpace"
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
   depends_on macos: ">= :el_capitan"
 
@@ -20,4 +22,8 @@ cask "whichspace" do
     "~/Library/Preferences/io.gechr.WhichSpace.plist",
     "~/Library/Saved Application State/io.gechr.WhichSpace.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

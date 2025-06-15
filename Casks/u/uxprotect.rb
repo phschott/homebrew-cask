@@ -6,10 +6,9 @@ cask "uxprotect" do
   name "UXProtect"
   homepage "https://digitasecurity.com/product/uxprotect/"
 
-  livecheck do
-    url "https://digitasecurity.com/product/uxprotect/appcast.xml"
-    strategy :sparkle
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-08-30", because: :unmaintained
 
   auto_updates true
   depends_on macos: ">= :sierra"
@@ -23,4 +22,8 @@ cask "uxprotect" do
     "~/Library/Containers/com.digitasecurity.UXProtect",
     "~/Library/Preferences/com.digitasecurity.UXProtect.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

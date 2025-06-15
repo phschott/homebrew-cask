@@ -8,7 +8,9 @@ cask "sequel-pro" do
   desc "MySQL/MariaDB database management platform"
   homepage "https://www.sequelpro.com/"
 
-  deprecate! date: "2023-12-17", because: :discontinued
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-12-16", because: :discontinued, replacement_cask: "sequel-ace"
 
   app "Sequel Pro.app"
 
@@ -20,9 +22,6 @@ cask "sequel-pro" do
   ]
 
   caveats do
-    <<~EOS
-      #{token} has been deprecated in favor of Sequel Ace.
-        brew install --cask sequel-ace
-    EOS
+    requires_rosetta
   end
 end

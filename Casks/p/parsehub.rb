@@ -1,6 +1,6 @@
 cask "parsehub" do
-  version "2.4.33"
-  sha256 "8303773747139309df3546dfeca6cf7ec6913fe42dbe2a7206c5ca5e9994e6b1"
+  version "2.4.43"
+  sha256 "0e300808d6523b0fdeb62afadd5eefd0767b4a7bddae47955ff00f8128881f83"
 
   url "https://parsehub.com/static/client/ParseHub-#{version}-mac.zip"
   name "ParseHub"
@@ -13,6 +13,7 @@ cask "parsehub" do
   end
 
   auto_updates true
+  depends_on macos: ">= :catalina"
 
   app "ParseHub.app"
 
@@ -22,4 +23,8 @@ cask "parsehub" do
     "~/Library/Preferences/com.parsehub.client.plist",
     "~/Library/Saved Application State/com.parsehub.client.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

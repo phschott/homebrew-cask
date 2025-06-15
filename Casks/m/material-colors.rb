@@ -6,6 +6,8 @@ cask "material-colors" do
   name "Material Colors for Mac"
   homepage "https://github.com/romannurik/MaterialColorsApp"
 
+  no_autobump! because: :requires_manual_review
+
   app "Material Colors.app"
 
   zap trash: [
@@ -15,4 +17,8 @@ cask "material-colors" do
     "~/Library/Caches/net.nurik.roman.materialcolors",
     "~/Library/Preferences/net.nurik.roman.materialcolors.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

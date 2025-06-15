@@ -1,6 +1,6 @@
 cask "ishowu-instant" do
-  version "1.4.19"
-  sha256 "f84e0769eaa885c192478808ca479324187ee6b47d5b4731c29994a46ff25239"
+  version "1.4.21"
+  sha256 "e6769386a8381aa2a90c189e555de4cbdbdb019e0785542cdb25b32ce58382f3"
 
   url "https://www.shinywhitebox.com/downloads/instant/iShowU_Instant_#{version}.dmg"
   name "iShowU Instant"
@@ -11,6 +11,8 @@ cask "ishowu-instant" do
     url "https://www.shinywhitebox.com/store/appcast.php?p=14"
     strategy :sparkle, &:short_version
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :mojave"

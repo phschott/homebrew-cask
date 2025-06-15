@@ -1,5 +1,5 @@
 cask "doppler" do
-  version "2.1.21"
+  version "2.1.22"
   sha256 :no_check
 
   url "https://updates.brushedtype.co/doppler-macos/download"
@@ -11,6 +11,8 @@ cask "doppler" do
     url "https://updates.brushedtype.co/doppler-macos/appcast.xml"
     strategy :sparkle, &:short_version
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :big_sur"
 

@@ -1,9 +1,8 @@
 cask "roam" do
   arch arm: "arm64", intel: "x64"
 
-  version "110.1.2-beta001"
-  sha256 arm:   "360c677536b5d1120e5af8f7bc8b5ea6192f9394a1c1de0b30e38afe4986a245",
-         intel: "904b834eb51ac9064873089e25e2d3d54e331e9bb733b1ecca6ddaca237a9ce7"
+  version "165.0.0-beta001"
+  sha256 :no_check
 
   url "https://download.ro.am/Roam/8a86d88cfc9da3551063102e9a4e2a83/latest/darwin/#{arch}/Roam.dmg"
   name "Roam"
@@ -11,8 +10,15 @@ cask "roam" do
   homepage "https://ro.am/"
 
   livecheck do
-    url :url
-    strategy :extract_plist
+    url "https://ro.am/release-notes"
+    regex(/version:\s*"v?(\d+(?:\.\d+)+(?:[._-]beta\d+)?)"/i)
+    strategy :page_match do |page, regex|
+      js_match = page[/src=.*?(index[._-]\w+\.js)/i, 1]
+      next if js_match.blank?
+
+      js_page = Homebrew::Livecheck::Strategy.page_content("https://ro.am/website/#{js_match}")
+      js_page[:content]&.scan(regex)&.map { |match| match[0] }
+    end
   end
 
   auto_updates true

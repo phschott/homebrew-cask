@@ -6,9 +6,15 @@ cask "helium" do
   name "Helium"
   homepage "https://github.com/koush/support-wiki/wiki/Helium-Desktop-Installer-and-Android-App"
 
+  no_autobump! because: :requires_manual_review
+
   app "Helium.app"
 
   uninstall quit: "com.koushikdutta.Helium"
 
   zap trash: "~/Library/Saved Application State/com.koushikdutta.Helium.savedState"
+
+  caveats do
+    requires_rosetta
+  end
 end

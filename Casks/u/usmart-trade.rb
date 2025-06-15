@@ -1,19 +1,33 @@
 cask "usmart-trade" do
-  version "3.27.4,24750781-4ed9-45c3-83c5-277929db5e81,2024-02-27"
-  sha256 "1af7f18b33a0a83b27f48231ab1d40f0363d53062e50a60b49cc8eaf50083d23"
+  arch arm: "-arm64"
+  livecheck_arch = on_arch_conditional arm: "mac_arm", intel: "mac"
 
-  url "https://jy-common-prd-1257884527.cos.ap-guangzhou.myqcloud.com/admin/app-version-file/#{version.csv.third}/#{version.csv.second}/uSMART%20Trade-#{version.csv.first}.dmg",
+  on_arm do
+    version "4.0.1,e85bf59d-b357-4966-9439-f9719b8dd7b1,2025-05-06"
+    sha256 "803d104dcf7720ea8fa07f05f66ee97c118f11c4def9c90675a8b46a1e25894f"
+  end
+  on_intel do
+    version "4.0.0,41c1145e-cafa-454a-a7f1-c67ddaeafd19,2025-03-26"
+    sha256 "c6b79d90f1f496e5c679472ff58586c86e5f930e5417e1860c1f9e6ce75a1a00"
+  end
+
+  url "https://jy-common-prd-1257884527.cos.ap-guangzhou.myqcloud.com/admin/app-version-file/#{version.csv.third}/#{version.csv.second}/uSMART%20Trade-#{version.csv.first}#{arch}.dmg",
       verified: "jy-common-prd-1257884527.cos.ap-guangzhou.myqcloud.com/"
   name "uSMART Trade"
   desc "Stock and options trading platform"
   homepage "https://www.usmartglobal.com/"
 
   livecheck do
-    url "https://www.usmart.hk/en/download"
-    regex(%r{href=['"].*?file/(\d+[-_]\d+[-_]\d+)/((?:\w+-)+(?:\w+))/.*?Trade[-_]?(\d+(?:\.\d+)+).dmg}i)
-    strategy :page_match do |page|
-      page.scan(regex)
-          .map { |match| "#{match[2]},#{match[1]},#{match[0]}" }
+    url "https://jy.yxzq.com/config-manager-admin/api/get-latest-package/v1", post_json: {
+      appType: 7,
+      system:  livecheck_arch,
+    }
+    regex(%r{file/(\d+[-_]\d+[-_]\d+)/((?:\w+-)+(?:\w+))/.*?Trade[-_]?(\d+(?:\.\d+)+)#{arch}\.dmg}i)
+    strategy :json do |json, regex|
+      match = json.dig("data", 0, "url")&.match(regex)
+      next if match.blank?
+
+      "#{match[3]},#{match[2]},#{match[1]}"
     end
   end
 

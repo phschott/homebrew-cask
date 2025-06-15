@@ -1,10 +1,9 @@
 cask "font-iosevka-curly" do
-  version "30.1.1"
-  sha256 "b3e8d83bc9a355251c6792d4e791319e0e0e6be4d077483ee708fa7c38b8fa34"
+  version "33.2.5"
+  sha256 "0f244a33e5fbbaac4a57dd94268f38e8cf30baf6489bc7eab35936fc278b220c"
 
-  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/PkgTTC-IosevkaCurly-#{version}.zip"
+  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/SuperTTC-IosevkaCurly-#{version}.zip"
   name "Iosevka Curly"
-  desc "Sans-serif, slab-serif, monospace and quasi‑proportional typeface family"
   homepage "https://github.com/be5invis/Iosevka/"
 
   livecheck do
@@ -12,15 +11,7 @@ cask "font-iosevka-curly" do
     strategy :github_latest
   end
 
-  font "IosevkaCurly-Bold.ttc"
-  font "IosevkaCurly-ExtraBold.ttc"
-  font "IosevkaCurly-ExtraLight.ttc"
-  font "IosevkaCurly-Heavy.ttc"
-  font "IosevkaCurly-Light.ttc"
-  font "IosevkaCurly-Medium.ttc"
-  font "IosevkaCurly-Regular.ttc"
-  font "IosevkaCurly-SemiBold.ttc"
-  font "IosevkaCurly-Thin.ttc"
+  font "IosevkaCurly.ttc"
 
   # No zap stanza required
 end

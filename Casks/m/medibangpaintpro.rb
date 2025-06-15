@@ -12,6 +12,8 @@ cask "medibangpaintpro" do
     regex(%r{href=.*?/MediBangPaintPro-(\d+(?:\.\d+)*)\.dmg}i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "MediBangPaintPro.app"
 
   zap trash: [
@@ -21,4 +23,8 @@ cask "medibangpaintpro" do
     "~/Library/Preferences/com.medibang.cloudalpaca.plist",
     "~/Library/Saved Application State/com.medibang.cloudalpaca.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

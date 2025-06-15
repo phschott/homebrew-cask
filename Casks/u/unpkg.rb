@@ -12,5 +12,12 @@ cask "unpkg" do
     regex(/href=.*?unpkg[._-]v?(\d+(?:\.\d+)+)\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "unpkg #{version}/unpkg.app"
+
+  zap trash: [
+    "~/Library/Preferences/org.timdoug.unpkg.plist",
+    "~/Library/Saved Application State/org.timdoug.unpkg.savedState",
+  ]
 end

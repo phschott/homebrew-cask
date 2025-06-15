@@ -1,13 +1,14 @@
 cask "lark" do
   arch arm: "arm64", intel: "x64"
+  livecheck_arch = on_arch_conditional arm: "_m1"
 
   on_arm do
-    version "7.18.8,58c0089d"
-    sha256 "be4a2b93421e55917b215b314698ffb7851420a50222b9e8962724c0bee7a5c2"
+    version "7.44.13,0101f700"
+    sha256 "7213c8314f54e204544b0edd16f69a457f8254bd769e3b12b82d13d9095dee8e"
   end
   on_intel do
-    version "7.18.8,264fddc3"
-    sha256 "fc12d3ee52e788fdd02bf7795d1c9a54b5b5292744d6dc670aaca4e403644c85"
+    version "7.44.13,781aec32"
+    sha256 "c71eae5f3b8f54a2cae93adce64ee9c76a7debcee94c81699b4679ec0ee4796c"
   end
 
   url "https://sf16-va.larksuitecdn.com/obj/lark-artifact-storage/#{version.csv.second}/Lark-darwin_#{arch}-#{version.csv.first}-signed.dmg",
@@ -18,13 +19,17 @@ cask "lark" do
 
   livecheck do
     url "https://www.larksuite.com/api/downloads"
-    regex(%r{/lark-artifact-storage/(\h+)/Lark-darwin_#{arch}[._-]v?(\d+(?:\.\d+)+)-signed\.dmg}i)
-    strategy :page_match do |page, regex|
-      page.scan(regex).map { |match| "#{match[1]},#{match[0]}" }
+    regex(%r{/lark-artifact-storage/(\h+)/Lark[._-]darwin[._-]#{arch}[._-]v?(\d+(?:\.\d+)+)[._-]signed\.dmg}i)
+    strategy :json do |json, regex|
+      match = json.dig("versions", "MacOS#{livecheck_arch}", "download_link")&.match(regex)
+      next if match.blank?
+
+      "#{match[2]},#{match[1]}"
     end
   end
 
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "LarkSuite.app"
 

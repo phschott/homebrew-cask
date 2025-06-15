@@ -1,29 +1,32 @@
 cask "font-ibm-plex-mono" do
-  version :latest
-  sha256 :no_check
+  version "1.1.0"
+  sha256 "4bfc936d0e1fd19db6327a3786eabdbc3dc0d464500576f6458f6706df68d26c"
 
-  url "https://github.com/google/fonts.git",
-      verified:  "github.com/google/fonts",
-      branch:    "main",
-      only_path: "ofl/ibmplexmono"
+  url "https://github.com/IBM/plex/releases/download/%40ibm%2Fplex-mono%40#{version}/ibm-plex-mono.zip"
   name "IBM Plex Mono"
-  desc "Corporate typeface for IBM"
-  homepage "https://fonts.google.com/specimen/IBM+Plex+Mono"
+  homepage "https://github.com/IBM/plex"
 
-  font "IBMPlexMono-Bold.ttf"
-  font "IBMPlexMono-BoldItalic.ttf"
-  font "IBMPlexMono-ExtraLight.ttf"
-  font "IBMPlexMono-ExtraLightItalic.ttf"
-  font "IBMPlexMono-Italic.ttf"
-  font "IBMPlexMono-Light.ttf"
-  font "IBMPlexMono-LightItalic.ttf"
-  font "IBMPlexMono-Medium.ttf"
-  font "IBMPlexMono-MediumItalic.ttf"
-  font "IBMPlexMono-Regular.ttf"
-  font "IBMPlexMono-SemiBold.ttf"
-  font "IBMPlexMono-SemiBoldItalic.ttf"
-  font "IBMPlexMono-Thin.ttf"
-  font "IBMPlexMono-ThinItalic.ttf"
+  livecheck do
+    url :url
+    regex(%r{^@ibm/plex-mono@?(\d+(?:\.\d+)+)$}i)
+  end
+
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Bold.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-BoldItalic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-ExtraLight.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-ExtraLightItalic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Italic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Light.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-LightItalic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Medium.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-MediumItalic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Regular.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-SemiBold.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-SemiBoldItalic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Text.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-TextItalic.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-Thin.otf"
+  font "ibm-plex-mono/fonts/complete/otf/IBMPlexMono-ThinItalic.otf"
 
   # No zap stanza required
 end

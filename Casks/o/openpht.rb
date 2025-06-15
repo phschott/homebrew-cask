@@ -7,6 +7,8 @@ cask "openpht" do
   desc "Community-driven fork of Plex Home Theater"
   homepage "https://github.com/RasPlex/OpenPHT"
 
+  no_autobump! because: :requires_manual_review
+
   app "OpenPHT.app"
 
   zap trash: [
@@ -14,4 +16,8 @@ cask "openpht" do
     "~/Library/Logs/OpenPHT.log",
     "~/Library/Saved Application State/tv.openpht.openpht.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

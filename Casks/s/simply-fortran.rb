@@ -1,37 +1,44 @@
 cask "simply-fortran" do
-  arch arm: "-arm64", intel: "-x86_64"
+  version "3.40.4424"
 
   on_big_sur :or_older do
-    version "3.34.4182"
-    sha256 "5170a54ebd982a3fa0c34c2dab6d25ae1eba524b1cd93a597e183e37e9701c7a"
+    arch arm: "x86_64.legacy", intel: "x86_64.legacy"
 
-    url "https://download.simplyfortran.com/#{version.major_minor}/macos/simplyfortran-#{version}-x86_64.legacy.dmg"
+    sha256 "b326cc151fa7d2b896f5aa5d08e8d1768638ced2f511d0f251d2cbeda6797607"
 
-    livecheck do
-      skip "Legacy version"
+    caveats do
+      requires_rosetta
     end
   end
   on_monterey :or_newer do
-    on_arm do
-      version "3.34.4182"
-      sha256 "e235a5cfa09f507d2625140d78f6fe574c1dc55937024c923906191174e8effc"
-    end
-    on_intel do
-      version "3.34.4182"
-      sha256 "d37d6b0790f53d756b2a13ccebf8518a547dd451ac2f95fa3ce42abc2d9e53aa"
-    end
+    on_ventura :or_older do
+      arch arm: "x86_64", intel: "x86_64"
 
-    url "https://download.simplyfortran.com/#{version.major_minor}/macos/simplyfortran-#{version}#{arch}.dmg"
+      sha256 "f711ba2e206b7ff4944319da2b5e98a1f48112ef26d474cb01cd59ffcacb5def"
 
-    livecheck do
-      url "https://simplyfortran.com/download/?platform=macos"
-      regex(/href=.*?simplyfortran[._-]v?(\d+(?:\.\d+)+)#{arch}\.dmg/i)
+      caveats do
+        requires_rosetta
+      end
     end
   end
+  on_sonoma :or_newer do
+    arch arm: "arm64", intel: "x86_64"
 
+    sha256 arm:   "aa40ad159edb13a54478f611050d852d92eb8c912dae0e26c7fe51b0e0770e67",
+           intel: "f711ba2e206b7ff4944319da2b5e98a1f48112ef26d474cb01cd59ffcacb5def"
+  end
+
+  url "https://download.simplyfortran.com/#{version.major_minor}/macos/simplyfortran-#{version}-#{arch}.dmg"
   name "Simply Fortran"
   desc "Fortran development environment"
   homepage "https://simplyfortran.com/"
+
+  livecheck do
+    url "https://simplyfortran.com/download/?platform=macos"
+    regex(/href=.*?simplyfortran[._-]v?(\d+(?:\.\d+)+)[._-]#{arch}\.dmg/i)
+  end
+
+  no_autobump! because: :requires_manual_review
 
   app "Simply Fortran.app"
 

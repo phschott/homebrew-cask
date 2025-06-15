@@ -13,6 +13,8 @@ cask "runway" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Runway.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "runway" do
     "~/Library/Preferences/com.runwayai.runway.plist",
     "~/Library/Saved Application State/com.runwayai.runway.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -7,7 +7,9 @@ cask "chrome-devtools" do
   desc "Standalone Chrome development tools"
   homepage "https://github.com/auchenberg/chrome-devtools-app"
 
-  deprecate! date: "2023-12-17", because: :discontinued
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-12-16", because: :discontinued
 
   app "Chrome DevTools App.app"
 
@@ -17,4 +19,8 @@ cask "chrome-devtools" do
     "~/Library/Preferences/com.auchenberg.chrome-devtools-app.plist",
     "~/Library/Saved Application State/com.auchenberg.chrome-devtools-app.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "lifesize" do
-  version "3.0.14"
-  sha256 "b9b56a62bc9d69465fca7128bd58a6f3e45cf60afa872c7cc06fa36059c8ea04"
+  version "3.0.18"
+  sha256 "93967bf314406a4408f3e8c808cbd7d0676530107360d9f460643aeb471e4e33"
 
   url "https://download.lifesizecloud.com/Lifesize-#{version}-mac.zip",
       verified: "download.lifesizecloud.com/"
@@ -13,7 +13,10 @@ cask "lifesize" do
     regex(/Lifesize[._-]v?(\d+(?:\.\d+)+)-mac\.zip/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
+  depends_on macos: ">= :high_sierra"
 
   app "Lifesize.app"
 
@@ -27,4 +30,8 @@ cask "lifesize" do
     "~/Library/Preferences/com.lifesize.cloud.plist",
     "~/Library/Saved Application State/com.lifesize.cloud.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -12,10 +12,16 @@ cask "oscilloscope" do
     strategy :github_latest
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "Oscilloscope.app"
 
   zap trash: [
     "~/Library/Application Scripts/org.sd.oscilloscope",
     "~/Library/Containers/org.sd.oscilloscope",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

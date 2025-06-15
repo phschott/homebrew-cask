@@ -7,6 +7,8 @@ cask "html-mangareader" do
   desc "Lightweight offline CBZ/CBR and image viewer with full continuous scrolling"
   homepage "https://github.com/luejerry/html-mangareader"
 
+  no_autobump! because: :requires_manual_review
+
   app "HTML Mangareader.app"
 
   zap trash: [
@@ -14,4 +16,8 @@ cask "html-mangareader" do
     "~/Library/Preferences/HTML Mangareader.plist",
     "~/Library/Saved Application State/HTML Mangareader.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -19,6 +19,8 @@ cask "xee" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "Xee³.app"
@@ -29,4 +31,8 @@ cask "xee" do
     "~/Library/Cookies/cx.c3.Xee3.binarycookies",
     "~/Library/Preferences/cx.c3.Xee3.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

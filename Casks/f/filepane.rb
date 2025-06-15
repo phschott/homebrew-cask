@@ -13,6 +13,8 @@ cask "filepane" do
     skip "Appcast only provides the version, no timestamp"
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "FilePane.app"
 
   zap trash: [
@@ -22,4 +24,8 @@ cask "filepane" do
     "~/Library/Preferences/com.mymixapps.FilePane.plist",
     "~/Users/Shared/FilePane/",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

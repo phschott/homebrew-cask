@@ -1,8 +1,8 @@
 cask "hydrus-network" do
-  version "577"
-  sha256 "35cc3ebef4f0c4491d94e316c6955903b96045aa88e7b17b5707cdc5f7502497"
+  version "625"
+  sha256 "04c3d6dcdb23441b326fd5a496a37e0ab8ffe7a0427722e38900717a1cc8150f"
 
-  url "https://github.com/hydrusnetwork/hydrus/releases/download/v#{version}/Hydrus.Network.#{version}.-.macOS.-.App.dmg",
+  url "https://github.com/hydrusnetwork/hydrus/releases/download/v#{version}/Hydrus.Network.#{version}.-.macOS.-.App.zip",
       verified: "github.com/hydrusnetwork/hydrus/"
   name "hydrus network"
   desc "Booru-style media tagger"
@@ -16,5 +16,9 @@ cask "hydrus-network" do
 
   app "Hydrus Network.app"
 
-  zap trash: "~/Library/Hydrus/"
+  zap trash: "~/Library/Hydrus"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -13,6 +13,8 @@ cask "all-in-one-messenger" do
     strategy :electron_builder
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "All-in-One Messenger.app"
@@ -26,4 +28,8 @@ cask "all-in-one-messenger" do
     "~/Library/Preferences/im.allinone.messenger.plist",
     "~/Library/Saved Application State/im.allinone.messenger.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

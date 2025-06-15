@@ -1,10 +1,9 @@
 cask "font-iosevka-etoile" do
-  version "30.1.1"
-  sha256 "0456a9da8e87d57a01ebdfaee23d0f17158ed2985a395d91a592563fde0bef29"
+  version "33.2.5"
+  sha256 "88d324ad93bdbd563005f6d3cffc72350a622078da8ccefe362c705cda5d973e"
 
-  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/PkgTTC-IosevkaEtoile-#{version}.zip"
+  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/SuperTTC-IosevkaEtoile-#{version}.zip"
   name "Iosevka Etoile"
-  desc "Sans-serif, slab-serif, monospace and quasi‑proportional typeface family"
   homepage "https://github.com/be5invis/Iosevka/"
 
   livecheck do
@@ -12,15 +11,7 @@ cask "font-iosevka-etoile" do
     strategy :github_latest
   end
 
-  font "IosevkaEtoile-Bold.ttc"
-  font "IosevkaEtoile-ExtraBold.ttc"
-  font "IosevkaEtoile-ExtraLight.ttc"
-  font "IosevkaEtoile-Heavy.ttc"
-  font "IosevkaEtoile-Light.ttc"
-  font "IosevkaEtoile-Medium.ttc"
-  font "IosevkaEtoile-Regular.ttc"
-  font "IosevkaEtoile-SemiBold.ttc"
-  font "IosevkaEtoile-Thin.ttc"
+  font "IosevkaEtoile.ttc"
 
   # No zap stanza required
 end

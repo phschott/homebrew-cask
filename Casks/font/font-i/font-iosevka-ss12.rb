@@ -1,10 +1,9 @@
 cask "font-iosevka-ss12" do
-  version "30.1.1"
-  sha256 "5ae29bf0da58415c93a46b974988c82e24536961aba19e5ebb4584cac255cbf6"
+  version "33.2.5"
+  sha256 "ecd74821f08d9b25f634b1d952e79087459033123c7d3c6bcb3eb8a651b8d2c3"
 
-  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/PkgTTC-IosevkaSS12-#{version}.zip"
+  url "https://github.com/be5invis/Iosevka/releases/download/v#{version}/SuperTTC-IosevkaSS12-#{version}.zip"
   name "Iosevka SS12"
-  desc "Sans-serif, slab-serif, monospace and quasi‑proportional typeface family"
   homepage "https://github.com/be5invis/Iosevka/"
 
   livecheck do
@@ -12,15 +11,7 @@ cask "font-iosevka-ss12" do
     strategy :github_latest
   end
 
-  font "IosevkaSS12-Bold.ttc"
-  font "IosevkaSS12-ExtraBold.ttc"
-  font "IosevkaSS12-ExtraLight.ttc"
-  font "IosevkaSS12-Heavy.ttc"
-  font "IosevkaSS12-Light.ttc"
-  font "IosevkaSS12-Medium.ttc"
-  font "IosevkaSS12-Regular.ttc"
-  font "IosevkaSS12-SemiBold.ttc"
-  font "IosevkaSS12-Thin.ttc"
+  font "IosevkaSS12.ttc"
 
   # No zap stanza required
 end

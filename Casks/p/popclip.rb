@@ -1,6 +1,6 @@
 cask "popclip" do
-  version "2024.5.1"
-  sha256 "3899d17b5d2667f255097a2bc866894baca1decbc870a61771db4bc2da5f6a2b"
+  version "2024.12"
+  sha256 "22b223f1a6b3a3f63883e71af5e607e7ab4d80833d19d1bb9e0c049049863953"
 
   url "https://pilotmoon.com/downloads/PopClip-#{version}.zip",
       verified: "pilotmoon.com/downloads/"
@@ -8,10 +8,16 @@ cask "popclip" do
   desc "Used to access context-specific actions when text is selected"
   homepage "https://www.popclip.app/"
 
+  # The Sparkle feed can contain items on the "Beta" channel, so we restrict
+  # matching to the default channel.
   livecheck do
     url "https://softwareupdate.pilotmoon.com/update/popclip/appcast.xml"
-    strategy :sparkle, &:short_version
+    strategy :sparkle do |items|
+      items.find { |item| item.channel.nil? }&.short_version
+    end
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :catalina"

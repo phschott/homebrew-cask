@@ -1,25 +1,22 @@
 cask "busycal" do
-  version "2024.2.4,2024-05-27-23-57"
-  sha256 "8498c8ef8e2266a1a6d593ccddd88e0ec6fa1fa97548138c57c242357c1f64cc"
+  version "2025.2.2,2025-06-08-18-02"
+  sha256 "5334b1b8768346d22dffac9477563a818b0429f651c3c844c527426c038fa690"
 
-  url "https://7e968b6ce8a839f034d9-23cfb9eddcb7b94cb43ba95f95a76900.ssl.cf1.rackcdn.com/bcl-#{version.csv.first}-#{version.csv.second}.zip",
-      verified: "7e968b6ce8a839f034d9-23cfb9eddcb7b94cb43ba95f95a76900.ssl.cf1.rackcdn.com/"
+  url "https://downloads.busymac.com/bcl-#{version.csv.first}-#{version.csv.second}.zip"
   name "BusyCal"
   desc "Calendar software focusing on flexibility and reliability"
   homepage "https://busymac.com/busycal/index.html"
 
   livecheck do
     url "https://www.busymac.com/download/BusyCal.zip"
-    strategy :header_match do |headers|
-      match = headers["location"].match(/bcl-(\d+(?:\.\d+)+)-(.*?)\.zip/)
-      next if match.blank?
-
-      "#{match[1]},#{match[2]}"
+    regex(%r{/bcl[._-]v?(\d+(?:\.\d+)+)[._-](\d+(?:-\d+)+)\.zip}i)
+    strategy :header_match do |headers, regex|
+      headers["location"]&.scan(regex)&.map { |match| "#{match[0]},#{match[1]}" }
     end
   end
 
   auto_updates true
-  depends_on macos: ">= :el_capitan"
+  depends_on macos: ">= :catalina"
 
   pkg "BusyCal Installer.pkg"
 

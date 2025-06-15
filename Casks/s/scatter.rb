@@ -8,6 +8,8 @@ cask "scatter" do
   desc "Desktop wallet for EOS"
   homepage "https://get-scatter.com/"
 
+  no_autobump! because: :requires_manual_review
+
   app "Scatter.app"
 
   zap trash: [
@@ -16,4 +18,8 @@ cask "scatter" do
     "~/Library/Preferences/com.get-scatter.server.plist",
     "~/Library/Saved Application State/com.get-scatter.server.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -1,6 +1,6 @@
 cask "uniflash" do
-  version "8.6.0.4688"
-  sha256 "1b496e0719fe6c21d7ba1a5602d18906fd1d9ddf10a5aef3d59b0fa2f458c212"
+  version "9.1.0.5175"
+  sha256 "810e354a57be274abf31addf8390c5ecd4ddf5abc091f56f3199e2f041b5abd3"
 
   url "https://dr-download.ti.com/software-development/software-programming-tool/MD-QeJBJLj8gq/#{version.major_minor_patch}/uniflash_sl.#{version}.dmg"
   name "TI UniFlash"
@@ -11,6 +11,8 @@ cask "uniflash" do
     url :homepage
     regex(/href=.*?uniflash_sl\.(\d+(?:\.\d+)+)\.dmg/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   installer script: {
     executable: "uniflash_sl.#{version}.app/Contents/MacOS/installbuilder.sh",

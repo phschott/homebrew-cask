@@ -1,6 +1,6 @@
 cask "mac-mouse-fix" do
-  version "3.0.2"
-  sha256 "b839288d5a2bb14042dc40405d1c826c0e9efad424da37ed3e2482d87c21f21d"
+  version "3.0.4"
+  sha256 "c9a8020cf7bfd1e319e1223590650dc65d9f1b4799f669e45c71ac556f21b741"
 
   url "https://github.com/noah-nuebling/mac-mouse-fix/releases/download/#{version}/MacMouseFixApp.zip",
       verified: "github.com/noah-nuebling/mac-mouse-fix/"
@@ -9,18 +9,28 @@ cask "mac-mouse-fix" do
   homepage "https://macmousefix.com/"
 
   livecheck do
-    url :url
-    strategy :github_latest
+    url "https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/update-feed/appcast.xml"
+    strategy :sparkle, &:short_version
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   conflicts_with cask: "mac-mouse-fix@2"
-  depends_on macos: ">= :high_sierra"
+  depends_on macos: ">= :mojave"
 
   app "Mac Mouse Fix.app"
 
   zap trash: [
     "~/Library/Application Support/com.nuebling.mac-mouse-fix",
-    "~/Library/LaunchAgents/com.nuebling.mac-mouse-fix.helper.plist",
+    "~/Library/Caches/com.nuebling.mac-mouse-fix",
+    "~/Library/Caches/com.nuebling.mac-mouse-fix.helper",
+    "~/Library/HTTPStorages/com.nuebling.mac-mouse-fix",
+    "~/Library/HTTPStorages/com.nuebling.mac-mouse-fix.binarycookies",
+    "~/Library/HTTPStorages/com.nuebling.mac-mouse-fix.helper",
+    "~/Library/HTTPStorages/com.nuebling.mac-mouse-fix.helper.binarycookies",
+    "~/Library/Preferences/com.nuebling.mac-mouse-fix.helper.plist",
+    "~/Library/Preferences/com.nuebling.mac-mouse-fix.plist",
+    "~/Library/WebKit/com.nuebling.mac-mouse-fix",
   ]
 end

@@ -1,22 +1,21 @@
 cask "katalon-studio" do
   arch arm: "%20Arm64"
-  app_suffix = on_arch_conditional arm: " Arm64"
 
-  version "9.5.0"
-  sha256 arm:   "48565b5a023ca2046b3887a7b72930601e6a8340518515db1b2821c9cd5f9fd5",
-         intel: "5cc804d1c27c74ebf9359519d94fc0deaa605dd822afe436127be4ce3b26998d"
+  version "10.2.1"
+  sha256 arm:   "b4e5accceea974c8499389d625b6b26bae14a8e46c4c269e6eed3064b814bd1b",
+         intel: "c7925576b19e65f0134f4169f03c434b5daa5c5181864ef09c1658fa3bfdd484"
 
-  url "https://download.katalon.com/#{version}/Katalon%20Studio#{arch}.dmg"
+  url "https://download.katalon.com/free/#{version}/release/Katalon%20Studio#{arch}.dmg"
   name "Katalon Studio"
   desc "Test automation solution"
   homepage "https://katalon.com/download"
 
   livecheck do
-    url :homepage
-    regex(%r{href=.*/(\d+(?:\.\d+)+)/Katalon}i)
+    url "https://github.com/katalon-studio/katalon-studio/"
+    regex(/^free[._-]v?(\d+(?:\.\d+)+)$/i)
   end
 
-  app "Katalon Studio#{app_suffix}.app"
+  app "Katalon Studio.app"
 
   zap trash: [
     "~/.katalon",

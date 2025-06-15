@@ -1,6 +1,6 @@
 cask "plasticscm-cloud-edition" do
-  version "11.0.16.8622"
-  sha256 "b9c8cfc6cffd534c1159e78991be38a960fb088e887e15b4ff083a319f8bc764"
+  version "11.0.16.9478"
+  sha256 "2ccfa26d89a74ddab0237cb1a4a22b4a7e6349f9fd8e3e754173fa416ef47f4b"
 
   url "https://d26z97tczqnlef.cloudfront.net/releases/#{version}/plasticscm/osx/unity-vcs-#{version}-mac.pkg.zip",
       verified: "d26z97tczqnlef.cloudfront.net/"
@@ -9,11 +9,11 @@ cask "plasticscm-cloud-edition" do
   homepage "https://www.plasticscm.com/"
 
   livecheck do
-    url "https://www.plasticscm.com/download/releasenotes/"
-    regex(/plastic\sscm\s-\srelease\snotes\s-\s(\d+(?:\.\d+)+)/i)
+    url "https://www.plasticscm.com/download"
+    regex(%r{href=.*?/download/v?(\d+(?:\.\d+)+)/plasticscm/[^/]+/cloudedition}i)
   end
 
-  pkg "unity-vcs-#{version}.pkg"
+  pkg "unity-vcs-osx-x64-#{version}.pkg"
 
   uninstall launchctl: [
               "com.codicesoftware.plasticscm.macplastic",
@@ -31,4 +31,8 @@ cask "plasticscm-cloud-edition" do
             ]
 
   zap trash: "~/Library/Saved Application State/com.codicesoftware.plasticscm.savedState"
+
+  caveats do
+    requires_rosetta
+  end
 end

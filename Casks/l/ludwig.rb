@@ -10,8 +10,12 @@ cask "ludwig" do
 
   livecheck do
     url :url
-    strategy :extract_plist
+    strategy :header_match
   end
+
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
 
   app "Ludwig.app"
 

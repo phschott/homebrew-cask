@@ -13,6 +13,10 @@ cask "grads" do
     regex(/href=.*?grads[._-]?v?(\d+(?:\.\d+)+)-bin-darwin.*?\.t/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
+  depends_on macos: ">= :high_sierra"
+
   binary "grads-#{version}/bin/bufrscan"
   binary "grads-#{version}/bin/grads"
   binary "grads-#{version}/bin/grib2scan"
@@ -20,13 +24,15 @@ cask "grads" do
   binary "grads-#{version}/bin/gribscan"
   binary "grads-#{version}/bin/stnmap"
 
-  caveats <<~EOS
-    In order to use the GrADS tools, you will need
-    the GrADS fonts and maps data sets, and may need
-    to set some environmental variables.
+  # No zap stanza required
 
-    See the documentation at:
+  caveats do
+    requires_rosetta
+    <<~EOS
+      In order to use the GrADS tools, you will need the GrADS fonts and maps data sets
+      and may need to set some environment variables. For more information, see:
 
-      #{staged_path}/grads-#{version}/bin/INSTALL
-  EOS
+        http://cola.gmu.edu/grads/downloads.php
+    EOS
+  end
 end

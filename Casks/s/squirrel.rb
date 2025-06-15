@@ -1,12 +1,19 @@
 cask "squirrel" do
-  version "1.0.0"
-  sha256 "583b31045037cd05f018e8a4c94440418cd0d5d35e98d1edda76f01f7b39a612"
+  version "1.0.3"
+  sha256 "ceb45dde93fe31e090ca3ea982d90255ee59bd66225354d0750b56bfc2b3b0a4"
 
   url "https://github.com/rime/squirrel/releases/download/#{version}/Squirrel-#{version}.pkg",
       verified: "github.com/rime/squirrel/"
   name "Squirrel"
   desc "Rime input method engine"
   homepage "https://rime.im/"
+
+  livecheck do
+    url "https://rime.im/release/squirrel/appcast.xml"
+    strategy :sparkle
+  end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :ventura"

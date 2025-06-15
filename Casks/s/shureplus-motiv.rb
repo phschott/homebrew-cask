@@ -9,8 +9,10 @@ cask "shureplus-motiv" do
 
   livecheck do
     url "https://www.shure.com/en-US/support/downloads/software-firmware-archive/shure_plus_motiv_desktop"
-    regex(/<span\sclass="firmware__version">\n?\t+?(\d+(?:\.\d+)+)/i)
+    regex(/href=.*MOTIV[._-]Desktop[._-]macOS[._-]v?(\d+(?:\.\d+)+)\.dmg/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   app "ShurePlus MOTIV.app"
 
@@ -21,4 +23,8 @@ cask "shureplus-motiv" do
     "~/Library/Logs/ShurePlus MOTIV",
     "~/Library/Saved Application State/com.shure.motiv.desktop.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

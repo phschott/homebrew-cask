@@ -7,12 +7,9 @@ cask "lazy" do
   desc "Control your environment from your keyboard"
   homepage "https://www.lazy-app.com/"
 
-  livecheck do
-    url :url
-    strategy :extract_plist do |items|
-      items["com.ahmedmen.Bob"].short_version
-    end
-  end
+  no_autobump! because: :requires_manual_review
+
+  disable! date: "2024-08-05", because: :no_longer_available
 
   pkg "lazy.pkg"
 

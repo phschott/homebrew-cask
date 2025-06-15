@@ -12,6 +12,10 @@ cask "macgdbp" do
     strategy :sparkle, &:short_version
   end
 
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+
   app "MacGDBp.app"
 
   zap trash: "~/Library/Preferences/org.bluestatic.macgdbp.plist"

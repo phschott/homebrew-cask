@@ -1,5 +1,5 @@
 cask "switchresx" do
-  version "4.13.3"
+  version "4.14.1"
   sha256 :no_check # required as upstream package is updated in-place
 
   url "https://www.madrau.com/data/switchresx/SwitchResX#{version.major}.zip"
@@ -8,9 +8,11 @@ cask "switchresx" do
   homepage "https://www.madrau.com/"
 
   livecheck do
-    url "https://www.madrau.com/srx_download/srx_download/history.php"
-    regex(/SwitchResX\s*(\d+(?:\.\d+)+)/i)
+    url "https://www.madrau.com/srx_download/download.html"
+    regex(/latest\s+version\s+\(v?(\d+(?:\.\d+)+)\)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
 

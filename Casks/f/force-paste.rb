@@ -6,10 +6,13 @@ cask "force-paste" do
   name "Force Paste"
   homepage "https://github.com/EugeneDae/Force-Paste"
 
-  livecheck do
-    url :url
-    strategy :github_latest
-  end
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-07-10", because: :unmaintained
 
   app "Force Paste.app"
+
+  caveats do
+    requires_rosetta
+  end
 end

@@ -7,6 +7,10 @@ cask "typcn-bilibili" do
   desc "Unofficial bilibili client"
   homepage "https://github.com/typcn/bilibili-mac-client/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-08-30", because: :unmaintained
+
   auto_updates true
 
   app "Bilibili.app"
@@ -16,4 +20,8 @@ cask "typcn-bilibili" do
     "~/Library/Application Support/com.typcn.bilibili",
     "~/Library/WebKit/com.typcn.bilibili",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

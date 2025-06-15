@@ -1,6 +1,6 @@
 cask "android-ndk" do
-  version "26d"
-  sha256 "675e5f3ef03421c8e3e8d86270e52efc4c6e8250493b84d222b75b250ce70810"
+  version "28b"
+  sha256 "62d8f433a321d1ec45bfa656c00172aaad040020e57b378913ec0b7bb7e1b6bf"
 
   url "https://dl.google.com/android/repository/android-ndk-r#{version}-darwin.dmg",
       verified: "dl.google.com/android/repository/"
@@ -10,12 +10,16 @@ cask "android-ndk" do
 
   livecheck do
     url "https://developer.android.com/ndk/downloads"
-    regex(/Latest\b(?!\s+Beta).*?r(\d+[a-z]?)/i)
+    regex(/Latest\b(?!\s+Beta|\s+Pre-Release).*?r(\d+[a-z]?)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
   shimscript = "#{staged_path}/ndk_exec.sh"
   preflight do
+    Pathname.new("#{HOMEBREW_PREFIX}/share").mkpath
+
     build = File.read("#{staged_path}/source.properties").match(/(?<=Pkg.Revision\s=\s\d\d.\d.)\d+/)
     FileUtils.ln_sf("#{staged_path}/AndroidNDK#{build}.app/Contents/NDK", "#{HOMEBREW_PREFIX}/share/android-ndk")
 
@@ -34,9 +38,7 @@ cask "android-ndk" do
     ndk-which
   ].each { |link_name| binary shimscript, target: link_name }
 
-  uninstall_postflight do
-    FileUtils.rm_f("#{HOMEBREW_PREFIX}/share/android-ndk")
-  end
+  uninstall delete: "#{HOMEBREW_PREFIX}/share/android-ndk"
 
   # No zap stanza required
 

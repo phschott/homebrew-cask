@@ -9,8 +9,12 @@ cask "multimc" do
 
   livecheck do
     url "https://files.multimc.org/update/osx64-5.15.2/stable/index.json"
-    regex(/"Name":\s*"(\d+(?:\.\d+)+)"/i)
+    strategy :json do |json|
+      json["Versions"]&.map { |version| version["Name"] }
+    end
   end
+
+  no_autobump! because: :requires_manual_review
 
   auto_updates true
   depends_on macos: ">= :high_sierra"
@@ -22,4 +26,8 @@ cask "multimc" do
     "~/Library/Preferences/org.multimc.MultiMC5.plist",
     "~/Library/Saved Application State/org.multimc.MultiMC5.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

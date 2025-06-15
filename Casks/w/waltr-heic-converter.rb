@@ -19,6 +19,8 @@ cask "waltr-heic-converter" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   auto_updates true
 
   app "WALTR HEIC Converter.app"
@@ -27,4 +29,8 @@ cask "waltr-heic-converter" do
     "~/Library/Logs/com.softorino.WaltrHeicConverter",
     "~/Library/Preferences/com.softorino.WaltrHeicConverter.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

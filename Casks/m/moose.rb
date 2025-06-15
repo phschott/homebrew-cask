@@ -7,6 +7,8 @@ cask "moose" do
   name "moose"
   homepage "https://getmoose.in/"
 
+  no_autobump! because: :requires_manual_review
+
   app "moose.app"
 
   zap trash: [
@@ -15,4 +17,8 @@ cask "moose" do
     "~/Library/Preferences/com.riteshkr.moose.plist",
     "~/Library/Saved Application State/com.riteshkr.moose.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

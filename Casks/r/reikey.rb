@@ -6,7 +6,9 @@ cask "reikey" do
       verified: "bitbucket.org/objective-see/"
   name "ReiKey"
   desc "Scans, detects, and monitors keyboard taps"
-  homepage "https://objective-see.com/products/reikey.html"
+  homepage "https://objective-see.org/products/reikey.html"
+
+  disable! date: "2025-06-12", because: :no_longer_available
 
   depends_on macos: ">= :high_sierra"
 

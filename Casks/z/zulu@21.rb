@@ -1,9 +1,9 @@
 cask "zulu@21" do
   arch arm: "aarch64", intel: "x64"
 
-  version "21.0.3,21.34.19"
-  sha256 arm:   "54f90fd9e89e961eff94246e2afa424fb03c8259fbbfbfe88d13664fd1b5b4e9",
-         intel: "faa9bfaa393412295e9222cddaedcc5af066236517e3452a3b4323ea8a241df6"
+  version "21.0.7,21.42.19"
+  sha256 arm:   "27b304e85b0b7aabdecca3b9d265f4b4b83281065ecf020a160c8a5de325d1b5",
+         intel: "f228def4177675a78b4687b52651f4e09251b8da8c44f4dcc754c1c023abb64d"
 
   url "https://cdn.azul.com/zulu/bin/zulu#{version.csv.second}-ca-jdk#{version.csv.first}-macosx_#{arch}.dmg",
       referer: "https://www.azul.com/downloads/"
@@ -23,6 +23,8 @@ cask "zulu@21" do
       end
     end
   end
+
+  no_autobump! because: :requires_manual_review
 
   depends_on macos: ">= :big_sur"
 

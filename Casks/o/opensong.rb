@@ -6,7 +6,7 @@ cask "opensong" do
       verified: "sourceforge.net/opensong/"
   name "OpenSong"
   desc "Presentation software"
-  homepage "http://www.opensong.org/"
+  homepage "https://www.opensong.org/"
 
   # This regex has to match unstable versions until the cask uses a stable
   # version again.
@@ -14,6 +14,8 @@ cask "opensong" do
     url "https://sourceforge.net/projects/opensong/rss?path=/OpenSong"
     regex(/OpenSong[\s._-]*?v?(\d+(?:[._]\d+)+(?:[\s._-]?(?:B(?:eta)?|RC)\d*)?)(?:[._-][^"']+?)?\.(?:dmg|pkg)/i)
   end
+
+  no_autobump! because: :requires_manual_review
 
   pkg "OpenSong%20#{version}.pkg"
 

@@ -19,6 +19,8 @@ cask "react-studio" do
     end
   end
 
+  no_autobump! because: :requires_manual_review
+
   depends_on macos: ">= :sierra"
 
   app "React Studio.app"
@@ -31,4 +33,8 @@ cask "react-studio" do
     "~/Library/Preferences/com.neonto.ReactStudio.plist*",
     "~/Library/Saved Application State/com.neonto.ReactStudio.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

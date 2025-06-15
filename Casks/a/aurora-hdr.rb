@@ -12,10 +12,18 @@ cask "aurora-hdr" do
     strategy :sparkle
   end
 
+  no_autobump! because: :requires_manual_review
+
+  auto_updates true
+
   app "Aurora HDR.app"
 
-  uninstall delete: [
+  zap trash: [
     "~/Library/Caches/com.macphun.auroraHDR2019",
     "~/Library/Preferences/com.macphun.auroraHDR2019.plist",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

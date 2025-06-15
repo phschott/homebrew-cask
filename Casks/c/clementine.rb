@@ -8,6 +8,10 @@ cask "clementine" do
   desc "Music player and library organiser"
   homepage "https://www.clementine-player.org/"
 
+  no_autobump! because: :requires_manual_review
+
+  deprecate! date: "2024-11-30", because: :discontinued
+
   app "clementine.app"
 
   zap trash: [
@@ -16,4 +20,8 @@ cask "clementine" do
     "~/Library/Preferences/org.clementine-player.Clementine.plist",
     "~/Library/Saved Application State/org.clementine-player.Clementine.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

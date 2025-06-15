@@ -12,10 +12,16 @@ cask "baretorrent" do
     regex(/href=.*?baretorrent[._-]v?(\d+(?:\.\d+)+)(?:[._-][^"' >]+?)?\.dmg/i)
   end
 
+  no_autobump! because: :requires_manual_review
+
   app "baretorrent.app"
 
   zap trash: [
     "~/Library/Application Support/baretorrent",
     "~/Library/Saved Application State/baretorrent.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end
